@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="en" >
+  <ng-container *ngIf="currentModule == 'login'">
+    <login></login>
+  </ng-container>
+  <ng-container *ngIf="currentModule != 'login'">
+  <head>
+    <!-- <link rel="icon" href="images/icons/favicon.png"> -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+
+    <title>Bullfrog Spas</title>
+  </head>
+  <body>
+<app-header></app-header>
+  
+<section class="main-content">
+    <div class="container">
+     <div class="row main-content-inner">
+
+            
+        <router-outlet></router-outlet>
+
+     </div>
+     </div>
+</section>
+  
+   
+  </body>
+</ng-container>
+</html>
+

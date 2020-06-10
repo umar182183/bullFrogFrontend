@@ -1,0 +1,67 @@
+a {
+    font-family: Open Sans, sans-serif;
+    font-weight: normal;
+    color: #4a4a4a;
+}
+
+a:hover {
+    color: #4a4a4a;
+    text-decoration: none;
+}
+
+
+header {
+    background: white;
+    -webkit-box-shadow: 1px 0px 10px 0px rgba(0,0,0,.1);
+    -moz-box-shadow: 1px 0px 10px 0px rgba(0,0,0,.1);
+    box-shadow: 1px 0px 10px 0px rgba(0,0,0,.1);
+    
+}
+
+header .logo {
+    padding: 6px 0px;
+}
+
+header .menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+header .menu-text {
+    display: flex;
+}
+
+header .menu-text p {
+    margin: 0px 0 0 10px;
+}
+
+header .menu-text .mt-badge {
+    background: #285599;
+    color: white;
+    padding: 1px 10px;
+    border-radius: 15px;
+    min-width: 37px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+
+
+@media (max-width: 767.98px) {
+    header .logo {
+        text-align: center;
+    }
+    header .menu {
+        flex-direction: column;
+    }
+    header .menu a {
+        margin-bottom: 10px;
+    }
+    .mc-item {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+
