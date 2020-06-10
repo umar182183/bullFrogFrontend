@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from 'src/project-modules/app/services/app.service';
 
 @Component({
   selector: 'stock-inventory',
@@ -9,11 +8,10 @@ import { AppService } from 'src/project-modules/app/services/app.service';
 export class StockInventoryComponent implements OnInit {
   
   
-  constructor(private appService: AppService){}
+    constructor(){}
   
   
   
   ngOnInit() {
-    this.appService.updateCurrentModule('restock');
     }
 }

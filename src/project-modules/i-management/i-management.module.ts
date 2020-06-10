@@ -9,6 +9,8 @@ import { ReorderPointsComponent } from './components/reorder-points/reorder-poin
 import { InventoryCountsComponent } from './components/inventory-counts/inventory-counts.component';
 import { InventoryManagementHeaderComponent } from './components/i-management-header/i-management-header.component';
 import {CommonModule} from "@angular/common"
+import { InventoryBreadCrumbComponent } from './components/inventory-bread-crumb/inventory-bread-crumb.component';
+import { StockInventoryComponent } from './components/stock-inventory/stock-inventory.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {CommonModule} from "@angular/common"
     RelocateInventoryComponent,
     ReorderPointsComponent,
     InventoryCountsComponent,
-    InventoryManagementHeaderComponent
+    InventoryManagementHeaderComponent,
+    InventoryBreadCrumbComponent,
+    StockInventoryComponent
   ],
   imports: [
     InventoryManagementRoutingModule,
