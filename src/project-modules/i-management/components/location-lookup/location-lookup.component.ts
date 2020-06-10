@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/project-modules/app/services/app.service';
 
 @Component({
   selector: 'location-lookup',
@@ -8,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class LocationLookupComponent implements OnInit {
   
   
-    constructor(){}
+  constructor(private appService: AppService){}
   
   
   
   ngOnInit() {
+    this.appService.updateCurrentModule('restock');
     }
 }

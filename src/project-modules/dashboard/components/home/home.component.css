@@ -52,9 +52,10 @@ a:hover {
 
 
 .mcii-bottom p {
-    margin-bottom: 0px;
+    margin-bottom: -15px;
     font-size: 16px;
     text-transform: uppercase;
+    min-height: 48px;
 }
 
 .dashoardCls{

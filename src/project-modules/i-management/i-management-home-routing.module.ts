@@ -12,14 +12,16 @@ import { StockInventoryComponent } from './components/stock-inventory/stock-inve
 
 
 const routes: Routes = [
-  {path: '', component: InventoryManagementHomeComponent, pathMatch: 'full'},
-  {path: 'restock-points', component: RestockPointsComponent},
-  {path: 'inventory-counts', component: InventoryCountsComponent},
-  {path: 'location-lookup', component: LocationLookupComponent},
-  {path: 'manage-locations', component: ManageLocationsComponent},
-  {path: 'relocate-inventory', component: RelocateInventoryComponent},
-  {path: 'reorder-points', component: ReorderPointsComponent},
-  {path: 'stock-inventory', component: StockInventoryComponent},
+  {path: '', component: InventoryManagementHomeComponent, children: [
+    {path: 'restock-points', component: RestockPointsComponent},
+    {path: 'inventory-counts', component: InventoryCountsComponent},
+    {path: 'location-lookup', component: LocationLookupComponent},
+    {path: 'manage-locations', component: ManageLocationsComponent},
+    {path: 'relocate-inventory', component: RelocateInventoryComponent},
+    {path: 'reorder-points', component: ReorderPointsComponent},
+    {path: 'stock-inventory', component: StockInventoryComponent},
+  ]},
+  
 
   {path: 'page_not_found', component: SharedPageNotFoundComponent},
   {
