@@ -7,6 +7,7 @@ import { ManageLocationsComponent } from './components/manage-locations/manage-l
 import { RelocateInventoryComponent } from './components/relocate-inventory/relocate-inventory.component';
 import { ReorderPointsComponent } from './components/reorder-points/reorder-points.component';
 import { InventoryCountsComponent } from './components/inventory-counts/inventory-counts.component';
+import { InventoryManagementHeaderComponent } from './components/i-management-header/i-management-header.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { InventoryCountsComponent } from './components/inventory-counts/inventor
     RelocateInventoryComponent,
     ReorderPointsComponent,
     InventoryCountsComponent,
+    InventoryManagementHeaderComponent
   ],
   imports: [
     InventoryManagementRoutingModule,
