@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './restock-points.component.html',
   styleUrls: ['./restock-points.component.css']
 })
-export class InventoryManagementHomeComponent implements OnInit {
+export class RestockPointsComponent implements OnInit {
   
   
     constructor(){}
