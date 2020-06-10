@@ -8,12 +8,17 @@ import { AppService } from 'src/project-modules/app/services/app.service';
 })
 export class InventoryManagementHeaderComponent implements OnInit {
   
+  public currentComponent;
   
-    constructor(private appService: AppService){}
+    constructor(private appService: AppService){
+      this.appService.currentModule$.subscribe(currentComponent => {
+        
+        this.currentComponent = currentComponent;
+      });
+    }
   
   
   
   ngOnInit() {
-    this.appService.updateCurrentModule('i-management');
     }
 }

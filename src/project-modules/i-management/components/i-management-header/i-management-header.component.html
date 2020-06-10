@@ -1,7 +1,6 @@
 
-
- <div class="dashoardCls">
-
+<ng-container  >
+ <div class="dashoardCls" [ngClass]="{'squeeze': currentComponent == 'restock'}">
     <div class="col mc-item">
         <div class="mci-inner">
             <a href="javascript:void(0)" routerLink="restock-points">
@@ -108,3 +107,4 @@
     </div>
     
     </div>
+</ng-container>

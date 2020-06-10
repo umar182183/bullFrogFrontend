@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/project-modules/app/services/app.service';
 
 @Component({
   selector: 'restock-points',
@@ -7,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestockPointsComponent implements OnInit {
   
-  
-    constructor(){}
+  constructor(private appService: AppService){}
   
   
   
   ngOnInit() {
+    this.appService.updateCurrentModule('restock');
     }
 }

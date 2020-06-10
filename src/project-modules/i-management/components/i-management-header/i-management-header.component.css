@@ -21,6 +21,7 @@ a:hover {
 .mc-item {
     width: 225px;
     min-width: 225px;
+    /* min-width: 225px; */
     max-width: 245px;
     margin-bottom: 25px;
     height: 175px;
@@ -42,7 +43,9 @@ a:hover {
     padding: 15px;
     border-radius: 50px;
     width: 80px;
+    /* width: 80px; */
     height: 80px;
+    /* height: 80px; */
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
@@ -54,7 +57,10 @@ a:hover {
 .mcii-bottom p {
     margin-bottom: 0px;
     font-size: 16px;
+    /* font-size: 16px; */
     text-transform: uppercase;
+    /* min-height: 35px; */
+
 }
 
 .dashoardCls{
@@ -63,3 +69,21 @@ a:hover {
     margin: 0 auto;
     justify-content: center;
 }
+
+
+
+.squeeze .mc-item {
+    min-width: 150px !important;
+}
+
+
+.squeeze .mciit-cont {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.squeeze .mcii-bottom p {
+font-size: 12px !important;
+min-height: 35px;
+}
+
