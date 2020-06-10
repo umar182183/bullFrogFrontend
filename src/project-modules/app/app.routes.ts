@@ -63,6 +63,10 @@ const routes: Routes = [
     path:'tech-support',
     loadChildren: () => import('../tech-support/tech-support.module').then(m => m.TechSupportModule)
   },
+  {
+    path:'inventory-management',
+    loadChildren: () => import('../i-management/i-management.module').then(m => m.InventoryManagementModule)
+  },
   { path: 'page_not_found', component: SharedPageNotFoundComponent },
   {
     path: '**',
