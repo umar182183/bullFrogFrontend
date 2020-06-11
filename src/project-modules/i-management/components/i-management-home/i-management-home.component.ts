@@ -8,12 +8,12 @@ import { AppService } from 'src/project-modules/app/services/app.service';
 })
 export class InventoryManagementHomeComponent implements OnInit {
   
-  
-    constructor(private appService: AppService){}
+    constructor(private appService: AppService){
+    }
   
   
   
   ngOnInit() {
-    this.appService.updateCurrentModule('i-management');
+    
     }
 }

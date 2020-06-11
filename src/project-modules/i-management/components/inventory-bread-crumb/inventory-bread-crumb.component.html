@@ -1,10 +1,10 @@
 <div class="clear"></div>
 
 <div class="container bred_an">
-    <a routerLink="/dashboard">Dashboard </a>
+    <a routerLink="/dashboard"  (click)="resetClass()">Dashboard </a>
     <img src="assets/breadcrumarrow.svg"/>
   
-    <a routerLink="/inventory-management" (click)="resetClass()"> Inventory Menagement </a>
+    <a routerLink="/inventory-management" *ngIf="breadCrumb" (click)="resetClass()"> Inventory Menagement </a>
       <!-- <img src="assets/breadcrumarrow.svg"/>
       <a>
          <b> Inventory Counts </b>
