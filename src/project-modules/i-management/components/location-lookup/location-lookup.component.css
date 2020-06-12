@@ -3,6 +3,8 @@
     height: 78px;
     font-size: 30px;
     font-weight: 500;
+    background-color: #3961A0 !important;
+    border-color: #3961A0 !important;
 }
 
 .arch_search { 
