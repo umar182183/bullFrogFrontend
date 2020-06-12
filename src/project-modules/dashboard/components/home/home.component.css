@@ -12,6 +12,7 @@ a:hover {
 
 .main-content {
     padding: 50px 0px;
+    overflow-y: auto;
 }
 
 .main-content-inner {

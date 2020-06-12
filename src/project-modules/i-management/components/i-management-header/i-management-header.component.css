@@ -12,6 +12,7 @@ a:hover {
 
 .main-content {
     padding: 50px 0px;
+    overflow-y: auto;
 }
 
 .main-content-inner {
@@ -36,6 +37,9 @@ a:hover {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,.1);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,.1);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,.1);
+    max-height: 174px;
+    
+
 }
 
 .mciit-cont {
@@ -60,6 +64,10 @@ a:hover {
     /* font-size: 16px; */
     text-transform: uppercase;
     /* min-height: 35px; */
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
 
 }
 
@@ -73,7 +81,9 @@ a:hover {
 
 
 .squeeze .mc-item {
+    width: 150px !important;
     min-width: 150px !important;
+    max-width: 150px !important;
 }
 
 
@@ -85,5 +95,7 @@ a:hover {
 .squeeze .mcii-bottom p {
 font-size: 12px !important;
 min-height: 35px;
+overflow: visible;
+white-space: break-spaces;
 }
 
