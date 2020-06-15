@@ -3,8 +3,23 @@
     <button type="button" class="btn btn-success">Parts Location Lookup</button>
 
 <div class="arch_search">
-    <p>Part Number:</p><input  type="text" placeholder="search">
-    <button class="close" type="button">×</button>
+    <p>Part Number:</p>
+    <form [formGroup]="stateForm">
+        <input type="text"
+               matInput
+               placeholder="States Group"
+               formControlName="stateGroup"
+               required
+               [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+              <mat-option *ngFor="let name of group.names" [value]="name">
+                {{name}}
+              </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+    </form>
+    <button class="close" type="reset">×</button>
   </div>
   
 

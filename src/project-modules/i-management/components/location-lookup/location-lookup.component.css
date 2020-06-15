@@ -50,14 +50,16 @@ background: #28a745;
     border: #B3B5B8  .5px solid;
 }
 .img {
-    max-width:15%;
+    max-width: 15%;
     width: 20%;
     float: left;
-    border: #B3B5B8  .5px solid;
+    border: #B3B5B8 .5px solid;
     margin-bottom: 30px;
     margin-right: 20px;
     margin-top: 40px;
     margin-left: 20px;
+    height: 171px;
+    max-height: 171px;
 
 
 }
@@ -72,4 +74,8 @@ background: #28a745;
 
 td {
     border-top: #B3B5B8  .5px solid;
+}
+
+.img-thumbnail {
+    max-width: 100% !important;
 }

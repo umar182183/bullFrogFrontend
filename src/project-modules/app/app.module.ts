@@ -11,6 +11,7 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
 import { SharedModule } from '../shared/shared.module';
 import { LogineGuard } from './guards/login.guard';
 import { DashboardGuard } from './guards/dashboard.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DashboardGuard } from './guards/dashboard.guard';
     NgbModule,
     BsDropdownModule.forRoot(),
     FormsModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService, LogineGuard, DashboardGuard],
   bootstrap: [AppComponent]

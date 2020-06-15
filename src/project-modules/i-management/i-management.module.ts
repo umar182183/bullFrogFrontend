@@ -11,6 +11,9 @@ import { InventoryManagementHeaderComponent } from './components/i-management-he
 import {CommonModule} from "@angular/common"
 import { InventoryBreadCrumbComponent } from './components/inventory-bread-crumb/inventory-bread-crumb.component';
 import { StockInventoryComponent } from './components/stock-inventory/stock-inventory.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -28,7 +31,14 @@ import { StockInventoryComponent } from './components/stock-inventory/stock-inve
   ],
   imports: [
     InventoryManagementRoutingModule,
-    CommonModule
+    CommonModule,
+    MatAutocompleteModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    MatFormFieldModule,
+
   ],
+  exports:[
+  ]
 })
 export class InventoryManagementModule { }
