@@ -1,13 +1,15 @@
-<div class="row">
 
-    <div class="col-md-12">
-        <div class="inv-sub-head">
-            <h3>Inventory Count - Select the location you are counting</h3>
+ <!-- Inventory Count 1 -->
+ <div class="modal fade dsh-modal" bsModal #openPopup="bs-modal" id="invCount1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Inventory Count - Select the location you are counting</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="openPopup.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="inv-sub-body">
+        <div class="modal-body">
             <form>
                 <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Location:</label>
@@ -16,157 +18,143 @@
                 </div>
                 </div>
                 
-                <hr>
-
-                <div class="form-group row">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-back">Go Back</button>
-                    <button type="submit" class="btn btn-next float-right">Next</button>
-                </div>
-                </div>
             </form>
         </div>
-
-    </div>
-</div>
-
-<div class="row">
-
-    <div class="col-md-12">
-        <div class="inv-sub-head">
-            <h3>Enter the part #</h3>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-back">Go Back</button>
+            <button type="submit" class="btn btn-next float-right" (click)="modal2.show(); openPopup.hide()">Next</button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="col-md-12">
-        <div class="inv-sub-body">
+
+  
+<!-- Inventory Count 2 -->
+
+<div class="modal fade dsh-modal" bsModal #modal2="bs-modal" id="invCount2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter the part #</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="modal2.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
             <form>
 
-                
+                        
 
-                  <table class="table table-borderless table-responsive">
-                    <thead>
-                      <tr>
-                        <th scope="col">Count Date</th>
-                        <th scope="col">Parts</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">U/M</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><input type="date" class="form-control"></td>
-                        <td class="w-50"><input type="text" class="form-control"></td>
-                        <td><img src="images/icons/thumb.png" alt="thumb" class="img-fluid img-thumb"></td>
-                        <td><input type="number" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                
-                <hr>
-
-                <div class="form-group row">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-back">Close</button>
-                    <button type="submit" class="btn btn-next float-right">Save</button>
-                </div>
-                </div>
-            </form>
+                <table class="table table-borderless table-responsive" (click)="modal3.show(); modal2.hide()">
+                  <thead>
+                    <tr >
+                      <th scope="col">Count Date</th>
+                      <th scope="col">Parts</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">U/M</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="date" class="form-control"></td>
+                      <td class="w-50"><input type="text" class="form-control"></td>
+                      <td><img src="assets/inventory-management/images/icons/thumb.png" alt="thumb" class="img-fluid img-thumb"></td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+              
+          </form>
         </div>
-
-    </div>
-</div>
-
-
-
-
-
-<div class="row">
-
-    <div class="col-md-12">
-        <div class="inv-sub-head">
-            <h3>Inventory Count</h3>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-back" (click)="modal2.hide()">Close</button>
+                  <button type="submit" class="btn btn-next float-right">Save</button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="col-md-12">
-        <div class="inv-sub-body">
-           
+
+
+<!-- Inventory Count 3 -->
+<div class="modal fade dsh-modal" bsModal #modal3="bs-modal" id="invCount3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Inventory Count</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="modal3.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
             <h4>Do you need to count more parts in the location?</h4>
 
-                <div class="row">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-next float-right">Yes</button>
-                    <button type="submit" class="btn btn-back float-right mx-2">No</button>
-                </div>
-                </div>
         </div>
-
-    </div>
-</div>
-
-
-
-
-
-
-<div class="row">
-
-    <div class="col-md-12">
-        <div class="inv-sub-head">
-            <h3>Enter the part #</h3>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-back" (click)="modal3.hide()">No</button>
+            <button type="submit" class="btn btn-next float-right" (click)="modal4.show(); modal3.hide()">Yes</button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="col-md-12">
-        <div class="inv-sub-body">
+
+
+   <!-- Inventory Count 4 -->
+<div class="modal fade dsh-modal" bsModal #modal4="bs-modal" id="invCount4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter the part #</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="modal4.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
             <form>
+                <table class="table table-borderless table-responsive">
+                  <thead>
+                    <tr>
+                      <th scope="col">Count Date</th>
+                      <th scope="col">Parts</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">U/M</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="date" class="form-control"></td>
+                      <td class="w-50"><input type="text" class="form-control"></td>
+                      <td><img src="assets/inventory-management/images/icons/thumb.png" alt="thumb" class="img-fluid img-thumb"></td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
 
-                
-
-                  <table class="table table-borderless table-responsive">
-                    <thead>
-                      <tr>
-                        <th scope="col">Count Date</th>
-                        <th scope="col">Parts</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">U/M</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><input type="date" class="form-control"></td>
-                        <td class="w-50"><input type="text" class="form-control"></td>
-                        <td><img src="images/icons/thumb.png" alt="thumb" class="img-fluid img-thumb"></td>
-                        <td><input type="number" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
-                      </tr>
-
-                      <tr>
-                        <td><input type="date" class="form-control"></td>
-                        <td class="w-50"><input type="text" class="form-control"></td>
-                        <td><img src="images/icons/thumb.png" alt="thumb" class="img-fluid img-thumb"></td>
-                        <td><input type="number" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                
-                <hr>
-
-                <div class="form-group row">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-back">Close</button>
-                    <button type="submit" class="btn btn-next float-right">Save</button>
-                </div>
-                </div>
-            </form>
+                    <tr>
+                      <td><input type="date" class="form-control"></td>
+                      <td class="w-50"><input type="text" class="form-control"></td>
+                      <td><img src="assets/inventory-management/images/icons/thumb.png" alt="thumb" class="img-fluid img-thumb"></td>
+                      <td><input type="number" class="form-control"></td>
+                      <td><input type="text" class="form-control"></td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+              
+          </form>
         </div>
-
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-back">Close</button>
+            <button type="submit" class="btn btn-next float-right">Save</button>
+        </div>
+      </div>
     </div>
 </div>
+
+

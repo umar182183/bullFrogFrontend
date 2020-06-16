@@ -14,6 +14,7 @@ import { StockInventoryComponent } from './components/stock-inventory/stock-inve
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule, 
     ReactiveFormsModule,
     MatFormFieldModule,
+    ModalModule.forRoot()
 
   ],
   exports:[
