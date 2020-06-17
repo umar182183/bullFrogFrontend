@@ -1,5 +1,5 @@
 
-        <div class="row">
+        <div class="row"  *ngIf="!IsClosedCurrent">
 
             <div class="col-md-12">
                 <div class="inv-sub-head">
@@ -13,7 +13,7 @@
                     <div class="isb-main">
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="#logDetails">
+                                <a href="javascript:void(0)" (click)="isReview = !isReview; IsClosedCurrent = true">
                                     <div class="isb-head">
                                         <h2>54</h2>
                                         <p>REVIEW</p>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="isb-body">
-                                    <table class="table table-striped table-hover table-responsive">
+                                    <table class="table table-striped table-hover table-responsive"  data-toggle="modal" data-target="#logDetails">
                                         <thead class="thead-dark">
                                             <tr>
                                             <th scope="col">Part #</th>
@@ -95,16 +95,16 @@
                       <div class="isb-main">
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="#logDetails">
+                                <a href="javascript:void(0)" (click)="isPurchasePending = !isPurchasePending; IsClosedCurrent = true">
                                     <div class="isb-head">
                                         <h2>54</h2>
-                                        <p>REVIEW</p>
+                                        <p>PURCHASING PENDING</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-10">
                                 <div class="isb-body">
-                                    <table class="table table-striped table-hover table-responsive">
+                                    <table class="table table-striped table-hover table-responsive" data-toggle="modal" data-target="#logDetails">
                                         <thead class="thead-dark">
                                             <tr>
                                             <th scope="col">Part #</th>
@@ -178,16 +178,16 @@
                     <div class="isb-main">
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="#logDetails">
+                                <a  href="javascript:void(0)" (click)="isOpenPO = !isOpenPO; IsClosedCurrent = true">
                                     <div class="isb-head">
                                         <h2>54</h2>
-                                        <p>REVIEW</p>
+                                        <p>OPEN PO's</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-10">
                                 <div class="isb-body">
-                                    <table class="table table-striped table-hover table-responsive">
+                                    <table class="table table-striped table-hover table-responsive" data-toggle="modal" data-target="#logDetails">
                                         <thead class="thead-dark">
                                             <tr>
                                             <th scope="col">Part #</th>
@@ -262,16 +262,16 @@
                     <div class="isb-main">
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="#logDetails">
+                                <a  href="javascript:void(0)" (click)="isPutAway = !isPutAway; IsClosedCurrent = true">
                                     <div class="isb-head">
                                         <h2>54</h2>
-                                        <p>REVIEW</p>
+                                        <p>TO PUT AWAY</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-10">
                                 <div class="isb-body">
-                                    <table class="table table-striped table-hover table-responsive">
+                                    <table class="table table-striped table-hover table-responsive" data-toggle="modal" data-target="#logDetails">
                                         <thead class="thead-dark">
                                             <tr>
                                             <th scope="col">Part #</th>
@@ -421,7 +421,9 @@
   </div>
 
   <!-- reorder part 1 -->
-  <div class="row">
+ 
+ 
+  <div class="row" *ngIf="isReview">
 
     <div class="col-md-12">
         <a class="dh-menu" href="#">
@@ -431,7 +433,434 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isReview = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+        </div>
+        <div class="col-md-8 dh-2">
+            <h4>REORDER LOG - REVIEW REQUIRED</h4>
+        </div>
+        <div class="col-md-2 dh-3">
+            <a href="#" data-toggle="modal" data-target="#addNewLog"><i class="fa fa-plus" aria-hidden="true"></i> Add New Log</a>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="das-body">
+
+            <div class="col-md-12">
+                <a href="#" class="btn btn-back mb-1">Sent Back</a>
+                <table class="table table-striped table-hover table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"><i class="fa fa-check" aria-hidden="true"></i></th>
+                            <th scope="col">PO Submit</th>
+                            <th scope="col">
+                                Part #
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Description
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Vendor
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Order Qty
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Date Created
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Date Required
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                PO #
+                                <input type="text" class="form-control">
+                            </th>
+                            <th style="min-width: 60px;" scope="col">
+                                PO Due Date
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Status
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">
+                                Notes
+                                <input type="text" class="form-control">
+                            </th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td>65-00130</td>
+                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
+                            <td>BALBOA WATER GROUP</td>
+                            <td>21</td>
+                            <td>06-11-2020</td>
+                            <td>07-02-2020</td>
+                            <td></td>
+                            <td></td>
+                            <td>Perchasing Pending</td>
+                            <td></td>
+                            <td>
+                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a class="db-delete" href="#">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        
+                       
+                    </tbody>
+                </table>
+            </div>
+
+              
+
+        </div>
+
+    </div>
+</div>
+   <!-- Approve Reorder -->
+<div class="modal fade dsh-modal" id="appReo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Approve Reorder</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="" class="">PO #:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="" class="">PO Due Date:</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+               
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-next">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Edit Log -->
+<div class="modal fade dsh-modal" id="editLog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Log</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <a href="#" class="btn btn-next mb-3">Send Back for Review</a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p><b>Log Information</b></p>
+                        <table class="table table-striped table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Part Number
+                                </th>
+                                <th scope="col">
+                                    Description
+                                </th>
+                                <th scope="col">
+                                    Date Created
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>65-00989</td>
+                                <td>CONTROL, PAD</td>
+                                <td>06/09/2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12">
+                    <p><b>Update Log Information</b></p>
+                    <hr>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="" class="">Vendor List</label>
+                    <select class="form-control">
+                        <option value="">CORE COVERS</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="" class="">Order Qty</label>
+                    <input type="number" class="form-control" placeholder="4">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="" class="">Notes</label>
+                    <textarea class="form-control"></textarea>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="" class="">Date Required</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                    <div class="form-group col-md-12">
+                        <label for="" class="">PO #</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="" class="">PO Due Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+               
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-next">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Delete Log -->
+<div class="modal fade dsh-modal" id="deleteLog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Log</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <p class="text-center">Do you want to delete this log?</p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <table class="table table-striped table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Part #
+                                </th>
+                                <th scope="col">
+                                    Description
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>10-2090</td>
+                                <td>JET, NECK, ADI, FACE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+               
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-next">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- reorder part 2 -->
+
+ 
+<div class="row" *ngIf="isPurchasePending">
+
+    <div class="col-md-12">
+        <a class="dh-menu" href="#">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <div class="das-head row">
+        <div class="col-md-2 dh-1">
+            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isPurchasePending = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - PURCHASING PENDING</h4>
@@ -700,435 +1129,6 @@
     </div>
 </div>
 
-   <!-- Approve Reorder -->
-<div class="modal fade dsh-modal" id="appReo" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Approve Reorder</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO #:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO Due Date:</label>
-                        <input type="date" class="form-control">
-                    </div>
-                </div>
-               
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Edit Log -->
-<div class="modal fade dsh-modal" id="editLog" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Log</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-next mb-3">Send Back for Review</a>
-                    </div>
-
-                    <div class="col-md-12">
-                        <p><b>Log Information</b></p>
-                        <table class="table table-striped table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    Part Number
-                                </th>
-                                <th scope="col">
-                                    Description
-                                </th>
-                                <th scope="col">
-                                    Date Created
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>65-00989</td>
-                                <td>CONTROL, PAD</td>
-                                <td>06/09/2020</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col-md-12">
-                    <p><b>Update Log Information</b></p>
-                    <hr>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Vendor List</label>
-                    <select class="form-control">
-                        <option value="">CORE COVERS</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Order Qty</label>
-                    <input type="number" class="form-control" placeholder="4">
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Notes</label>
-                    <textarea class="form-control"></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="" class="">Date Required</label>
-                    <input type="date" class="form-control">
-                </div>
-
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO #</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO Due Date</label>
-                        <input type="date" class="form-control">
-                    </div>
-                </div>
-               
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-   <!-- Delete Log -->
-<div class="modal fade dsh-modal" id="deleteLog" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Log</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <p class="text-center">Do you want to delete this log?</p>
-                    </div>
-
-                    <div class="col-md-12">
-                        <table class="table table-striped table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    Part #
-                                </th>
-                                <th scope="col">
-                                    Description
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>10-2090</td>
-                                <td>JET, NECK, ADI, FACE</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-               
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- reorder part 2 -->
-
-  
-  <div class="row">
-
-    <div class="col-md-12">
-        <a class="dh-menu" href="#">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </a>
-    </div>
-
-    <div class="das-head row">
-        <div class="col-md-2 dh-1">
-            <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
-        </div>
-        <div class="col-md-8 dh-2">
-            <h4>REORDER LOG - REVIEW REQUIRED</h4>
-        </div>
-        <div class="col-md-2 dh-3">
-            <a href="#" data-toggle="modal" data-target="#addNewLog"><i class="fa fa-plus" aria-hidden="true"></i> Add New Log</a>
-        </div>
-    </div>
-    
-    <div class="col-md-12">
-        <div class="das-body">
-
-            <div class="col-md-12">
-                <a href="#" class="btn btn-back mb-1">Sent Back</a>
-                <table class="table table-striped table-hover table-responsive">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col"><i class="fa fa-check" aria-hidden="true"></i></th>
-                            <th scope="col">PO Submit</th>
-                            <th scope="col">
-                                Part #
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Description
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Vendor
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Order Qty
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Date Created
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Date Required
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                PO #
-                                <input type="text" class="form-control">
-                            </th>
-                            <th style="min-width: 60px;" scope="col">
-                                PO Due Date
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Status
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">
-                                Notes
-                                <input type="text" class="form-control">
-                            </th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
-                            <td>65-00130</td>
-                            <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                            <td>BALBOA WATER GROUP</td>
-                            <td>21</td>
-                            <td>06-11-2020</td>
-                            <td>07-02-2020</td>
-                            <td></td>
-                            <td></td>
-                            <td>Perchasing Pending</td>
-                            <td></td>
-                            <td>
-                                <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog2">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
-                                <a class="db-delete" href="#">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        
-                       
-                    </tbody>
-                </table>
-            </div>
-
-              
-
-        </div>
-
-    </div>
-</div>
-
-
    <!-- add New Log -->
    <div class="modal fade dsh-modal" id="addNewLog" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -1277,7 +1277,7 @@
   <!-- reorder part 3 -->
 
 
-  <div class="row">
+  <div class="row" *ngIf="isOpenPO">
 
     <div class="col-md-12">
         <a class="dh-menu" href="#">
@@ -1287,7 +1287,7 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isOpenPO = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - Open PO's</h4>
@@ -1765,7 +1765,7 @@
   <!-- reorder part 4 -->
 
   
-  <div class="row">
+  <div class="row" *ngIf="isPutAway">
 
     <div class="col-md-12">
         <a class="dh-menu" href="#">
@@ -1775,7 +1775,7 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isPutAway =false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - PARTS TO PUT AWAY</h4>

@@ -10,7 +10,11 @@ export class ReorderPointsComponent implements OnInit {
   
   constructor(private appService: AppService){}
   
-  
+  public IsClosedCurrent: boolean = false;
+  public isReview: boolean = false;
+  public isPurchasePending: boolean = false;
+  public isOpenPO: boolean = false;
+  public isPutAway: boolean = false;
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
