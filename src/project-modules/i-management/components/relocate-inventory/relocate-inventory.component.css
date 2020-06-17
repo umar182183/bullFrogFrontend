@@ -353,14 +353,7 @@ header .menu-text .mt-badge {
 
 }
 
-
-/* relocate css */
-
-
-
-
-
-
+/* relocate inventory own css */
 
 
 h1,h2,h3,h4,h5,h6 {
@@ -616,9 +609,168 @@ header .menu-text .mt-badge {
 
 
 
-@media (min-width: 768px) {
+
+
+.das-head {
+    width: 100%;
+    background: #3961A0;
+    padding: 10px 0px;
+    margin: 0px 15px 0px;
+    color: white;
+}
+
+.das-head a {
+    color: white;
+}
+
+.das-head h4 {
+    margin-bottom: 0px;
+}
+
+.das-head .dh-2 {
+    text-align: center;
+}
+
+.das-head .dh-3 {
+    text-align: right;
+}
+
+.das-body {
+    background: white;
+    padding: 25px 0 15px;
+}
+
+.das-body .thead-dark th {
+    background: #717375;
+    border-color: #717375;
+    vertical-align: top;
+}
+
+.das-body td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.das-body .thead-dark th, .das-body td {
+    font-size: 12px;
+    font-weight: normal;
+    padding: 10px 4px;
+    text-align: center;
+}
+
+.das-body .thead-dark th .form-control {
+    padding: 0px 5px;
+}
+
+.db-edit i {
+    color: green; 
+}
+
+.db-delete i {
+    color: red; 
+}
+
+.dh-menu i {
+    font-size: 20px;
+}
+
+
+
+.dsh-modal .modal-content {
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+}
+
+
+.dsh-modal .modal-header {
+    background: #3961A0;
+    color: white;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.dsh-modal .modal-header .close {
+    color: white;
+}
+
+.dsh-modal .modal-header h5 {
+    font-size: 16px;
+}
+
+.dsh-modal .modal-body {
+    background: white;
+}
+
+.dsh-modal .modal-body .form-control {
+    background: #E6E7E8;
+}
+
+.dsh-modal .modal-footer {
+    justify-content: space-between;
+    background: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.dsh-modal .form-check-input {
+    margin-top: .5rem;
+    margin-left: .25rem;
+}
+.modal-body.das-body {
+    padding: 15px;
+}
+
+.put-part {
+    min-height: 200px;
+}
+
+.das-body p {
+    font-size: 12px;
+}
+.das-body label {
+    font-size: 12px;
+}
+
+.put-part .thead-dark th, .das-body td {
+    padding: .75rem;
+    text-align: left;
+}
+
+.put-part-loc {
+    height: 200px;
+    overflow: auto;
+}
+
+.put-part-loc th {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.error {
+    color: red;
+}
+
+
+
+
+
+@media (max-width: 1025px) {
+.das-body .thead-dark th, .das-body td {
+    min-width: 90px;
+}
+}
+
+
+
+@media (min-width: 1025px) {
   .table-responsive {
         display: table;
+    }
+    .dsh-modal.show .modal-dialog {
+        min-width: 700px;
     }
 }
 
@@ -649,6 +801,17 @@ header .menu-text .mt-badge {
     }
     .inv-sub-body label.text-right {
         text-align: left !important;
+    }
+
+    
+    .dh-1 {
+        text-align: center;
+    }
+    .das-head h4 {
+        font-size: 18px;
+    }
+    .dh-3 {
+        text-align: center !important;
     }
 
 }
