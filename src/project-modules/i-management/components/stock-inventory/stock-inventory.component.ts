@@ -13,6 +13,7 @@ export class StockInventoryComponent implements OnInit, AfterViewInit {
   public isLocation: boolean = false;
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
   @ViewChild('qtyModal', { static: false }) qtyModal: ModalDirective;
+  @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
 
   
   constructor(private appService: AppService){}
