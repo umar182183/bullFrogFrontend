@@ -18,6 +18,12 @@ export class InventoryBreadCrumbComponent implements OnInit {
     this.appService.updateCurrentModule('breadcrumb');
     this.breadCrumb = false;
   }
+
+  goToDashboard()
+  {
+  this.appService.updateCurrentModule('restock');
+  this.breadCrumb = false;
+  }
   
   ngOnInit() {
    
