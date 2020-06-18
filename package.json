@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-prod": "ng build --prod --aot --build-optimizer --outputHashing=all --base-href=/eapp/ --output-path=../dist",
+    "build-prod": "ng build --prod --aot --build-optimizer --outputHashing=all",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
