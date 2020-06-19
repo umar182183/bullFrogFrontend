@@ -15,6 +15,7 @@ export class StockInventoryComponent implements OnInit, AfterViewInit {
   @ViewChild('qtyModal', { static: false }) qtyModal: ModalDirective;
   @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
 
+  public isAnotherLocation: boolean= false;
   
   constructor(private appService: AppService){}
   ngAfterViewInit() {
