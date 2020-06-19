@@ -6,8 +6,9 @@
                  <img src="assets/bfspas.png" alt="logo" class="img-fluid">
              </a>
          </div>
-         <div *ngIf="currentModule == 'dashboard'" class="col-md-9 menu">
-             <a href="#">
+         <div  class="col-md-9 menu ">
+             <ng-container *ngIf="currentModule == 'dashboard'">
+             <a href="javascript:void">
                  <div class="menu-text">
                      <p>Deliveries Needing Attention</p>
                      <div class="mt-badge">
@@ -15,7 +16,7 @@
                      </div>
                  </div>
              </a>
-             <a href="#">
+             <a href="javascript:void">
                  <div class="menu-text">
                      <p>New Sales Leads</p>
                      <div class="mt-badge">
@@ -23,7 +24,18 @@
                      </div>
                  </div>
              </a>
-         </div>
+            </ng-container>
+             <a href="javascript:void" class="username">
+                <div class="menu-text">
+                    <p>Muhammad Umar</p>
+                </div>
+            </a>
+            <a href="javascript:void" class="btn-success logout" [routerLink]="['/login']">
+                <div class="menu-text">
+                    <p>Logout</p>
+                </div>
+            </a>
+            </div>
         </div>
     </div>
 </header>

@@ -30,6 +30,7 @@ header .menu {
 
 header .menu-text {
     display: flex;
+    
 }
 
 header .menu-text p {
@@ -65,3 +66,33 @@ header .menu-text .mt-badge {
     }
 }
 
+.btn-success{
+    background-color: #285599 !important;
+    border-color: #285599 !important;
+    color: white;
+    padding: 1px 10px;
+    border-radius: 15px;
+    min-width: 37px;
+    text-align: center;
+    margin-left: 23px;
+}
+
+.username{
+    padding-left: 144px !important;
+}
+
+.btn-success:hover {
+    color: white;
+}
+
+.btn-success:active, .btn-success:focus {
+    background: #285599 !important;
+    border-color: #285599 !important;
+    padding: 1px 10px !important;
+    border-radius: 15px !important;
+    min-width: 37px !important;
+    text-align: center !important;
+    margin-left: 23px !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
