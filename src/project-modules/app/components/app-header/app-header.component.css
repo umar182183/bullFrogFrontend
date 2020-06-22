@@ -96,3 +96,66 @@ header .menu-text .mt-badge {
     outline: none !important;
     box-shadow: none !important;
 }
+
+.dsh-modal .modal-content {
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+}
+
+
+.dsh-modal .modal-header {
+    background: #3961A0;
+    color: white;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.dsh-modal .modal-header .close {
+    color: white;
+}
+
+.dsh-modal .modal-header h5 {
+    font-size: 16px;
+}
+
+.dsh-modal .modal-body {
+    background: white;
+}
+
+.dsh-modal .modal-body .form-control {
+    background: #E6E7E8;
+}
+
+.dsh-modal .modal-footer {
+    justify-content: space-between;
+    background: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.dsh-modal .form-check-input {
+    margin-top: .5rem;
+    margin-left: .25rem;
+}
+.modal-body.das-body {
+    padding: 15px;
+}
+
+.btn-back {
+    background: #717375;
+    color: white;
+}
+.btn-back:hover {
+    background: #999b9d;
+    color: white;
+}
+.btn-next {
+    background: #3961A0;
+    color: white;
+}
+.btn-next:hover {
+    background: #527AB9;
+    color: white;
+}
+

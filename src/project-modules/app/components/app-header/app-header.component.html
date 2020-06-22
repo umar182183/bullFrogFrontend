@@ -30,12 +30,33 @@
                     <p>Muhammad Umar</p>
                 </div>
             </a>
-            <a href="javascript:void" class="btn-success logout" [routerLink]="['/login']">
+            <a href="javascript:void" class="btn-success logout" >
                 <div class="menu-text">
-                    <p>Logout</p>
+                    <p (click)="cnfrmtnModal.show()">Logout</p>
                 </div>
             </a>
             </div>
         </div>
     </div>
 </header>
+
+
+<div class="modal fade dsh-modal" bsModal #cnfrmtnModal="bs-modal" id="locSelect" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p class="mb-3">Are you sure you want to Logout?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide()">No</button>
+            <button type="submit" class="btn btn-next float-right" [routerLink]="['/login']">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>

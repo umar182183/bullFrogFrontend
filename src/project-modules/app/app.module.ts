@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LogineGuard } from './guards/login.guard';
 import { DashboardGuard } from './guards/dashboard.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BsDropdownModule.forRoot(),
     FormsModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot(),
   ],
-  providers: [AuthService, LogineGuard, DashboardGuard],
+  providers: [AuthService, LogineGuard, DashboardGuard,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
