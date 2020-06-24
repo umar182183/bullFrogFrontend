@@ -5,12 +5,18 @@
     background-color: #3961A0 !important;
     border-color: #3961A0 !important;
     width: 1052px;
-
+    cursor: initial;
 }
 .strt-table{
     margin-top: 40px;
 }
 
+.btn-success:active, .btn-success:focus  {
+    background: #285599 !important;
+    border-color: #285599 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
 
 /* azhar css */
 

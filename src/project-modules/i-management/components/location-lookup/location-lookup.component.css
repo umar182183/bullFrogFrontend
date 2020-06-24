@@ -14,6 +14,13 @@ h1,h2,h3,h4,h5,h6 {
     background-color: #3961A0 !important;
     border-color: #3961A0 !important;
 }
+.btn-success:active, .btn-success:focus  {
+  background: #285599 !important;
+  border-color: #285599 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 
 .arch_search { 
     width: 40%;
