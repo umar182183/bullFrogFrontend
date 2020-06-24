@@ -13,6 +13,7 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 500;
     background-color: #3961A0 !important;
     border-color: #3961A0 !important;
+    cursor: initial;
 }
 .btn-success:active, .btn-success:focus  {
   background: #285599 !important;
@@ -27,10 +28,10 @@ h1,h2,h3,h4,h5,h6 {
     padding-top: 20px;
     margin-left: 294px;
     display: inline-flex;
-    
 }
 .arch_search input[type=text]{ width:85%; height:40px; border:1px solid #ddd; border-radius:5px; padding:10px 5px;    
   background-size: 19px;
+  margin-left: 10px;
   }
 .arch_search input[type=submit] {    
 background: #28a745;
