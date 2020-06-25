@@ -15,6 +15,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { LocationLookupsService } from './services/location-lookup.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ModalModule.forRoot()
 
   ],
-  exports:[
-  ]
+  providers: [LocationLookupsService]
+
 })
 export class InventoryManagementModule { }
