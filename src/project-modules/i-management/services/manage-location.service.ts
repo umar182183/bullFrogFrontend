@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LocationLookupService {
+export class ManageLocationService {
 
   constructor(private http: HttpClient) {
 

@@ -15,7 +15,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { LocationLookupsService } from './services/location-lookup.service';
+import { LocationLookupService } from './services/location-lookup.service';
+import { RestockService } from './services/restock.service';
+import { StockInventoryService } from './services/stock-inventory.service';
+import { ReorderPointsService } from './services/reorder-points.service';
+import { RelocateService } from './services/relocate.service';
+import { ManageLocationService } from './services/manage-location.service';
+import { InventoryCountsService } from './services/inventory-counts.service';
 
 
 @NgModule({
@@ -41,7 +47,7 @@ import { LocationLookupsService } from './services/location-lookup.service';
     ModalModule.forRoot()
 
   ],
-  providers: [LocationLookupsService]
+  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, RelocateService, ManageLocationService, InventoryCountsService]
 
 })
 export class InventoryManagementModule { }
