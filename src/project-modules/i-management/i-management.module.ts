@@ -22,6 +22,10 @@ import { ReorderPointsService } from './services/reorder-points.service';
 import { RelocateService } from './services/relocate.service';
 import { ManageLocationService } from './services/manage-location.service';
 import { InventoryCountsService } from './services/inventory-counts.service';
+import {AccordionModule} from 'primeng/accordion';
+import {TableModule} from 'primeng/table';
+import { CarService } from './services/car.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -40,14 +44,16 @@ import { InventoryCountsService } from './services/inventory-counts.service';
   imports: [
     InventoryManagementRoutingModule,
     CommonModule,
+    HttpClientModule,
     MatAutocompleteModule,
     FormsModule, 
     ReactiveFormsModule,
     MatFormFieldModule,
-    ModalModule.forRoot()
-
+    ModalModule.forRoot(),
+    AccordionModule,
+    TableModule
   ],
-  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, RelocateService, ManageLocationService, InventoryCountsService]
+  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, RelocateService, ManageLocationService, InventoryCountsService, CarService]
 
 })
 export class InventoryManagementModule { }
