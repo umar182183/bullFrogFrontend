@@ -24,9 +24,11 @@ import { ManageLocationService } from './services/manage-location.service';
 import { InventoryCountsService } from './services/inventory-counts.service';
 import {AccordionModule} from 'primeng/accordion';
 import {TableModule} from 'primeng/table';
-import { CarService } from './services/car.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { AreaManagementComponent } from './components/area-management/area-management.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     InventoryCountsComponent,
     InventoryManagementHeaderComponent,
     InventoryBreadCrumbComponent,
-    StockInventoryComponent
+    StockInventoryComponent,
+    AreaManagementComponent
   ],
   imports: [
     InventoryManagementRoutingModule,
@@ -51,9 +54,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     ModalModule.forRoot(),
     AccordionModule,
-    TableModule
+    TableModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
-  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, RelocateService, ManageLocationService, InventoryCountsService, CarService]
+
+  exports: [MatTableModule, MatPaginatorModule],
+
+  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, RelocateService, ManageLocationService, InventoryCountsService,]
 
 })
 export class InventoryManagementModule { }

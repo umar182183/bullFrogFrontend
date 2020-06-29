@@ -1,5 +1,4 @@
-<h1 class="head">Manage Locations</h1>
-<ng-container *ngIf="isFirstTable">
+<ng-container >
 <button class="btn" (click)="cnfrmtnModal.show()">Add Building</button>
 <div class="wrapper">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -48,5 +47,3 @@
       </div>
     </div>
   </div>
-
-  <area-management *ngIf="!isFirstTable"></area-management>

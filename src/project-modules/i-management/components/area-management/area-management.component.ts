@@ -6,19 +6,18 @@ import { MatSort } from '@angular/material/sort';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'manage-locations',
-  templateUrl: './manage-locations.component.html',
-  styleUrls: ['./manage-locations.component.css']
+  selector: 'area-management',
+  templateUrl: './area-management.component.html',
+  styleUrls: ['./area-management.component.css']
 })
-export class ManageLocationsComponent implements OnInit {
+export class AreaManagementComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
 
-  public isFirstTable: boolean= true;
-
+ 
   constructor(private appService: AppService){}
  
   displayedColumns: string[] = ['id', 'name', 'action'];
