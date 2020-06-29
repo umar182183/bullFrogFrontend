@@ -75,6 +75,15 @@ input[type=text]{
     margin-bottom: 10px;
 }
 
+.left-input{
+    margin-bottom: 9px;
+
+}
+.building-name{
+    margin-bottom: 10px !important;
+    margin-bottom: 13px !important;
+}
+
 /* modal css */
 
 .dsh-modal .modal-content {

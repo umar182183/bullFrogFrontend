@@ -36,7 +36,9 @@ th {
 input[type=text]{
     width: 100%;
 }
-
+.btn{
+    margin-bottom: 10px;
+}
 
 .dsh-modal .modal-content {
     border: 0;
