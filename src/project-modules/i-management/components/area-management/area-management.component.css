@@ -37,6 +37,45 @@ input[type=text]{
     width: 100%;
 }
 
+.left-side{
+    width: 20%;
+    float: left;
+    border: black 1px solid;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.right-side{
+    width: 80%;
+    float: right;
+    border: black 1px solid;
+    
+}
+.create-area{
+    margin: 15px;
+}
+.main-cls{
+    display: inline-block;
+}
+
+.btn-success {
+    background-color: #3961A0 !important;
+    border-color: #3961A0 !important;
+    width: 100%;
+    cursor: initial;
+}
+
+.btn-success:active, .btn-success:focus  {
+    background: #285599 !important;
+    border-color: #285599 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.drop-drip{
+    margin-bottom: 10px;
+}
+
+/* modal css */
 
 .dsh-modal .modal-content {
     border: 0;

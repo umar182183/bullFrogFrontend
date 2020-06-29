@@ -29,6 +29,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     SharedModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
+      
   ],
   providers: [AuthService, LogineGuard, DashboardGuard,],
   bootstrap: [AppComponent]

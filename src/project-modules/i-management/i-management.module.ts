@@ -57,7 +57,7 @@ import { AreaManagementComponent } from './components/area-management/area-manag
     TableModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
 
   exports: [MatTableModule, MatPaginatorModule],
