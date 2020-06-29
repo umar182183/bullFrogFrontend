@@ -1,5 +1,21 @@
+
+
+
 <h1 class="head">Manage Locations</h1>
-<ng-container *ngIf="isFirstTable">
+
+<div class="btn-group" *ngIf="selectMenu" >
+  
+    <button type="button" class="btn dropdown-toggle building-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Select Menu
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="javascript:void()" (click)="buildMange = false; selectMenu = !selectMenu">Inventory Building Management</a>
+      <a class="dropdown-item" href="javascript:void()">Herriman</a>
+      <a class="dropdown-item" href="javascript:void()">Herriman</a>
+    </div>
+  </div>
+
+<ng-container *ngIf="!buildMange">
 <button class="btn" (click)="cnfrmtnModal.show()">Add Building</button>
 <div class="wrapper">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -28,7 +44,6 @@
   </div>
 </ng-container>
 
-
   <div class="modal fade dsh-modal" bsModal #cnfrmtnModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -42,11 +57,11 @@
             <input type="text">
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide(); isFirstTable = !isFirstTable">Submit</button>
+            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide(); isFirstTable = true; buildMange = true">Submit</button>
             <button type="submit" class="btn btn-next float-right" (click)="cnfrmtnModal.hide()">Close</button>
         </div>
       </div>
     </div>
   </div>
 
-  <area-management *ngIf="!isFirstTable"></area-management>
+  <area-management *ngIf="isFirstTable"></area-management>

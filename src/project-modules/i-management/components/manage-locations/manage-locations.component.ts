@@ -17,7 +17,9 @@ export class ManageLocationsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
 
-  public isFirstTable: boolean= true;
+  public buildMange: boolean= true;
+  public isFirstTable: boolean= false;
+  public selectMenu: boolean= true;
 
   constructor(private appService: AppService){}
  
