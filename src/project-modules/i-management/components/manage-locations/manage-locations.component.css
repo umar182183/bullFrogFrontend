@@ -36,10 +36,16 @@ th {
 input[type=text]{
     width: 100%;
 }
-.btn{
+
+.add-build{
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
+.select-menu{
+    margin-bottom: 10px;
+    margin-left: 29rem;
+}
 .dsh-modal .modal-content {
     border: 0;
     border-radius: 3px;

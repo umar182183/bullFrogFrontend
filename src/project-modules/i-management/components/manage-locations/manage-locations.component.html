@@ -1,22 +1,22 @@
 
-
+<div class="manage-location-main">
 
 <h1 class="head">Manage Locations</h1>
 
-<div class="btn-group" *ngIf="selectMenu" >
+<div class="btn-group select-menu" *ngIf="selectMenu" >
   
     <button type="button" class="btn dropdown-toggle building-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Select Menu
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="javascript:void()" (click)="buildMange = false; selectMenu = !selectMenu">Inventory Building Management</a>
-      <a class="dropdown-item" href="javascript:void()">Herriman</a>
-      <a class="dropdown-item" href="javascript:void()">Herriman</a>
+      <a class="dropdown-item" href="javascript:void()" (click)="buildMange = false; isFirstTable = false;">Inventory Building Management</a>
+      <a class="dropdown-item" href="javascript:void()" (click)="isFirstTable = true; buildMange = true">Inventory Area Management</a>
+      <a class="dropdown-item" href="javascript:void()">Inventory Location Lookup</a>
     </div>
   </div>
 
-<ng-container *ngIf="!buildMange">
-<button class="btn" (click)="cnfrmtnModal.show()">Add Building</button>
+<div class="add-build" *ngIf="!buildMange">
+<button class="btn add-build" (click)="cnfrmtnModal.show()">Add Building</button>
 <div class="wrapper">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="id">
@@ -42,7 +42,7 @@
     <!-- Angular 8 pagination -->
     <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
   </div>
-</ng-container>
+</div>
 
   <div class="modal fade dsh-modal" bsModal #cnfrmtnModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -57,7 +57,7 @@
             <input type="text">
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide(); isFirstTable = true; buildMange = true">Submit</button>
+            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide()">Submit</button>
             <button type="submit" class="btn btn-next float-right" (click)="cnfrmtnModal.hide()">Close</button>
         </div>
       </div>
@@ -67,3 +67,5 @@
   
 
   <area-management *ngIf="isFirstTable"></area-management>
+
+</div>
