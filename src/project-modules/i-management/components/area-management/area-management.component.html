@@ -16,7 +16,7 @@
 </div>
 <div class="main-cls">
  <div class="left-side">
-<button class="btn create-area" >Create New Area</button>
+<button class="btn create-area" (click)="newAreaModal.show()">Create New Area</button>
 
    <input type="text" class="left-input" value="Aftermarket">
    <input type="text" class="left-input" value="Covers">
@@ -39,7 +39,8 @@
       <tr>
         <th scope="col">Free Range Location</th>
         <th scope="col">Vertical Stack Range</th>
-        <th scope="col">Create or Remove Stocks per Asle</th>
+        <th scope="col">Create or Remove Stacks per Asle</th>
+        <th scope="col"># Stocks per Asle</th>
         <th scope="col">Area type</th>
       </tr>
     </thead>
@@ -207,21 +208,70 @@
   </div>
 
 
-  <div class="modal fade dsh-modal" bsModal #cnfrmtnModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade dsh-modal" bsModal #newAreaModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Enter Building Name</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Create SPA Inventory Area</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" (click)="cnfrmtnModal.hide()">&times;</span>
+            <span aria-hidden="true" (click)="newAreaModal.hide()">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <input type="text">
-        </div>
+          <div class="main-cls">
+            <div class="left-side">
+              <label for="New Area" class="lNewArea">New Area</label>
+              <input type="text" class="left-input">
+              
+            </div>
+           
+            <div class="right-side">
+             <div> <button type="button" class="btn btn-success">Appolo Management</button></div>
+           
+             <table class="table table-striped table-hover table-responsive">
+               <thead class="thead">
+                 <tr>
+                   <th scope="col">Free Range Location</th>
+                   <th scope="col">Vertical Stack Range</th>
+                   <th scope="col">Create or Remove Stacks per Asle</th>
+                   <th scope="col"># Stacks per Asle</th>
+                   <th scope="col">Area type</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td><input type="checkbox"></td>
+                   <td><div class="btn-group">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       E (5)
+                     </button>
+                     <div class="dropdown-menu">
+                       <a class="dropdown-item" href="javascript:void()">Herriman</a>
+                       <a class="dropdown-item" href="javascript:void()">Herriman</a>
+                       <a class="dropdown-item" href="javascript:void()">Herriman</a>
+                     </div>
+                   </div></td>
+                   <td><input type="checkbox"></td>
+                   <td><input type="text" value="4"></td>
+                   <td><div class="btn-group">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Not Assigned
+                     </button>
+                     <div class="dropdown-menu">
+                       <a class="dropdown-item" href="javascript:void()">Herriman</a>
+                       <a class="dropdown-item" href="javascript:void()">Herriman</a>
+                       <a class="dropdown-item" href="javascript:void()">Herriman</a>
+                     </div>
+                   </div></td>
+                 </tr>
+                
+               </tbody>
+             </table>
+            </div>
+           </div>        </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide()">Submit</button>
-            <button type="submit" class="btn btn-next float-right" (click)="cnfrmtnModal.hide()">Close</button>
+            <button type="submit" class="btn btn-back" (click)="newAreaModal.hide()">Save</button>
+            <button type="submit" class="btn btn-next float-right" (click)="newAreaModal.hide()">Close</button>
         </div>
       </div>
     </div>

@@ -87,12 +87,17 @@ input[type=text]{
     margin-bottom: 13px !important;
 }
 
+.lNewArea{
+    font-weight: bold;
+}
+
 /* modal css */
 
 .dsh-modal .modal-content {
     border: 0;
     border-radius: 3px;
     background: transparent;
+    width: 1089px !important;
 }
 
 
@@ -132,4 +137,8 @@ input[type=text]{
 }
 .modal-body.das-body {
     padding: 15px;
+}
+.modal.show .modal-dialog {
+    margin-left: 25rem !important;
+    margin-top: 7rem !important;
 }

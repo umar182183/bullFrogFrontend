@@ -15,7 +15,7 @@ export class AreaManagementComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
+  @ViewChild('newAreaModal', { static: false }) newAreaModal: ModalDirective;
 
  
   constructor(private appService: AppService){}
