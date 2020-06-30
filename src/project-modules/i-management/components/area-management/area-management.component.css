@@ -43,6 +43,15 @@ input[type=text]{
     border: #B3B5B8 1px solid;
     padding-right: 5px;
     padding-left: 5px;
+
+}
+.left-sideModal{
+    width: 20%;
+    float: left;
+    border: #B3B5B8 1px solid;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 43px;
 }
 
 .right-side{
@@ -89,6 +98,8 @@ input[type=text]{
 
 .lNewArea{
     font-weight: bold;
+    margin-top: 52px;
+    margin-left: 73px;
 }
 
 /* modal css */
@@ -97,9 +108,10 @@ input[type=text]{
     border: 0;
     border-radius: 3px;
     background: transparent;
-    width: 1089px !important;
 }
-
+.modal-content2 {
+    min-width: 1368px !important;
+}
 
 .dsh-modal .modal-header {
     background: #3961A0;
@@ -139,6 +151,6 @@ input[type=text]{
     padding: 15px;
 }
 .modal.show .modal-dialog {
-    margin-left: 25rem !important;
+    margin-left: 17rem !important;
     margin-top: 7rem !important;
 }
