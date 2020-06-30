@@ -198,6 +198,9 @@ SOFTWARE.
 
 
 
+primeng
+MIT
+
 regenerator-runtime
 MIT
 MIT License
