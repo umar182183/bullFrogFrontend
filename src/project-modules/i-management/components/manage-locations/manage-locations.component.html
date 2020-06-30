@@ -3,15 +3,15 @@
 
 <h1 class="head">Manage Locations</h1>
 
-<div class="btn-group select-menu" *ngIf="selectMenu" >
+<div class="btn-group select-menu">
   
     <button type="button" class="btn dropdown-toggle building-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Select Menu
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="javascript:void()" (click)="buildMange = false; isFirstTable = false;">Inventory Building Management</a>
-      <a class="dropdown-item" href="javascript:void()" (click)="isFirstTable = true; buildMange = true">Inventory Area Management</a>
-      <a class="dropdown-item" href="javascript:void()">Inventory Location Lookup</a>
+      <a class="dropdown-item" href="javascript:void()" (click)="buildMange = false; isFirstTable = false; isLocation = false;">Inventory Building Management</a>
+      <a class="dropdown-item" href="javascript:void()" (click)="isFirstTable = true; buildMange = true; isLocation = false">Inventory Area Management</a>
+      <!-- <a class="dropdown-item" href="javascript:void()" (click)="isLocation = true; buildMange = true; isFirstTable = false;">Inventory Location Lookup</a> -->
     </div>
   </div>
 
@@ -67,5 +67,63 @@
   
 
   <area-management *ngIf="isFirstTable"></area-management>
+
+
+  <div class="location-main" *ngIf="isLocation">
+    <div class="location-lookup">
+    <form >
+      <input class="searchbar" type="text" placeholder="Search.." name="search">
+      <button type="submit">Search</button>
+      <button type="submit" class="clear">Clear</button>
+    </form>
+  </div>
+  <div class="area-lookup">
+    <div class="btn-group">
+      <button type="button" class="btn dropdown-toggle b-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Building Name
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+      </div>
+    </div>
+
+    <div class="btn-group area-name">
+      <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Area Names
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+      </div>
+      <div class="create-area">
+    <button type="submit">Create Area</button>
+  </div>
+    </div>
+
+    <div class="btn-group aisle">
+      <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Aisle
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+      </div>
+      <div class="create-aisle">
+    <button type="submit">Create Aisle</button>
+  </div>
+    </div>
+
+
+    <form class="area-type-form">
+      <label for="area type">Area Type</label>
+      <input type="text" value="Parts Room">
+    </form>
+  </div>
+  </div>
+
 
 </div>

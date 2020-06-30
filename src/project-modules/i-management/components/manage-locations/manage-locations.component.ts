@@ -19,7 +19,7 @@ export class ManageLocationsComponent implements OnInit {
 
   public buildMange: boolean= true;
   public isFirstTable: boolean= false;
-  public selectMenu: boolean= true;
+  public isLocation: boolean= false;
 
   constructor(private appService: AppService){}
  
