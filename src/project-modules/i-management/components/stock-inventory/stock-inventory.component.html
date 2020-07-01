@@ -28,8 +28,8 @@
           </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="openPopup.hide()">Go Back</button>
-          <button type="submit" (click)="qtyModal.show(); openPopup.hide()" class="btn btn-next float-right">Next</button>
+          <button type="submit" class="btn btn-back" (click)="openPopup.hide()"  data-dismiss="modal" aria-label="Close">Go Back</button>
+          <button type="submit" (click)="qtyModal.show(); openPopup.hide()" class="btn btn-next float-right"  data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Enter Quantity of 10-3585</h5>
-        <button type="button" class="close" (click)="qtyModal.hide()" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="qtyModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -71,8 +71,8 @@
                   </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="qtyModal.hide(); openPopup.show()">Go Back</button>
-          <button type="submit" class="btn btn-next float-right" (click)="getLocationScreen(); qtyModal.hide()">Next</button>
+          <button type="submit" class="btn btn-back" (click)="qtyModal.hide(); openPopup.show()"  data-dismiss="modal" aria-label="Close">Go Back</button>
+          <button type="submit" class="btn btn-next float-right" (click)="getLocationScreen(); qtyModal.hide()"  data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
   </div>
@@ -274,8 +274,8 @@
 
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide()">No</button>
-            <button type="submit" class="btn btn-next float-right">Yes</button>
+            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide()"  data-dismiss="modal" aria-label="Close">No</button>
+            <button type="submit" class="btn btn-next float-right"  data-dismiss="modal" aria-label="Close">Yes</button>
         </div>
       </div>
     </div>

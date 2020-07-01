@@ -22,8 +22,8 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="openPopup.hide()">Go Back</button>
-            <button type="submit" class="btn btn-next float-right" (click)="modal2.show(); openPopup.hide()">Next</button>
+            <button type="submit" class="btn btn-back" (click)="openPopup.hide()" data-dismiss="modal" aria-label="Close">Go Back</button>
+            <button type="submit" class="btn btn-next float-right" (click)="modal2.show(); openPopup.hide()" data-dismiss="modal" aria-label="Close">Next</button>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
 
                         
 
-                <table class="table table-borderless table-responsive" (click)="modal3.show(); modal2.hide()">
+                <table class="table table-borderless table-responsive" (click)="modal3.show(); modal2.hide()" data-dismiss="modal" aria-label="Close">
                   <thead>
                     <tr >
                       <th scope="col">Count Date</th>
@@ -73,7 +73,7 @@
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-back" (click)="modal2.hide()">Close</button>
-                  <button type="submit" class="btn btn-next float-right" (click)="modal2.hide()">Save</button>
+                  <button type="submit" class="btn btn-next float-right" (click)="modal2.hide()" data-dismiss="modal" aria-label="Close">Save</button>
         </div>
       </div>
     </div>
@@ -97,8 +97,8 @@
 
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="modal3.hide()">No</button>
-            <button type="submit" class="btn btn-next float-right" (click)="modal4.show(); modal3.hide()">Yes</button>
+            <button type="submit" class="btn btn-back" (click)="modal3.hide()" data-dismiss="modal" aria-label="Close">No</button>
+            <button type="submit" class="btn btn-next float-right" (click)="modal4.show(); modal3.hide()" data-dismiss="modal" aria-label="Close">Yes</button>
         </div>
       </div>
     </div>
@@ -151,8 +151,8 @@
           </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="modal4.hide()">Close</button>
-            <button type="submit" class="btn btn-next float-right" (click)="modal4.hide()">Save</button>
+            <button type="submit" class="btn btn-back" (click)="modal4.hide()" data-dismiss="modal" aria-label="Close">Close</button>
+            <button type="submit" class="btn btn-next float-right" (click)="modal4.hide()" data-dismiss="modal" aria-label="Close">Save</button>
         </div>
       </div>
     </div>
