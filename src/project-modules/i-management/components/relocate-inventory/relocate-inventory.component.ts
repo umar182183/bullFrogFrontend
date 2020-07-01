@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { StockInventoryService } from '../../services/stock-inventory.service';
 
 @Component({
   selector: 'relocate-inventory',
@@ -15,7 +16,7 @@ export class RelocateInventoryComponent implements OnInit, AfterViewInit {
 
   public result: boolean = false;
   
-  constructor(private appService: AppService){}
+  constructor(private appService: AppService, private stockService: StockInventoryService){}
 
 ngAfterViewInit(){
   this.openPopup.show();
@@ -24,6 +25,7 @@ ngAfterViewInit(){
   
 ngOnInit() {
     this.appService.updateCurrentModule('restock');
+    this.getClickCall();
 }
 
 getResult()
@@ -31,5 +33,17 @@ getResult()
   this.result = true;
   this.qtyModal.hide();
 }
+
+
+getClickCall()
+{
+  this.stockService.currentComponent$.subscribe(currentComonent => {
+    if (currentComonent == 'relocate-inventory') {
+      this.openPopup.show();
+    }
+  });
+
+}
+
 
 }

@@ -71,7 +71,7 @@
                   </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="qtyModal.hide();">Go Back</button>
+          <button type="submit" class="btn btn-back" (click)="qtyModal.hide(); openPopup.show()">Go Back</button>
           <button type="submit" class="btn btn-next float-right" (click)="getLocationScreen(); qtyModal.hide()">Next</button>
       </div>
     </div>

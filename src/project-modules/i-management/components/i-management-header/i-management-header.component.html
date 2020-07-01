@@ -45,7 +45,7 @@
         </div>
     </div>
     
-    <div class="col mc-item">
+    <div class="col mc-item" (click)="checkBubbleClicked('stock-inventory')" >
         <div class="mci-inner" routerLinkActive="active-link">
             <a href="javascript:void(0)" routerLink="stock-inventory">
             <div class="mcii-top">
@@ -53,14 +53,14 @@
                     <img src="assets/inventory-management/icons/Stock Inven idea 1.png" alt="icon" class="img-fluid">
                 </div>
             </div>
-            <div class="mcii-bottom">
+            <div class="mcii-bottom" >
                 <P>Stock Inventory</P>
             </div>
             </a>
         </div>
     </div>
     
-    <div class="col mc-item">
+    <div class="col mc-item" (click)="checkBubbleClicked('relocate-inventory')">
         <div class="mci-inner" routerLinkActive="active-link">
             <a href="javascript:void(0)" routerLink="relocate-inventory">
             <div class="mcii-top">
@@ -90,7 +90,7 @@
         </div>
     </div>
     
-    <div class="col mc-item">
+    <div class="col mc-item" (click)="checkBubbleClicked('inventory-counts')">
         <div class="mci-inner" routerLinkActive="active-link">
             <a href="javascript:void(0)" routerLink="inventory-counts">
             <div class="mcii-top">
