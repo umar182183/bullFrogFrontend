@@ -33,6 +33,15 @@ th {
     color: #3961A0;
 }
 
+.location-main{
+    margin-top: 6rem;
+}
+
+.location-lookup{
+margin-left: 3rem;
+
+}
+
 .area-lookup{
     margin-top: 55px;
     margin-bottom: 112px;
@@ -44,26 +53,34 @@ th {
 .area-name{
     margin-right: 3rem;
     position: relative;
-
+    margin-left: 93px;
 }
 .aisle{
-
+    position: relative;
+    margin-left: 10rem;
 }
 .create-aisle{
-
+    position: absolute;
+    margin: 47px;
+    margin-left: 3px;
+    white-space: nowrap;
 }
 .area-type-form{
-    
+    margin-top: 6rem;
+    margin-left: 3rem;
 }
 .create-area{
     position: absolute;
     margin: 3rem;
+    float: left;
 }
 .create-area button{
-    padding: 2rem;
+    padding: 11px;
+    margin-left: -47px;
+    white-space: nowrap;
 }
 .area-type-form label {
-
+    margin-right: 5px;
 }
 
 .area-type-form input[type=text] {
