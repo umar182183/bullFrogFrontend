@@ -29,7 +29,7 @@
           </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back">Go Back</button>
+          <button type="submit" class="btn btn-back" (click)="openPopup.hide()">Go Back</button>
                   <button type="submit" class="btn btn-next float-right" (click)="locationModal.show(); openPopup.hide();">Next</button>
       </div>
     </div>
@@ -86,7 +86,7 @@
             </table>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back ml-auto">Go Back</button>
+          <button type="submit" class="btn btn-back ml-auto" (click)="openPopup.show(); locationModal.hide()">Go Back</button>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@
                   </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back">Go Back</button>
+          <button type="submit" class="btn btn-back" (click)="locationModal.show(); qtyModal.hide()">Go Back</button>
           <button type="submit" class="btn btn-next float-right" (click)="getResult()">Next</button>
       </div>
     </div>
@@ -247,8 +247,8 @@
 
               <div class="row">
               <div class="col-sm-12">
-                  <button type="submit" class="btn btn-back">Go Back</button>
-                  <button type="submit" class="btn btn-next float-right">Submit</button>
+                  <button type="submit" class="btn btn-back" (click)="result = false; qtyModal.show()">Go Back</button>
+                  <button type="submit" class="btn btn-next float-right" (click)="result = false;">Submit</button>
               </div>
               </div>
 

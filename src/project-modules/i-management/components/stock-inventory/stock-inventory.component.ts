@@ -41,6 +41,9 @@ export class StockInventoryComponent implements OnInit, AfterViewInit {
   {
     this.stockService.currentComponent$.subscribe(currentComonent => {
       if (currentComonent == 'stock-inventory') {
+        this.qtyModal.hide();
+        this.cnfrmtnModal.hide();
+        this.isLocation = false;
         this.openPopup.show();
       }
     });

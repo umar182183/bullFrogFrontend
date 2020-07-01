@@ -39,6 +39,8 @@ getClickCall()
 {
   this.stockService.currentComponent$.subscribe(currentComonent => {
     if (currentComonent == 'relocate-inventory') {
+      this.locationModal.hide();
+      this.qtyModal.hide();
       this.openPopup.show();
     }
   });

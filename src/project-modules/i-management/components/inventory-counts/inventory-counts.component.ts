@@ -32,7 +32,11 @@ getClickCall()
 {
   this.stockService.currentComponent$.subscribe(currentComonent => {
     if (currentComonent == 'inventory-counts') {
+      this.modal2.hide();
+      this.modal3.hide();
+      this.modal4.hide();
       this.openPopup.show();
+      
     }
   });
 
