@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { StockInventoryService } from '../../services/stock-inventory.service';
@@ -22,8 +22,6 @@ export class StockInventoryComponent implements OnInit {
   constructor(private appService: AppService, private stockService: StockInventoryService){
     
   }
-
-
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
@@ -36,7 +34,9 @@ export class StockInventoryComponent implements OnInit {
 
   getClickCall()
   {
+    
     this.stockService.currentComponent$.subscribe(currentComonent => {
+      
       if (currentComonent == 'stock-inventory') {
         this.qtyModal.hide();
         this.cnfrmtnModal.hide();
@@ -49,9 +49,13 @@ export class StockInventoryComponent implements OnInit {
 
   removeModalClass()
 {
-  let element = document.getElementsByClassName("modal-backdrop");
-  element[0].remove();
-
+  
+  let backdrop = document.getElementsByClassName("modal-backdrop");
+  if (backdrop.length > 1) {
+    for (let index = 0; index < backdrop.length; index++) {
+      backdrop[index].remove();
+    }
+  }
 }
 
 }

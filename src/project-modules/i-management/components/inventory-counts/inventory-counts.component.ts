@@ -43,8 +43,12 @@ getClickCall()
 
 removeModalClass()
 {
-  let element = document.getElementsByClassName("modal-backdrop");
-  element[0].remove();
+  let backdrop = document.getElementsByClassName("modal-backdrop");
+  if (backdrop.length > 1) {
+    for (let index = 0; index < backdrop.length; index++) {
+      backdrop[index].remove();
+    }
+  }
 
 }
 
