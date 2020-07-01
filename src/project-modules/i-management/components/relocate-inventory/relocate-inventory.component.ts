@@ -8,7 +8,7 @@ import { StockInventoryService } from '../../services/stock-inventory.service';
   templateUrl: './relocate-inventory.component.html',
   styleUrls: ['./relocate-inventory.component.css']
 })
-export class RelocateInventoryComponent implements OnInit, AfterViewInit {
+export class RelocateInventoryComponent implements OnInit {
   
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
   @ViewChild('locationModal', { static: false }) locationModal: ModalDirective;
@@ -18,9 +18,6 @@ export class RelocateInventoryComponent implements OnInit, AfterViewInit {
   
   constructor(private appService: AppService, private stockService: StockInventoryService){}
 
-ngAfterViewInit(){
-  this.openPopup.show();
-}
   
   
 ngOnInit() {
@@ -34,13 +31,22 @@ getResult()
   this.qtyModal.hide();
 }
 
+removeModalClass()
+{
+  let element = document.getElementsByClassName("modal-backdrop");
+  element[0].remove();
+
+}
+
 
 getClickCall()
 {
   this.stockService.currentComponent$.subscribe(currentComonent => {
     if (currentComonent == 'relocate-inventory') {
+    this.openPopup.hide();
       this.locationModal.hide();
       this.qtyModal.hide();
+      this.result = false;
       this.openPopup.show();
     }
   });

@@ -7,7 +7,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Enter Part Number to Relocate</h5>
-        <button type="button" class="close" (click)="openPopup.hide()" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -29,7 +29,7 @@
           </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="openPopup.hide()" data-dismiss="modal" aria-label="Close">Go Back</button>
+          <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Go Back</button>
                   <button type="submit" class="btn btn-next float-right" (click)="locationModal.show(); openPopup.hide();" data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
@@ -38,12 +38,12 @@
 
 
  <!-- Relocate Inventory 2 -->
- <div class="modal fade dsh-modal dsh-modal" bsModal #locationModal="bs-modal" id="reInv2" tabindex="-1" role="dialog" aria-hidden="true">
+ <div class="modal fade dsh-modal" bsModal #locationModal="bs-modal" id="reInv2" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Locations with part #: 10-3585</h5>
-        <button type="button" class="close" (click)="locationModal.hide()" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="locationModal.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -99,7 +99,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Enter Quantity of 10-3585 to relocate form Herriman Parts PR2-1-A</h5>
-        <button type="button" class="close" data-dismiss="modal" (click)="qtyModal.hide()" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" (click)="qtyModal.hide();removeModalClass()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="modal-footer">
           <button type="submit" class="btn btn-back" (click)="locationModal.show(); qtyModal.hide()" data-dismiss="modal" aria-label="Close">Go Back</button>
-          <button type="submit" class="btn btn-next float-right" (click)="getResult()" data-dismiss="modal" aria-label="Close">Next</button>
+          <button type="submit" class="btn btn-next float-right" (click)="getResult();removeModalClass()" data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
   </div>

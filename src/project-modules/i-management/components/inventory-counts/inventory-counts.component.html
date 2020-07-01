@@ -6,7 +6,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Inventory Count - Select the location you are counting</h5>
-          <button type="button" class="close" data-dismiss="modal" (click)="openPopup.hide()" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="openPopup.hide();removeModalClass()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="openPopup.hide()" data-dismiss="modal" aria-label="Close">Go Back</button>
+            <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Go Back</button>
             <button type="submit" class="btn btn-next float-right" (click)="modal2.show(); openPopup.hide()" data-dismiss="modal" aria-label="Close">Next</button>
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Enter the part #</h5>
-          <button type="button" class="close" data-dismiss="modal" (click)="modal2.hide()" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="modal2.hide();removeModalClass()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -72,7 +72,7 @@
           </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="modal2.hide()">Close</button>
+            <button type="submit" class="btn btn-back" (click)="modal2.hide();removeModalClass()">Close</button>
                   <button type="submit" class="btn btn-next float-right" (click)="modal2.hide()" data-dismiss="modal" aria-label="Close">Save</button>
         </div>
       </div>
@@ -87,7 +87,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Inventory Count</h5>
-          <button type="button" class="close" data-dismiss="modal" (click)="modal3.hide()" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="modal3.hide();removeModalClass()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -97,7 +97,7 @@
 
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="modal3.hide()" data-dismiss="modal" aria-label="Close">No</button>
+            <button type="submit" class="btn btn-back" (click)="modal3.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">No</button>
             <button type="submit" class="btn btn-next float-right" (click)="modal4.show(); modal3.hide()" data-dismiss="modal" aria-label="Close">Yes</button>
         </div>
       </div>
@@ -112,7 +112,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Enter the part #</h5>
-          <button type="button" class="close" data-dismiss="modal" (click)="modal4.hide()" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="modal4.hide();removeModalClass()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -151,8 +151,8 @@
           </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="modal4.hide()" data-dismiss="modal" aria-label="Close">Close</button>
-            <button type="submit" class="btn btn-next float-right" (click)="modal4.hide()" data-dismiss="modal" aria-label="Close">Save</button>
+            <button type="submit" class="btn btn-back" (click)="modal4.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Close</button>
+            <button type="submit" class="btn btn-next float-right" (click)="modal4.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Save</button>
         </div>
       </div>
     </div>

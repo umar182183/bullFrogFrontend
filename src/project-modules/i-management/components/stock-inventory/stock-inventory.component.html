@@ -6,7 +6,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Enter Part Number</h5>
-        <button type="button" class="close" (click)="openPopup.hide()" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -28,7 +28,7 @@
           </form>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="openPopup.hide()"  data-dismiss="modal" aria-label="Close">Go Back</button>
+          <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()"  data-dismiss="modal" aria-label="Close">Go Back</button>
           <button type="submit" (click)="qtyModal.show(); openPopup.hide()" class="btn btn-next float-right"  data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
@@ -41,7 +41,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Enter Quantity of 10-3585</h5>
-        <button type="button" class="close" (click)="qtyModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="qtyModal.hide();removeModalClass()" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -72,7 +72,7 @@
       </div>
       <div class="modal-footer">
           <button type="submit" class="btn btn-back" (click)="qtyModal.hide(); openPopup.show()"  data-dismiss="modal" aria-label="Close">Go Back</button>
-          <button type="submit" class="btn btn-next float-right" (click)="getLocationScreen(); qtyModal.hide()"  data-dismiss="modal" aria-label="Close">Next</button>
+          <button type="submit" class="btn btn-next float-right" (click)="getLocationScreen(); qtyModal.hide();removeModalClass()"  data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
   </div>

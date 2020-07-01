@@ -19,7 +19,6 @@ export class InventoryCountsComponent implements OnInit, AfterViewInit {
 constructor(private appService: AppService, private stockService: StockInventoryService){}
 
 ngAfterViewInit(){
-  this.openPopup.show();
   this.getClickCall();
 }
   
@@ -39,6 +38,13 @@ getClickCall()
       
     }
   });
+
+}
+
+removeModalClass()
+{
+  let element = document.getElementsByClassName("modal-backdrop");
+  element[0].remove();
 
 }
 

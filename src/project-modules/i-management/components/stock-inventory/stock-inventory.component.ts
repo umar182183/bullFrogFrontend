@@ -9,7 +9,7 @@ import { StockInventoryService } from '../../services/stock-inventory.service';
   templateUrl: './stock-inventory.component.html',
   styleUrls: ['./stock-inventory.component.css']
 })
-export class StockInventoryComponent implements OnInit, AfterViewInit {
+export class StockInventoryComponent implements OnInit {
 
   public isLocation: boolean = false;
 
@@ -24,9 +24,6 @@ export class StockInventoryComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
-    this.openPopup.show();
-  } 
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
@@ -49,5 +46,12 @@ export class StockInventoryComponent implements OnInit, AfterViewInit {
     });
   
   }
+
+  removeModalClass()
+{
+  let element = document.getElementsByClassName("modal-backdrop");
+  element[0].remove();
+
+}
 
 }

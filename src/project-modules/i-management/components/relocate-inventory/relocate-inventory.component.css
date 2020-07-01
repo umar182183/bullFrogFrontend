@@ -820,3 +820,7 @@ header .menu-text .mt-badge {
     }
 
 }
+
+.modal-backdrop{
+    display: none !important;
+}
