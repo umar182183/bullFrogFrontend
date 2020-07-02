@@ -11,7 +11,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class AppHeaderComponent implements OnInit {
 
-@ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
+@ViewChild('cnfrmtnModal', { static: false }) logoutModal: ModalDirective;
 
 public currentModule: string = '';
 
@@ -26,4 +26,16 @@ constructor(private router: Router, private appService: AppService){
 ngOnInit(){
   
 }
+
+removeModalClass()
+{
+  
+  let backdrop = document.getElementsByClassName("modal-backdrop");
+  if (backdrop.length > 1) {
+    for (let index = 0; index < backdrop.length; index++) {
+      backdrop[index].remove();
+    }
+  }
+}
+
 }

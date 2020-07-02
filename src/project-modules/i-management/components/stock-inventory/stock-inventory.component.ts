@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterContentInit, AfterViewInit, OnDestro
 import { AppService } from 'src/project-modules/app/services/app.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { StockInventoryService } from '../../services/stock-inventory.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,10 +10,10 @@ import { StockInventoryService } from '../../services/stock-inventory.service';
   templateUrl: './stock-inventory.component.html',
   styleUrls: ['./stock-inventory.component.css']
 })
-export class StockInventoryComponent implements OnInit {
+export class StockInventoryComponent implements OnInit, OnDestroy {
 
   public isLocation: boolean = false;
-
+  public unsub: Subscription;
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
   @ViewChild('qtyModal', { static: false }) qtyModal: ModalDirective;
   @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
@@ -35,7 +36,7 @@ export class StockInventoryComponent implements OnInit {
   getClickCall()
   {
     
-    this.stockService.currentComponent$.subscribe(currentComonent => {
+   this.unsub = this.stockService.currentComponent$.subscribe(currentComonent => {
       
       if (currentComonent == 'stock-inventory') {
         this.qtyModal.hide();
@@ -56,6 +57,10 @@ export class StockInventoryComponent implements OnInit {
       backdrop[index].remove();
     }
   }
+}
+
+ngOnDestroy(){
+  this.unsub.unsubscribe();
 }
 
 }
