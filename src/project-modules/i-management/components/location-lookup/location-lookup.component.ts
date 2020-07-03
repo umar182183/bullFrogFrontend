@@ -13,7 +13,7 @@ import { LocationLookupService } from '../../services/location-lookup.service';
 export class LocationLookupComponent implements OnInit {
   
   public tableData: [] = [];
-  public loading = true;
+  public loading = false;
   public loader = false;
   constructor(private appService: AppService, private locationService: LocationLookupService){}
   
@@ -26,9 +26,10 @@ export class LocationLookupComponent implements OnInit {
     this.loader = true;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
       this.tableData =data;
-      if (this.tableData.length !=0) {
-      this.loading = false;
       this.loader = false
+
+      if (this.tableData.length !=0) {
+      this.loading = true;
       }
       console.log("data", this.tableData)
     })
@@ -36,9 +37,8 @@ export class LocationLookupComponent implements OnInit {
   resetData()
   {
     this.loader = false;
-    this.loading = true;
+    this.loading = false;
     this.tableData = [];
-    this.loadLocationData("0");
   }
   
   ngOnInit() {

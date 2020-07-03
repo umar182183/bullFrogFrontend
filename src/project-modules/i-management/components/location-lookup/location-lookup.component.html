@@ -23,14 +23,14 @@
       </div>
     <button class="close" type="reset" (click)="resetData()">×</button>
     </form>
-    <div class="spinner-border text-primary loader" *ngIf="loader == true" role="status">
+    <div class="spinner-border text-primary loader" *ngIf="loader" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
   
  
   
-  <div class="container" *ngIf="loading ==false">
+  <div class="container" *ngIf="loading">
     <div class="row">
         <div class="img">
             <img src="assets/inventory-management/testImg.jpg" alt="photo" class="img-thumbnail">
