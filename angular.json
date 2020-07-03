@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "BullFrogFrontend"
+  "defaultProject": "BullFrogFrontend",
+  "cli": {
+    "analytics": false
+  }
 }
