@@ -11,4 +11,9 @@ export class LocationLookupService {
 
   }
 
+getLocationdata()
+{
+ return this.http.get('http://10.0.3.40/AspCoreApiIIS/api/InventoryManagement/GetPartNumber?partNumber=65-1422');
+}
+
 }

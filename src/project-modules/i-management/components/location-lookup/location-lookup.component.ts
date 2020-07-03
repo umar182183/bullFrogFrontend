@@ -3,6 +3,7 @@ import { AppService } from 'src/project-modules/app/services/app.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { LocationLookupService } from '../../services/location-lookup.service';
 
 @Component({
   selector: 'location-lookup',
@@ -11,18 +12,26 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class LocationLookupComponent implements OnInit {
   
+  public tableData: [] = [];
   
-  constructor(private appService: AppService){}
+  constructor(private appService: AppService, private locationService: LocationLookupService){}
   
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = ['54343', '4352', '3532'];
   filteredOptions: Observable<string[]>;
 
+  loadLocationData()
+  {
+    this.locationService.getLocationdata().subscribe((data: any) => {
+      this.tableData =data;
+      console.log("data", this.tableData)
+    })
+  }
   
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
-
+    this.loadLocationData();
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
