@@ -5,7 +5,21 @@ h1,h2,h3,h4,h5,h6 {
   color: #414042;
 }
 
+.text-primary {
+  color: #285599 !important;
+}
 
+.loader{
+  position: absolute;
+  margin: 5rem;
+  margin-left: 11rem;
+  margin-top: 3rem;
+}
+
+button.close{
+  margin-top: -29px;
+    margin-right: 27px;
+}
 .btn-success{
     width: 1138px;
     height: 78px;
@@ -28,6 +42,7 @@ h1,h2,h3,h4,h5,h6 {
     padding-top: 20px;
     margin-left: 294px;
     display: inline-flex;
+    position: relative;
 }
 .arch_search input[type=text]{ width:85%; height:40px; border:1px solid #ddd; border-radius:5px; padding:10px 5px;    
   background-size: 19px;

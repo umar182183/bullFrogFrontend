@@ -1,3 +1,4 @@
+
 <div class="lookup-main-content">
 <h1 class="head">Location Lookup</h1>
 
@@ -15,18 +16,21 @@
                [formControl]="myControl"
                [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectPartNum(option)">
             {{option}}
           </mat-option>
         </mat-autocomplete>
       </div>
+    <button class="close" type="reset" (click)="resetData()">×</button>
     </form>
-    <button class="close" type="reset">×</button>
+    <div class="spinner-border text-primary loader" *ngIf="loader" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
   
-
+ 
   
-  <div class="container">
+  <div class="container" *ngIf="loading ==false">
     <div class="row">
         <div class="img">
             <img src="assets/inventory-management/testImg.jpg" alt="photo" class="img-thumbnail">
