@@ -7,13 +7,15 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LocationLookupService {
 
-  constructor(private http: HttpClient) {
+  public URL = "http://10.0.3.40/AspCoreApiIIS/api/InventoryManagement/GetPartNumber?partNumber=";
 
+
+  constructor(private http: HttpClient) {
   }
 
-getLocationdata()
+getLocationdata(partNum)
 {
- return this.http.get('http://10.0.3.40/AspCoreApiIIS/api/InventoryManagement/GetPartNumber?partNumber=65-1422');
+ return this.http.get(this.URL+partNum);
 }
 
 }

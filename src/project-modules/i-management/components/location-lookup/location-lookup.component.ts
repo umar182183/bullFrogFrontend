@@ -13,16 +13,16 @@ import { LocationLookupService } from '../../services/location-lookup.service';
 export class LocationLookupComponent implements OnInit {
   
   public tableData: [] = [];
-  
+  public partNum = "58-1422";
   constructor(private appService: AppService, private locationService: LocationLookupService){}
   
   myControl = new FormControl();
-  options: string[] = ['54343', '4352', '3532'];
+  options: string[] = ['65-1422', '65-2422', '61-1422', '60-1422', '59-1422'];
   filteredOptions: Observable<string[]>;
 
   loadLocationData()
   {
-    this.locationService.getLocationdata().subscribe((data: any) => {
+    this.locationService.getLocationdata(this.partNum).subscribe((data: any) => {
       this.tableData =data;
       console.log("data", this.tableData)
     })
@@ -37,11 +37,14 @@ export class LocationLookupComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+      console.log("value:", this.filteredOptions);
+
     }
 
     private _filter(value: string): string[] {
       const filterValue = value.toLowerCase();
   
+      console.log("filtered Value: ",  this.options.filter(option => option.toLowerCase().includes(filterValue)));
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
 }
