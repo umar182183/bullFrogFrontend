@@ -25,7 +25,8 @@ export class LocationLookupComponent implements OnInit {
   {
     this.loader = true;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
-      this.tableData =data;
+      debugger
+      this.tableData =data.responseData.data;
       this.loader = false
 
       if (this.tableData.length !=0) {

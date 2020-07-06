@@ -1,123 +1,331 @@
-
-
-h1,h2,h3,h4,h6 {
+h1,h2,h3,h4,h5,h6 {
     font-family: Open Sans, sans-serif;
-    color: #414042;
-}
-.head{
-    color: #414042;
 }
 
-table {
-    width: 100%;
-  }
 
-  th.mat-sort-header-sorted {
-    color: black;
-  }
 
-button {
-    border: #3961A0;
+a {
+    font-family: Open Sans, sans-serif;
+    font-weight: normal;
+    color: #414042;
+}
+
+a:hover {
+    color: #414042;
+    text-decoration: none;
+}
+
+p {
+    font-family: Open Sans, sans-serif;
+    font-weight: normal;
+    color: #414042;
+    font-size: 16px;
+}
+
+
+
+.btn-theme {
+    font-size: 16px;
+    font-family: Open Sans, sans-serif;
+    padding: 10px 25px;
+    background: ansparent;
+    color: #414042;
+    border-radius: 0px;
+    border: 2px solid #414042;
+}
+
+.btn-theme:hover {
+    color: #414042;
+    border: 2px solid #414042;
+    
+}
+
+
+.form-control {
+    font-family: Open Sans, sans-serif;
+    padding: 10px;
+    height: auto;
+    border: none;
+    font-size: 16px;
+    color: #414042;
+    border-radius: 0px;
+    background: white;
+}
+
+.form-control:focus {
+    color: #414042;
+    background: white;
+}
+
+.form-control::-webkit-input-placeholder { /* Edge */
+    color: #414042;
+}
+  
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #414042;
+}
+  
+.form-control::placeholder {
+    color: #414042;
+}
+
+
+body {
+    font-weight: normal;
+    color: #414042;
+    font-size: 16px;
+    background: #e9ecf1;
+}
+
+
+header {
+    background: white;
+    -webkit-box-shadow: 1px 0px 10px 0px rgba(0,0,0,.1);
+    -moz-box-shadow: 1px 0px 10px 0px rgba(0,0,0,.1);
+    box-shadow: 1px 0px 10px 0px rgba(0,0,0,.1);
+    
+}
+
+header .logo {
+    padding: 6px 0px;
+}
+
+header .menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+header .menu-text {
+    display: flex;
+}
+
+header .menu-text p {
+    margin: 0px 0 0 10px;
+}
+
+header .menu-text .mt-badge {
+    background: #285599;
+    color: white;
+    padding: 1px 10px;
+    border-radius: 15px;
+    min-width: 37px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.main-content {
+    padding: 50px 0px;
+}
+
+.main-content-inner {
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mc-item {
+    width: 155px;
+    min-width: 155px;
+    max-width: 165px;
+    margin-bottom: 30px;
+}
+
+.mci-inner {
+    background: white;
+    padding: 20px 10px;
+    border-radius: 3px;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,.1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,.1);
+}
+
+.mciit-cont {
+    background: #d4ddec;
+    padding: 15px;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 30px;
+}
+
+
+.mcii-bottom p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    min-height: 42px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+ .btn-next {
     background: #3961A0;
     color: white;
-    
 }
-
-button:hover {
+.btn-next:hover {
+    background: #527AB9;
     color: white;
 }
 
-th {
+.btn-back {
+    background: #717375;
+    color: white;
+}
+.btn-back:hover {
+    background: #999b9d;
+    color: white;
+}
+
+.inv-sub-head {
+    background: #3961A0;
+    padding: 10px;
+    margin: 50px 0px 20px;
+}
+
+.inv-sub-head h3 {
+    color: white;
+    margin-bottom: 0px;
+}
+
+.inv-sub-body label {
     font-weight: bold;
-    font-size: 18px;
-    color: #414042;
 }
 
-input[type=text]{
+.inv-sub-body h4 {
+    text-transform: uppercase;
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+.inv-sub-body .thead-dark th {
+    background: #717375;
+    border-color: #717375;
+}
+
+.inv-sub-body .img-thumb {
+    max-width: 40px;
+}
+
+.isb-head {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.isb-main {
+    background: white;
+}
+.isb-main .isb-body {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+.das-head {
     width: 100%;
+    background: #3961A0;
+    padding: 10px 0px;
+    margin: 0px 15px 0px;
+    color: white;
 }
 
-.left-side{
-    width: 20%;
-    float: left;
-    /* border: #B3B5B8 1px solid; */
-    padding-right: 5px;
-    padding-left: 5px;
-    border-bottom: none;
-    border-right: none;
-    border-left: none;
-
-}
-.left-sideModal{
-    width: 20%;
-    float: left;
-    border: #B3B5B8 1px solid;
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-bottom: 43px;
+.das-head a {
+    color: white;
 }
 
-.right-side{
-    width: 80%;
-    float: right;
-    border: #B3B5B8 1px solid;
-    border-bottom: none;
-    border-right: none;
-    border-left: none;
-    
-}
-.wrapper{
-    /* border: #B3B5B8 1px solid; */
-}
-.create-area{
-    margin: 15px;
-}
-.main-cls{
-    display: inline-block;
+.das-head h4 {
+    margin-bottom: 0px;
 }
 
-.btn-success {
-    background-color: #3961A0 !important;
-    border-color: #3961A0 !important;
-    width: 100%;
-    cursor: initial;
+.das-head .dh-2 {
+    text-align: center;
 }
 
-.btn-success:active, .btn-success:focus  {
-    background: #285599 !important;
-    border-color: #285599 !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-.drop-drip{
-    margin-bottom: 10px;
+.das-head .dh-3 {
+    text-align: right;
 }
 
-.left-input{
-    margin-bottom: 9px;
-
-}
-.building-name{
-    margin-top: 10px !important;
-    margin-bottom: 13px !important;
+.das-body {
+    background: white;
+    padding: 25px 0 15px;
 }
 
-.lNewArea{
-    font-weight: bold;
-    margin-top: 52px;
-    margin-left: 73px;
+.das-body .thead-dark th {
+    background: #717375;
+    border-color: #717375;
+    vertical-align: top;
 }
 
-/* modal css */
+.das-body td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.das-body .thead-dark th, .das-body td {
+    font-size: 12px;
+    font-weight: normal;
+    padding: 10px 4px;
+    text-align: center;
+}
+
+.das-body .thead-dark th .form-control {
+    padding: 0px 5px;
+}
+
+.db-edit i {
+    color: green; 
+}
+
+.db-delete i {
+    color: red; 
+}
+
+.dh-menu i {
+    font-size: 20px;
+}
+
+
 
 .dsh-modal .modal-content {
     border: 0;
     border-radius: 3px;
     background: transparent;
 }
-.modal-content2 {
-    min-width: 1368px !important;
-}
+
 
 .dsh-modal .modal-header {
     background: #3961A0;
@@ -149,14 +357,247 @@ input[type=text]{
     border-bottom-right-radius: 3px;
 }
 
-.dsh-modal .form-check-input {
+.assign-loc .form-check-input {
     margin-top: .5rem;
     margin-left: .25rem;
 }
 .modal-body.das-body {
     padding: 15px;
 }
-.modal.show .modal-dialog {
-    margin-left: 17rem !important;
-    margin-top: 7rem !important;
+
+.put-part {
+    min-height: 200px;
+}
+
+.das-body p {
+    font-size: 12px;
+}
+.das-body label {
+    font-size: 12px;
+}
+
+.put-part .thead-dark th, .das-body td {
+    padding: .75rem;
+    text-align: left;
+}
+
+.put-part-loc {
+    height: 200px;
+    overflow: auto;
+}
+
+.put-part-loc th {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.error {
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.imang-left .btn-next {
+    font-size: 12px;
+}
+
+.imang-left .form-control {
+    height: 34px;
+}
+
+.imang-cont .form-control {
+    border: 1px solid #ced4da;
+    font-size: 12px;
+}
+
+.imang-heading {
+    width: 100%;
+    background: #3961A0;
+    padding: 10px 15px;
+    color: white;
+    text-align: center;
+}
+
+.imang-heading-modal {
+    width: 100%;
+    background: #3961A0;
+    padding: 5px 5px;
+    color: white;
+    text-align: center;
+}
+
+.imang-heading-modal h4 {
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.imang-right table th, .imang-right table td {
+    text-align: center;
+}
+
+.imang-right .form-control {
+    height: 20px;
+    padding: 0px;
+}
+
+
+.il-oil-cont {
+    display: flex;
+    margin-bottom: 10px;
+}
+.il-oil-cont a {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+.ioc-left {
+    width: 40px;
+    border: 1px solid #717375;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.ioc-left h5 {
+    margin-bottom: 0px;
+}
+.ioc-right {
+    width: 90%;
+    border: 1px solid #717375;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+
+
+
+
+
+
+
+
+.color-fill-icon{display:inline-block;width:16px;height:16px;border:1px solid #000;background-color:#fff;margin: 2px;}
+.dropdown-color-fill-icon{position:relative;float:left;margin-left:0;margin-right: 0}
+.well .markup{
+    background: #fff;
+    color: #777;
+    position: relative;
+    padding: 45px 15px 15px;
+    margin: 15px 0 0 0;
+    background-color: #fff;
+    border-radius: 0 0 4px 4px;
+    box-shadow: none;
+}
+
+.well .markup::after{
+    content: "Example";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+@media (max-width: 1025px) {
+.das-body .thead-dark th, .das-body td {
+    min-width: 90px;
+}
+
+.il-oil-cont a {
+    width: 70%;
+    font-size: 12px;
+}
+
+}
+
+
+
+@media (min-width: 1025px) {
+.table-responsive {
+    display: table;
+}
+.dsh-modal.show .modal-dialog {
+    min-width: 700px;
+}
+#logDetails .modal-dialog {
+    min-width: 1024px;
+}
+}
+
+
+@media (max-width: 991px) {
+
+.ic-input {
+    padding-top: 30px;
+}
+
+}
+
+
+
+@media (max-width: 767.98px) {
+    header .logo {
+        text-align: center;
+    }
+    header .menu {
+        flex-direction: column;
+    }
+    header .menu a {
+        margin-bottom: 10px;
+    }
+    .mc-item {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+
+    .inv-sub-head h3 {
+        font-size: 22px;
+    }
+    .inv-sub-head {
+        margin: 30px 0px 20px;
+    }
+    .inv-sub-body label.text-right {
+        text-align: left !important;
+    }
+
+    
+    .dh-1 {
+        text-align: center;
+    }
+    .das-head h4 {
+        font-size: 18px;
+    }
+    .dh-3 {
+        text-align: center !important;
+    }
+    
+
+    .ic-input {
+        padding-top: 30px;
+    }
+
 }

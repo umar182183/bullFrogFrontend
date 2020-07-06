@@ -3,213 +3,761 @@
 
 
 <div class="wrapper">
-<div class="btn-group drop-drip">
-  
-  <button type="button" class="btn dropdown-toggle building-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Building Name
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="javascript:void()">Herriman</a>
-    <a class="dropdown-item" href="javascript:void()">Herriman</a>
-    <a class="dropdown-item" href="javascript:void()">Herriman</a>
-  </div>
-</div>
-<div class="main-cls">
- <div class="left-side">
-<button class="btn create-area" (click)="newAreaModal.show()">Create New Area</button>
+  <div class="row">
 
-   <input type="text" class="left-input" value="Aftermarket">
-   <input type="text" class="left-input" value="Covers">
-   <input type="text" class="left-input" value="Factory">
-   <input type="text" class="left-input" value="Showroom">
-   <input type="text" class="left-input" value="Paris">
-   <input type="text" class="left-input" value="Plumbring">
-   <input type="text" class="left-input" value="RMA">
-   <input type="text" class="left-input" value="RSA">
-   <input type="text" class="left-input" value="Shipping">
-   <input type="text" class="left-input" value="Testing">
-   <input type="text" class="left-input" value="Photo Both">
- </div>
+    
 
- <div class="right-side">
-  <div> <button type="button" class="btn btn-success">Appolo Management</button></div>
-
-  <table class="table table-striped table-hover table-responsive">
-    <thead class="thead">
-      <tr>
-        <th scope="col">Free Range Location</th>
-        <th scope="col">Vertical Stack Range</th>
-        <th scope="col">Create or Remove Stacks per Asle</th>
-        <th scope="col"># Stocks per Asle</th>
-        <th scope="col">Area type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>
-          <div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            E (5)
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
+    <div class="das-head row">
+       
+        <div class="col-md-12 dh-2">
+            <h4>Building Look-up</h4>
         </div>
-      </td>
-        <td><input type="checkbox"></td>
-        <td><input type="text" value="4"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Not Assigned
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><button class="btn">Delete</button></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            E (5)
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><input type="checkbox"></td>
-        <td><input type="text" value="4"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Not Assigned
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><button class="btn">Delete</button></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            E (5)
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><input type="checkbox"></td>
-        <td><input type="text" value="4"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Not Assigned
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><button class="btn">Delete</button></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            E (5)
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><input type="checkbox"></td>
-        <td><input type="text" value="4"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Not Assigned
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><button class="btn">Delete</button></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            E (5)
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><input type="checkbox"></td>
-        <td><input type="text" value="4"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Not Assigned
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><button class="btn">Delete</button></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            E (5)
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><input type="checkbox"></td>
-        <td><input type="text" value="4"></td>
-        <td><div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Not Assigned
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-            <a class="dropdown-item" href="javascript:void()">Herriman</a>
-          </div>
-        </div></td>
-        <td><button class="btn">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
- </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="das-body imang-cont">
+
+            <div class="col-md-12">
+                <form>
+                      
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Building Name:</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option value="">Herriman</option>
+                            <option value="">Herriman</option>
+                            <option value="">Herriman</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </form>
+            </div>
+
+            <hr>
+
+            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 imang-left">
+
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Area Name</label>
+                        <div class="col-sm-7">
+                            <a class="btn btn-next" href="#" data-toggle="modal" data-target="#createNewArea">
+                                Create New Area
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Aftermarket">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Covers">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Factory Showroom">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Final">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Forming">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Parts">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Photo Booth">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Plumbing">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Pre-Test">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="R&D">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="RMA">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Shipping">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Testing">
+                    </div>
+
+                </div>
+
+                <div class="col-md-9 imang-right">
+                    <div class="col-md-12 imang-heading">
+                        <h4>Apollo Managment</h4>
+                    </div>
+                    <table class="table table-striped table-hover table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" style="min-width: 50px;">Free Range Location</th>
+                                <th scope="col">
+                                    Vertical Stack Range
+                                </th>
+                                <th scope="col">
+                                    Create or Remove Stacks
+                                </th>
+                                <th scope="col">
+                                    # of Stacks per Oil
+                                </th>
+                                <th scope="col">
+                                    Area Type
+                                </th>
+                                <th scope="col">
+                                    
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                        <option value="">E (5)</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                        <option value="">Not Assigned</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="db-delete" href="#">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+            
+
+              
+
+        </div>
+
+    </div>
 </div>
   </div>
 
 
+  
+      <!-- Create New Area -->
+<div class="modal fade dsh-modal" id="createNewArea" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Spa Inventory Area</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body das-body">
+          
+          <div class="col-md-12">
+              <div class="row">
+                  <div class="col-md-2 imang-left">
+
+                      <div class="form-group row">
+                          <label class="col-sm-12 text-center">Area Name</label>
+                      </div>
+
+                      <div class="form-group">
+                          <input type="text" class="form-control">
+                      </div>
+
+                  </div>
+
+                  <div class="col-md-10 imang-right">
+                      <div class="col-md-12 imang-heading-modal">
+                          <h4>Apollo Managment</h4>
+                      </div>
+                      <table class="table table-striped table-hover table-responsive">
+                          <thead class="thead-dark">
+                              <tr>
+                                  <th scope="col" style="min-width: 50px;">Free Range Location</th>
+                                  <th scope="col">
+                                      Vertical Stack Range
+                                  </th>
+                                  <th scope="col">
+                                      Create or Remove Stacks
+                                  </th>
+                                  <th scope="col">
+                                      # of Stacks per Oil
+                                  </th>
+                                  <th scope="col">
+                                      Area Type
+                                  </th>
+                                  
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                              <tr>
+                                  <td>
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                          <label class="form-check-label" for="defaultCheck1">
+                                          </label>
+                                      </div>
+                                  </td>
+                                  <td>
+                                      <select class="form-control">
+                                          <option value="">E (5)</option>
+                                          <option value="">E (5)</option>
+                                          <option value="">E (5)</option>
+                                      </select>
+                                  </td>
+                                  <td>
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                          <label class="form-check-label" for="defaultCheck1">
+                                          </label>
+                                      </div>
+                                  </td>
+                                  <td>
+                                      <input type="text" class="form-control">
+                                  </td>
+                                  <td>
+                                      <select class="form-control">
+                                          <option value="">Not Assigned</option>
+                                          <option value="">Not Assigned</option>
+                                          <option value="">Not Assigned</option>
+                                      </select>
+                                  </td>
+                              </tr>
+                             
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-next ml-auto">Save</button>
+          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 
   <div class="modal fade dsh-modal" bsModal #newAreaModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content modal-content2">
@@ -277,4 +825,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->

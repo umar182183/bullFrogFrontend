@@ -11,7 +11,7 @@
     <div class="dropdown-menu">
       <a class="dropdown-item" href="javascript:void()" (click)="buildMange = false; isFirstTable = false; isLocation = false;">Inventory Building Management</a>
       <a class="dropdown-item" href="javascript:void()" (click)="isFirstTable = true; buildMange = true; isLocation = false">Inventory Area Management</a>
-      <!-- <a class="dropdown-item" href="javascript:void()" (click)="isLocation = true; buildMange = true; isFirstTable = false;">Inventory Location Lookup</a> -->
+      <a class="dropdown-item" href="javascript:void()" (click)="isLocation = true; buildMange = true; isFirstTable = false;">Inventory Location Lookup</a>
     </div>
   </div>
 
@@ -70,60 +70,559 @@
 
 
   <div class="location-main" *ngIf="isLocation">
-    <div class="location-lookup">
-    <form >
-      <input class="searchbar" type="text" placeholder="Search.." name="search">
-      <button type="submit">Search</button>
-      <button type="submit" class="clear">Clear</button>
-    </form>
-  </div>
-  <div class="area-lookup">
-    <div class="btn-group">
-      <button type="button" class="btn dropdown-toggle b-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Building Name
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+    <div class="row">
+
+      <div class="col-md-12">
+          <div class="row">
+
+         
+
       </div>
-    </div>
 
-    <div class="btn-group area-name">
-      <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Area Names
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
       </div>
-      <div class="create-area">
-    <button type="submit">Create Area</button>
-  </div>
-    </div>
 
-    <div class="btn-group aisle">
-      <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Aisle
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
-        <a class="dropdown-item" href="javascript:void()">Herriman</a>
+      <div class="das-head row">
+         
+          <div class="col-md-12 dh-2">
+              <h4>Location Look-up</h4>
+          </div>
       </div>
-      <div class="create-aisle">
-    <button type="submit">Create Aisle</button>
-  </div>
-    </div>
 
+      <div class="col-md-12">
+          <div class="das-body imang-cont">
 
-    <form class="area-type-form">
-      <label for="area type">Area Type</label>
-      <input type="text" value="Parts Room">
-    </form>
+              <div class="col-md-12">
+                  <form>
+                        
+                      <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Item" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
+                          <div class="input-group-append" id="button-addon4">
+                            <button class="btn btn-next" type="button">Search</button>
+                            <button class="btn btn-next" type="button">Clear</button>
+                          </div>
+                        </div>
+
+                    </form>
+              </div>
+          </div>
+      </div>  
+      
+      <div class="das-head row">
+         
+          <div class="col-md-12 dh-2">
+              <h4>Area Look-up</h4>
+          </div>
+      </div>
+      
+      <div class="col-md-12">
+          <div class="das-body imang-cont">
+
+              <div class="row mx-0">
+
+                  <div class="col-md-3">
+                      <div class="form-group row">
+                          <label class="col-lg-5 col-form-label">Building Name:</label>
+                          <div class="col-lg-7">
+                          <input type="text" class="form-control" placeholder="Herriman">
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group row">
+                          <label class="col-lg-4 col-form-label">Area Name:</label>
+                          <div class="col-lg-8">
+                          <input type="text" class="form-control" placeholder="Parts">
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group row">
+                          <label class="col-lg-2 col-form-label">Aisle:</label>
+                          <div class="col-lg-10">
+                            <select name="" id="" class="form-control">
+                              <option value="">Spa</option>
+                     </select>                          
+                    </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="input-group ic-input mb-3">
+                          <!-- <input type="text" class="form-control" placeholder="Aisle Name" aria-label="Oil Name" aria-describedby="button-addon2"> -->
+                          <div class="input-group-append">
+                            <button class="btn btn-next" type="button" id="button-addon2" (click)="createAisleModal.show()">Create</button>
+                          </div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group row">
+                          <label class="col-lg-4 col-form-label">Area Type:</label>
+                          <div class="col-lg-8">
+                          <input type="text" class="form-control" placeholder="Parts Room">
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+              <div class="col-md-12 text-right">
+                  <p><b>Location</b> 1670, <b>Used</b> 1572, <b>Open</b> 08,</p>
+              </div>
+
+              <hr>
+
+              <div class="col-md-12">
+              <div class="row">
+                  <div class="col-lg-3 imang-left">
+
+                      <div class="form-group">
+                          <h5>Aisle: E1</h5>
+                      </div>
+
+                      <div class="il-oil-cont">
+                          <div class="ioc-left">
+                              <h5>J</h5>
+                          </div>
+                          <div class="ioc-right">
+                              <div class="btn-group btn-group-sm">
+                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                  </div>
+                                  <a href="#" data-toggle="modal" data-target="#partsE">
+                                  <span>E-1-1-J</span>
+                                  <span>5 Item(s)</span>
+                                  </a>
+                          </div>
+                      </div>
+
+                      <div class="il-oil-cont">
+                          <div class="ioc-left">
+                              <h5>J</h5>
+                          </div>
+                          <div class="ioc-right">
+                              <div class="btn-group btn-group-sm">
+                                  <button type="button" class="btn btn-default" id="demo3"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                  </div>
+                                  <a href="#" data-toggle="modal" data-target="#partsE">
+                                  <span>E-1-1-J</span>
+                                  <span>5 Item(s)</span>
+                                  </a>
+                          </div>
+                      </div>
+
+                      <div class="il-oil-cont">
+                          <div class="ioc-left">
+                              <h5>J</h5>
+                          </div>
+                          <div class="ioc-right">
+                              <div class="btn-group btn-group-sm">
+                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                  </div>
+                                  <a href="#" data-toggle="modal" data-target="#partsE">
+                                  <span>E-1-1-J</span>
+                                  <span>5 Item(s)</span>
+                                  </a>
+                          </div>
+                      </div>
+
+                      <div class="il-oil-cont">
+                          <div class="ioc-left">
+                              <h5>J</h5>
+                          </div>
+                          <div class="ioc-right">
+                              <div class="btn-group btn-group-sm">
+                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                  </div>
+                                  <a href="#" data-toggle="modal" data-target="#partsE">
+                                  <span>E-1-1-J</span>
+                                  <span>5 Item(s)</span>
+                                  </a>
+                          </div>
+                      </div>
+
+                      <div class="il-oil-cont">
+                          <div class="ioc-left">
+                              <h5>J</h5>
+                          </div>
+                          <div class="ioc-right">
+                              <div class="btn-group btn-group-sm">
+                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                  </div>
+                                  <a href="#" data-toggle="modal" data-target="#partsE">
+                                  <span>E-1-1-J</span>
+                                  <span>5 Item(s)</span>
+                                  </a>
+                          </div>
+                      </div>
+
+                      <div class="il-oil-cont">
+                          <div class="ioc-left">
+                              <h5>J</h5>
+                          </div>
+                          <div class="ioc-right">
+                              <div class="btn-group btn-group-sm">
+                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                  </div>
+                                  <a href="#" data-toggle="modal" data-target="#partsE">
+                                  <span>E-1-1-J</span>
+                                  <span>5 Item(s)</span>
+                                  </a>
+                          </div>
+                      </div>
+                      
+
+                  </div>
+
+                  <div class="col-lg-9 imang-right pt-5">
+                      
+                      <div class="row">
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                              <div class="il-oil-cont">
+                                  <div class="ioc-left">
+                                      <h5>J</h5>
+                                  </div>
+                                  <div class="ioc-right">
+                                      <div class="btn-group btn-group-sm">
+                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
+                                          </div>
+                                          <a href="#" data-toggle="modal" data-target="#partsE">
+                                          <span>E-1-1-J</span>
+                                          <span>5 Item(s)</span>
+                                          </a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-md-12">
+                              <a href="#" class="btn btn-next">Delete Aisle</a>
+                          </div>
+
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+
+              
+
+                
+
+          </div>
+
+      </div>
   </div>
   </div>
 
 
 </div>
+
+
+      <!-- Parts E-1 -->
+      <div class="modal fade dsh-modal" id="partsE" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Parts E1-1-J</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body das-body">
+                
+                <div class="col-md-12 imang-right">
+                            <table class="table table-striped table-hover table-responsive">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col" style="min-width: 50px;">Dealer Date Added</th>
+                                        <th scope="col">
+                                            Item
+                                        </th>
+                                        <th scope="col">
+                                            Type
+                                        </th>
+                                        <th scope="col">
+                                            Qty
+                                        </th>
+                                        <th scope="col">
+                                            Spa Sold
+                                        </th>
+
+                                        <th scope="col">
+                                          Actions
+                                      </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+    
+                                    <tr>
+                                        <td>
+                                            12/24/2019
+                                        </td>
+                                        <td>
+                                            55-1056
+                                        </td>
+                                        <td>
+                                            Parts
+                                        </td>
+                                        <td>
+                                            55
+                                        </td>
+                                        <td>
+                                           NULL
+                                        </td>
+
+                                        <td>
+                                          <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
+                                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                          </a>
+                                          <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                          </a>
+                                      </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>
+                                          12/24/2019
+                                      </td>
+                                      <td>
+                                          55-1056
+                                      </td>
+                                      <td>
+                                          Parts
+                                      </td>
+                                      <td>
+                                          55
+                                      </td>
+                                      <td>
+                                         NULL
+                                      </td>
+
+                                      <td>
+                                        <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                        <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                        12/24/2019
+                                    </td>
+                                    <td>
+                                        55-1056
+                                    </td>
+                                    <td>
+                                        Parts
+                                    </td>
+                                    <td>
+                                        55
+                                    </td>
+                                    <td>
+                                       NULL
+                                    </td>
+
+                                    <td>
+                                      <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                      </a>
+                                      <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                      </a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                      12/24/2019
+                                  </td>
+                                  <td>
+                                      55-1056
+                                  </td>
+                                  <td>
+                                      Parts
+                                  </td>
+                                  <td>
+                                      55
+                                  </td>
+                                  <td>
+                                     NULL
+                                  </td>
+
+                                  <td>
+                                    <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                    12/24/2019
+                                </td>
+                                <td>
+                                    55-1056
+                                </td>
+                                <td>
+                                    Parts
+                                </td>
+                                <td>
+                                    55
+                                </td>
+                                <td>
+                                   NULL
+                                </td>
+
+                                <td>
+                                  <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
+                                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                  </a>
+                                  <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                  </a>
+                              </td>
+                            </tr>
+                                   
+                                </tbody>
+                            </table>
+                </div>
+    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-next ml-auto">Save</button>
+                <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="modal fade dsh-modal" bsModal #createAisleModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog createAisleModal" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Enter Aisle Name</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" (click)="createAisleModal.hide()">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <input type="text">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-back" (click)="createAisleModal.hide()">Submit</button>
+                <button type="submit" class="btn btn-next float-right" (click)="createAisleModal.hide()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+

@@ -16,6 +16,7 @@ export class ManageLocationsComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('cnfrmtnModal', { static: false }) cnfrmtnModal: ModalDirective;
+  @ViewChild('createAisleModal', { static: false }) createAisleModal: ModalDirective;
 
   public buildMange: boolean= true;
   public isFirstTable: boolean= false;
