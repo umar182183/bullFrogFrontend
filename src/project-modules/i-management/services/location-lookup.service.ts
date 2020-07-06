@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationLookupService {
 
-  public URL = "http://10.0.3.40/AspCoreApiIIS/api/InventoryManagement/GetPartNumber?partNumber=";
+
+  public URL = environment.apiUrl;
 
 
   constructor(private http: HttpClient) {
@@ -15,7 +16,11 @@ export class LocationLookupService {
 
 getLocationdata(partNum)
 {
- return this.http.get(this.URL+partNum);
+ return this.http.get(this.URL+"GetPartNumber?partNumber="+partNum);
 }
 
+getPartsList()
+{
+ return this.http.get(this.URL+"GetPartNumbersList");
+}
 }

@@ -18,14 +18,13 @@ export class LocationLookupComponent implements OnInit {
   constructor(private appService: AppService, private locationService: LocationLookupService){}
   
   myControl = new FormControl();
-  options: string[] = ['57-1423', '65-2422', '61-1422', '65-1422', '59-1422'];
+  options: string[] = [];
   filteredOptions: Observable<string[]>;
 
   loadLocationData(partNum)
   {
     this.loader = true;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
-      debugger
       this.tableData =data.responseData.data;
       this.loader = false
 
@@ -49,6 +48,7 @@ export class LocationLookupComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+      this.loadPartsList();
     }
 
     private _filter(value: string): string[] {
@@ -57,9 +57,22 @@ export class LocationLookupComponent implements OnInit {
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
 
-    selectPartNum(partNum)
+    selectPartNum(partNumStr)
     {
+      let partNum = partNumStr.split(":", 2); 
       this.tableData = [];
-      this.loadLocationData(partNum);
+      this.loadLocationData(partNum[0]);
     }
+  
+  loadPartsList()
+  {
+    this.loader = true;
+    this.locationService.getPartsList().subscribe((data: any) =>
+    {
+      data.responseData.forEach(element => {
+        this.options.push(element.partNumber)
+      });
+      this.loader = false;
+    });
+  }
 }
