@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 import { AreaManagementComponent } from './components/area-management/area-management.component';
 
 @NgModule({
@@ -58,6 +59,7 @@ import { AreaManagementComponent } from './components/area-management/area-manag
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
   ],
 
   exports: [MatTableModule, MatPaginatorModule],

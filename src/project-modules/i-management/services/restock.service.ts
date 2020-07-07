@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { RestockModel } from '../models/restock.model';
 
 
 @Injectable({
@@ -15,9 +17,9 @@ export class RestockService {
   constructor(private http: HttpClient) {
   }
 
-getTabledata()
+getTabledata(): Observable<RestockModel[]>
 {
- return this.http.get(this.URL+"ReOrder/GetRestock");
+ return this.http.get<RestockModel[]>(this.URL+"ReOrder/GetRestock");
 }
 
 }

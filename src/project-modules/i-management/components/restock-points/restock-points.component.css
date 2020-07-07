@@ -8,7 +8,8 @@
     cursor: initial;
 }
 .strt-table{
-    margin-top: 40px;
+    /* margin-top: 40px; */
+    position: relative;
 }
 
 .btn-success:active, .btn-success:focus  {
@@ -17,9 +18,36 @@
     outline: none !important;
     box-shadow: none !important;
 }
-.loader img{
+.loading img{
     margin-left: 29rem;
+    margin-top: -4rem;
+    margin-bottom: -4rem;
+    position: absolute;
+    margin: -9rem 24rem;}
+table{
+    width: 100%;
 }
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
 
 /* azhar css */
 
