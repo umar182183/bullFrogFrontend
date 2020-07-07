@@ -23,11 +23,11 @@ ngOnInit() {
 loadTabledata()
 {
   this.loader = true;
-  this.loading = true;
+  this.loading = false;
   this.restockService.getTabledata().subscribe((data:any) => {
    this.tableArr = data.responseData.restockOpen;
    this.loader = false;
-  this.loading = false;
+  this.loading = true;
   })
 }
 }
