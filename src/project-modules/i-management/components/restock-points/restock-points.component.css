@@ -10,6 +10,7 @@
 .strt-table{
     /* margin-top: 40px; */
     position: relative;
+    z-index: 8;
 }
 
 .btn-success:active, .btn-success:focus  {
@@ -23,7 +24,9 @@
     margin-top: -4rem;
     margin-bottom: -4rem;
     position: absolute;
-    margin: -9rem 24rem;}
+    margin: -9rem 24rem;
+    z-index: 79076;
+}
 table{
     width: 100%;
 }
