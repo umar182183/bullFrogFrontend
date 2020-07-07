@@ -85,9 +85,11 @@
 
 
 <div class="strt-table">
-<div> <button type="button" class="btn btn-success">Open Restock Logs: 25</button></div>
-
-<table class="table table-striped" data-toggle="modal" data-target="#restock">
+<div> <button type="button" class="btn btn-success">Open Restock Logs: {{tableArr.length}}</button></div>
+<div class="loading" *ngIf="loader" role="status">
+  <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
+</div>
+<table *ngIf="loader" class="table table-striped" data-toggle="modal" data-target="#restock">
     
     <thead>
 
@@ -99,77 +101,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
-      </tr>
-      <tr>
-        <td scope="row">65-1385</td>
-        <td>PUMP, AF, AS-200, SHAFTSEAL, 48/65f</td>
-        <td>E3-1-J</td>
-        <td>26</td>
+      <tr *ngFor="let data of tableArr">
+        <td scope="row">{{data.partNo}}</td>
+        <td>{{data.description}}</td>
+        <td>{{data.location}}</td>
+        <td>{{data.partCurrentQty}}</td>
       </tr>
     </tbody>
   </table>

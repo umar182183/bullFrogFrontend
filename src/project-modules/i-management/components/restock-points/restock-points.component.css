@@ -17,6 +17,9 @@
     outline: none !important;
     box-shadow: none !important;
 }
+.loader img{
+    margin-left: 29rem;
+}
 
 /* azhar css */
 

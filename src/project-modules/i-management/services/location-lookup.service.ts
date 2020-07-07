@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class LocationLookupService {
 
 
-  public URL = environment.apiUrl;
+  public URL = environment.apiBaseUrl;
 
 
   constructor(private http: HttpClient) {
@@ -16,11 +16,11 @@ export class LocationLookupService {
 
 getLocationdata(partNum)
 {
- return this.http.get(this.URL+"GetPartNumber?partNumber="+partNum);
+ return this.http.get(this.URL+"InventoryManagement/GetPartNumber?partNumber="+partNum);
 }
 
 getPartsList()
 {
- return this.http.get(this.URL+"GetPartNumbersList");
+ return this.http.get(this.URL+"InventoryManagement/GetPartNumbersList");
 }
 }
