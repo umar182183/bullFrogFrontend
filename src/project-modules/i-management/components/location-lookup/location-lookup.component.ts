@@ -13,6 +13,7 @@ import { LocationLookupService } from '../../services/location-lookup.service';
 export class LocationLookupComponent implements OnInit {
   
   public tableData: [] = [];
+  public imgUrl = '';
   public loading = false;
   public loader = false;
   constructor(private appService: AppService, private locationService: LocationLookupService){}
@@ -27,11 +28,13 @@ export class LocationLookupComponent implements OnInit {
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
       this.tableData =data.responseData.data;
       this.loader = false
-
       if (this.tableData.length !=0) {
       this.loading = true;
       }
       console.log("data", this.tableData)
+    });
+    this.locationService.getImgUrl(partNum).subscribe((img:any) => {
+      this.imgUrl = img.responseData.fileName;
     })
   }
   resetData()

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { RestockModel } from '../../models/restock.model';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'restock-points',
@@ -16,11 +17,16 @@ export class RestockPointsComponent implements OnInit {
   
   
   public tableArr:RestockModel[] = [];
+  public partArr:RestockModel[] = [];
+  public ordersArr:any[] = [];
+  public partNumber;
   public loading = false;
   public loader = false;
   dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
+
 
   displayedColumns: string[] = ['partNo', 'description', 'location', 'partCurrentQty'];
 
@@ -65,6 +71,27 @@ loadTabledata()
   })
 }
 
+loadRestockPopup(partNum){
+  this.getPartData(partNum)
+  this.openPopup.show()
+}
+
+private getPartData(partNum)
+{
+  this.partNumber = partNum
+   this.partArr = this.tableArr.filter(p =>
+    {
+      return p.partNo == partNum;
+    });
+    this.ordersArr = [];
+    this.loader = true;
+    this.restockService.getAllpendingOrders(partNum).subscribe((data:any) =>
+    {
+      this.ordersArr = data.responseData.pendingReordersLogs;
+      this.loader = false;
+    })
+
+}
 
 }
 

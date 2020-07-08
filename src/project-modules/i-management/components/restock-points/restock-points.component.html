@@ -1,11 +1,11 @@
 
   <!-- Restock -->
-  <div class="modal fade dsh-modal" id="restock" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade dsh-modal" id="restock" bsModal #openPopup="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">RESTOCK</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="openPopup.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -13,11 +13,11 @@
             <form> 
                 <div class="row">
 
-                    <div class="col-md-12">
-                        <p><b>Part #:</b> 651385</p>
-                        <p><b>Description:</b> PUMP, AF, AS200</p>
-                        <p><b>Location:</b> Heriman Parts</p>
-                        <p><b>Current Qty:</b> 26</p>
+                    <div class="col-md-12" >
+                        <p><b>Part #:</b> {{this.partArr[0]?.partNo}}</p>
+                        <p><b>Description:</b> {{this.partArr[0]?.description}}</p>
+                        <p><b>Location:</b> {{this.partArr[0]?.location}}</p>
+                        <p><b>Current Qty:</b> {{this.partArr[0]?.partCurrentQty}}</p>
                     </div>
 
                     <div class="col-md-12">
@@ -67,7 +67,38 @@
 
                 <div class="col-md-12">
                     <p><b>PENDING ORDERS</b></p>
-                    <p class="text-center">There are no open reorder logs for 65-1385</p>
+                    <p class="text-center" *ngIf="ordersArr.length == 0">There are no open reorder log for {{partNumber}}</p>
+                    <table *ngIf="ordersArr.length != 0" class="table table-striped table-hover table-responsive">
+                      <thead>
+                          <tr>
+                              <th scope="col">
+                                  Status
+                              </th>
+                              <th scope="col">
+                                  Date Created
+                              </th>
+                              <th scope="col">
+                                  PO #
+                              </th>
+                              <th scope="col">
+                                Due date
+                            </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                          <tr *ngFor="let order of ordersArr">
+                              <td> {{order.status}}</td>
+                              <td>{{order.dateCreated}}</td>
+                              <td>{{order.poNum}}</td>
+                              <td>{{order.poDueDate}}</td>
+                          </tr>
+                          
+                      </tbody>
+                  </table>
+                  <div class="loading-popup" *ngIf="loader" role="status">
+                    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
+                  </div>
                 </div>
 
         </div>
@@ -75,7 +106,7 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="openPopup.hide()">Close</button>
           <button type="button" class="btn btn-next">Restock</button>
         </div>
       </div>
@@ -97,22 +128,22 @@
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="partNo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part # </th>
-        <td mat-cell *matCellDef="let element" data-toggle="modal" data-target="#restock"> {{element.partNo}} </td>
+        <mat-cell mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo)"> {{element.partNo}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part Description </th>
-        <td mat-cell *matCellDef="let element" data-toggle="modal" data-target="#restock"> {{element.description}} </td>
+        <td mat-cell *matCellDef="let element" > {{element.description}} </td>
       </ng-container>
   
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
-        <td mat-cell *matCellDef="let element" data-toggle="modal" data-target="#restock"> {{element.location}}</td>
+        <td mat-cell *matCellDef="let element" > {{element.location}}</td>
       </ng-container>
 
       <ng-container matColumnDef="partCurrentQty">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
-        <td mat-cell *matCellDef="let element" data-toggle="modal" data-target="#restock"> {{element.partCurrentQty}}</td>
+        <td mat-cell *matCellDef="let element"> {{element.partCurrentQty}}</td>
       </ng-container>
   
     

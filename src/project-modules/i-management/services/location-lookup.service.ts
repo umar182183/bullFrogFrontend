@@ -23,4 +23,9 @@ getPartsList()
 {
  return this.http.get(this.URL+"InventoryManagement/GetPartNumbersList");
 }
+
+getImgUrl(partNum)
+{
+ return this.http.get(this.URL+"InventoryManagement/GetPartPicture?partNumber="+partNum);
+}
 }

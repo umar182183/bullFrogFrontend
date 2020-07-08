@@ -22,4 +22,9 @@ getTabledata(): Observable<RestockModel[]>
  return this.http.get<RestockModel[]>(this.URL+"ReOrder/GetRestock");
 }
 
+getAllpendingOrders(partNum)
+{
+ return this.http.get(this.URL+"ReOrder/GetAllPendingReorders?partNumber="+partNum);
+}
+
 }

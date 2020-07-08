@@ -27,6 +27,16 @@
     margin: -9rem 24rem;
     z-index: 79076;
 }
+
+.loading-popup img{
+    margin-left: 29rem;
+    margin-top: -4rem;
+    margin-bottom: -4rem;
+    position: absolute;
+    margin: -6rem 12rem;
+    z-index: 79076;
+}
+
 table{
     width: 100%;
 }
