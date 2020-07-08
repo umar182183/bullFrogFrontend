@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { LocationLookupService } from '../../services/location-lookup.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'location-lookup',
@@ -13,10 +14,10 @@ import { LocationLookupService } from '../../services/location-lookup.service';
 export class LocationLookupComponent implements OnInit {
   
   public tableData: [] = [];
-  public imgUrl = '';
+  public img: any
   public loading = false;
   public loader = false;
-  constructor(private appService: AppService, private locationService: LocationLookupService){}
+  constructor(private appService: AppService, private locationService: LocationLookupService, protected senitizer: DomSanitizer){}
   
   myControl = new FormControl();
   options: string[] = [];
@@ -33,10 +34,22 @@ export class LocationLookupComponent implements OnInit {
       }
       console.log("data", this.tableData)
     });
-    this.locationService.getImgUrl(partNum).subscribe((img:any) => {
-      this.imgUrl = img.responseData.fileName;
+
+    this.locationService.getImgUrl(partNum).subscribe((image:Blob) => {
+      debugger
+      let reader = new FileReader();
+     reader.readAsDataURL(image); 
+     reader.onloadend = function() {
+           reader.result;                
+          
+      }
+
+    console.log("image: ", image);
+
     })
   }
+
+  
   resetData()
   {
     this.loader = false;
