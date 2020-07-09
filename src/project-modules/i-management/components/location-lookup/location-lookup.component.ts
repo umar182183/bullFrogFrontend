@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { LocationLookupService } from '../../services/location-lookup.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { element } from 'protractor';
 
 @Component({
   selector: 'location-lookup',
@@ -14,10 +15,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LocationLookupComponent implements OnInit {
   
   public tableData: [] = [];
-  public img: any
+  public imgToShow: any;
   public loading = false;
   public loader = false;
-  constructor(private appService: AppService, private locationService: LocationLookupService, protected senitizer: DomSanitizer){}
+  constructor(private appService: AppService, private locationService: LocationLookupService, private senitizer: DomSanitizer){}
   
   myControl = new FormControl();
   options: string[] = [];
@@ -36,19 +37,35 @@ export class LocationLookupComponent implements OnInit {
     });
 
     this.locationService.getImgUrl(partNum).subscribe((image:Blob) => {
-      debugger
-      let reader = new FileReader();
-     reader.readAsDataURL(image); 
-     reader.onloadend = function() {
-           reader.result;                
-          
-      }
+let mySrc;
+const reader = new FileReader();
+reader.readAsDataURL(image); 
+reader.onloadend = function() {
+debugger
 
-    console.log("image: ", image);
+   document.querySelector(".image").setAttribute("src", reader.result.toString());
 
+  //  console.log("mySrc: ", mySrc)   
+}
+this.imgToShow= mySrc;
     })
-  }
 
+  }
+  toDataURL(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        callback(reader.result);
+      }
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  }
+  
+  
   
   resetData()
   {
