@@ -27,4 +27,9 @@ getAllpendingOrders(partNum)
  return this.http.get(this.URL+"ReOrder/GetAllPendingReorders?partNumber="+partNum);
 }
 
+public postRstockPart(recObj){
+  let obj = recObj;
+ return this.http.post(this.URL+"ReOrder/PostReStockPart", obj);
+}
+
 }

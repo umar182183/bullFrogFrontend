@@ -32,7 +32,7 @@
                                 <th scope="col">
                                     Location
                                 </th>
-                                <th scope="col">
+                                <th *ngIf="isOther == true" scope="col">
                                     Qty
                                 </th>
                                 <th scope="col">
@@ -43,14 +43,14 @@
                         <tbody>
 
                             <tr>
-                                <td style="width: 60%;">Heriman Parts</td>
-                                <td>50</td>
+                                <td style="width: 60%;">{{this.partArr[0]?.location}}</td>
+                                <td  *ngIf="isOther == true"><input (change)="getRestockFormData($event.target.value)" type="text"  placeholder="quantity"></td>
                                 <td><input type="text" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="form-group row mx-0">
-                                        <input style="margin-top: 14px;" type="checkbox">
+                                        <input style="margin-top: 14px;" (click)="getOtherCheck($event.target.checked)" type="checkbox">
                                         <label for="" class="col col-form-label">Other</label>
                                         </div>
                                 </td>
@@ -107,7 +107,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-back" data-dismiss="modal" (click)="openPopup.hide()">Close</button>
-          <button type="button" class="btn btn-next">Restock</button>
+          <button type="button" class="btn btn-next" (click)="sendRestockPart()">Restock</button>
         </div>
       </div>
     </div>

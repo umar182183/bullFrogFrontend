@@ -11,7 +11,8 @@ h1,h2,h3,h4,h5,h6 {
 
 .loader img{
   width: 10rem;
-  margin-left: 27rem;
+    position: absolute;
+    margin: 5rem 28rem;
 }
 
 button.close{

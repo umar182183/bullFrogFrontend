@@ -42,28 +42,27 @@ const reader = new FileReader();
 reader.readAsDataURL(image); 
 reader.onloadend = function() {
 debugger
+  let ele = document.getElementsByClassName("image3");
+   ele[0].setAttribute("src", reader.result.toString());
 
-   document.querySelector(".image").setAttribute("src", reader.result.toString());
-
-  //  console.log("mySrc: ", mySrc)   
 }
-this.imgToShow= mySrc;
-    })
+
+});
 
   }
-  toDataURL(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      var reader = new FileReader();
-      reader.onloadend = function() {
-        callback(reader.result);
-      }
-      reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-  }
+  // toDataURL(url, callback) {
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.onload = function() {
+  //     var reader = new FileReader();
+  //     reader.onloadend = function() {
+  //       callback(reader.result);
+  //     }
+  //     reader.readAsDataURL(xhr.response);
+  //   };
+  //   xhr.open('GET', url);
+  //   xhr.responseType = 'blob';
+  //   xhr.send();
+  // }
   
   
   

@@ -20,6 +20,8 @@ export class RestockPointsComponent implements OnInit {
   public partArr:RestockModel[] = [];
   public ordersArr:any[] = [];
   public partNumber;
+  public otherQty;
+  public isOther: boolean = false;
   public loading = false;
   public loader = false;
   dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
@@ -42,6 +44,33 @@ ngOnInit() {
 
 }
 
+getRestockFormData(event)
+{
+this.otherQty = event;
+}
+
+sendRestockPart()
+{
+  let obj = {
+    logId: this.ordersArr[0].id,
+    otherQty: this.otherQty,
+  };
+  this.restockService.postRstockPart(obj).subscribe((data: any) => {
+    debugger
+    data
+    this.loadTabledata();
+  })
+}
+
+getOtherCheck(event)
+{
+  debugger
+  if (event == true) {
+    this.isOther = true;
+  } else {
+    this.isOther = false;
+  }
+}
 
 applyFilter(filterValue: string) {
   filterValue = filterValue.trim();
@@ -87,6 +116,7 @@ private getPartData(partNum)
     this.loader = true;
     this.restockService.getAllpendingOrders(partNum).subscribe((data:any) =>
     {
+      debugger
       this.ordersArr = data.responseData.pendingReordersLogs;
       this.loader = false;
     })
