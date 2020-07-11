@@ -17,7 +17,7 @@ export class RestockPointsComponent implements OnInit {
   
   
   public tableArr:RestockModel[] = [];
-  public partArr:RestockModel[] = [];
+  public partArr:any[] = [];
   public ordersArr:any[] = [];
   public partNumber;
   public otherQty;
@@ -52,11 +52,10 @@ this.otherQty = event;
 sendRestockPart()
 {
   let obj = {
-    logId: this.ordersArr[0].id,
+    logId: this.partArr[0].id,
     otherQty: this.otherQty,
   };
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
-    debugger
     data
     this.loadTabledata();
   })
@@ -64,7 +63,6 @@ sendRestockPart()
 
 getOtherCheck(event)
 {
-  debugger
   if (event == true) {
     this.isOther = true;
   } else {
@@ -90,7 +88,8 @@ loadTabledata()
         'partNo': a.partNo,
         'description': a.description,
         'location': a.location,
-        'partCurrentQty': a.partCurrentQty
+        'partCurrentQty': a.partCurrentQty,
+        'id': a.id
       }
     });
     this.dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
@@ -116,7 +115,6 @@ private getPartData(partNum)
     this.loader = true;
     this.restockService.getAllpendingOrders(partNum).subscribe((data:any) =>
     {
-      debugger
       this.ordersArr = data.responseData.pendingReordersLogs;
       this.loader = false;
     })
