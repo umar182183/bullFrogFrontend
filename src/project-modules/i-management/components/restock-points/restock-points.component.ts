@@ -56,7 +56,7 @@ sendRestockPart()
     otherQty: this.otherQty,
   };
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
-    data
+    this.openPopup.hide();
     this.loadTabledata();
   })
 }
