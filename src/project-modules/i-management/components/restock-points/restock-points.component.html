@@ -32,20 +32,17 @@
                                 <th scope="col">
                                     Location
                                 </th>
-                                <th *ngIf="isOther == true" scope="col">
-                                    Qty
+                                <th  scope="col">
+                                  Qty Pulled
                                 </th>
-                                <th scope="col">
-                                    Qty Pulled
-                                </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
 
                             <tr>
                                 <td style="width: 60%;">{{this.partArr[0]?.location}}</td>
-                                <td  *ngIf="isOther == true"><input (change)="getRestockFormData($event.target.value)" type="text"  placeholder="quantity"></td>
-                                <td><input type="text" class="form-control"></td>
+                                <td ><input (change)="getRestockFormData($event.target.value)" [disabled]="isOther == false" type="text"></td>
                             </tr>
                             <tr>
                                 <td>
@@ -114,7 +111,7 @@
   </div>
 
 
-<div class="strt-table">
+<div class="strt-table" >
 <div> <button type="button" class="btn btn-success">Open Restock Logs: {{tableArr.length}}</button></div>
 
 
