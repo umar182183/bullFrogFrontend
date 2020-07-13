@@ -23,7 +23,11 @@ mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-typ
 mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
     /* padding-left: 0px !important; */
 }
-
+.loading-btn{
+    margin-right: 20px;
+    margin-bottom: -147px;
+    margin-top: -149px;
+}
 .btn-success:active, .btn-success:focus  {
     background: #285599 !important;
     border-color: #285599 !important;

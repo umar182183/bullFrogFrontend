@@ -23,6 +23,9 @@ export class RestockPointsComponent implements OnInit {
   public otherQty;
   public isOther: boolean = false;
   public loading = false;
+  public Buttonloading = false;
+  public popTableloading = false;
+  public isLoaded = false;
   public loader = false;
   dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -51,14 +54,15 @@ this.otherQty = event;
 
 sendRestockPart()
 {
+  this.Buttonloading = true;
   let obj = {
     logId: this.partArr[0].id,
     otherQty: this.otherQty,
   };
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
     // this.ordersArr = [];
+    this.isLoaded = true;
     this.loadTabledata();
-    this.openPopup.hide();
   })
 }
 
@@ -96,6 +100,12 @@ loadTabledata()
     this.dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    if (this.isLoaded == true) {
+      this.openPopup.hide();
+    this.isLoaded = false;
+    this.Buttonloading = false;
+    }
     
   })
 }
@@ -113,11 +123,11 @@ private getPartData(partNum)
       return p.partNo == partNum;
     });
     this.ordersArr = [];
-    this.loader = true;
+    this.popTableloading = true;
     this.restockService.getAllpendingOrders(partNum).subscribe((data:any) =>
     {
       this.ordersArr = data.responseData.pendingReordersLogs;
-      this.loader = false;
+      this.popTableloading = false;
     })
 
 }
