@@ -56,9 +56,9 @@ sendRestockPart()
     otherQty: this.otherQty,
   };
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
-    this.openPopup.hide();
-    this.ordersArr = [];
+    // this.ordersArr = [];
     this.loadTabledata();
+    this.openPopup.hide();
   })
 }
 

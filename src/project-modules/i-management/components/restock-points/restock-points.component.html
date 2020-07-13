@@ -104,6 +104,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-back" data-dismiss="modal" (click)="openPopup.hide()">Close</button>
+          <div class="loading-popup" *ngIf="loader" role="status">
+            <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
+          </div>
           <button type="button" class="btn btn-next" (click)="sendRestockPart()">Restock</button>
         </div>
       </div>
