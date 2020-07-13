@@ -20,7 +20,7 @@ export class RestockPointsComponent implements OnInit {
   public partArr:any[] = [];
   public ordersArr:any[] = [];
   public partNumber;
-  public otherQty;
+  public otherQty: number;
   public isOther: boolean = false;
   public loading = false;
   public Buttonloading = false;
@@ -49,14 +49,15 @@ ngOnInit() {
 
 getRestockFormData(event)
 {
-this.otherQty = event;
+this.otherQty = +event;
 }
 
 sendRestockPart()
 {
   this.Buttonloading = true;
+  let logId: number = this.partArr[0].id;
   let obj = {
-    logId: this.partArr[0].id,
+    logId: logId,
     otherQty: this.otherQty,
   };
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
@@ -117,7 +118,8 @@ loadRestockPopup(partNum){
 
 private getPartData(partNum)
 {
-  this.partNumber = partNum
+  this.partNumber = partNum;
+  debugger
    this.partArr = this.tableArr.filter(p =>
     {
       return p.partNo == partNum;
