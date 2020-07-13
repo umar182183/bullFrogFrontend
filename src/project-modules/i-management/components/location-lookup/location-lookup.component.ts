@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { LocationLookupService } from '../../services/location-lookup.service';
@@ -18,6 +18,7 @@ export class LocationLookupComponent implements OnInit {
   public imgToShow: any;
   public loading = false;
   public loader = false;
+  public tableLoader = true;
   constructor(private appService: AppService, private locationService: LocationLookupService, private senitizer: DomSanitizer){}
   
   myControl = new FormControl();
@@ -28,8 +29,13 @@ export class LocationLookupComponent implements OnInit {
   {
     this.loader = true;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
+      let form = new FormGroup({
+        first: new FormControl({name: 'partNumber', disabled: true}),
+      });
+      form.controls['name'].disable();
       this.tableData =data.responseData.data;
-      this.loader = false
+      this.loader = false;
+      this.tableLoader = false;
       if (this.tableData.length !=0) {
       this.loading = true;
       }
@@ -37,13 +43,11 @@ export class LocationLookupComponent implements OnInit {
     });
 
     this.locationService.getImgUrl(partNum).subscribe((image:Blob) => {
-let mySrc;
-const reader = new FileReader();
-reader.readAsDataURL(image); 
-reader.onloadend = function() {
-debugger
-  let ele = document.getElementsByClassName("image3");
-   ele[0].setAttribute("src", reader.result.toString());
+    const reader = new FileReader();
+    reader.readAsDataURL(image); 
+    reader.onloadend = function() {
+    let ele = document.getElementsByClassName("image3");
+    ele[0].setAttribute("src", reader.result.toString());
 
 }
 
@@ -70,6 +74,7 @@ debugger
   {
     this.loader = false;
     this.loading = false;
+    this.tableLoader = true;
     this.tableData = [];
   }
   
