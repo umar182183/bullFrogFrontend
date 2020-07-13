@@ -9,10 +9,11 @@
     <form class="example-form">
       <div class="example-full-width">
         <input type="text"
+
                placeholder="Enter Part#"
                aria-label="Number"
-               matInput name="partNumber"
-               [formControl]="partNumber"
+               matInput
+               [formControl]="myControl"
                [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectPartNum(option)">

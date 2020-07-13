@@ -29,10 +29,10 @@ export class LocationLookupComponent implements OnInit {
   {
     this.loader = true;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
-      let form = new FormGroup({
-        first: new FormControl({name: 'partNumber', disabled: true}),
-      });
-      form.controls['name'].disable();
+      // let form = new FormGroup({
+      //   first: new FormControl({name: 'partNumber', disabled: true}),
+      // });
+      // form.get('partNumber').disable();
       this.tableData =data.responseData.data;
       this.loader = false;
       this.tableLoader = false;
