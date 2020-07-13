@@ -19,6 +19,7 @@ export class LocationLookupComponent implements OnInit {
   public loading = false;
   public loader = false;
   public tableLoader = true;
+  public partNumber;
   constructor(private appService: AppService, private locationService: LocationLookupService, private senitizer: DomSanitizer){}
   
   myControl = new FormControl();
@@ -28,6 +29,7 @@ export class LocationLookupComponent implements OnInit {
   loadLocationData(partNum)
   {
     this.loader = true;
+    this.partNumber = partNum;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
       // let form = new FormGroup({
       //   first: new FormControl({name: 'partNumber', disabled: true}),
@@ -36,6 +38,7 @@ export class LocationLookupComponent implements OnInit {
       this.tableData =data.responseData.data;
       this.loader = false;
       this.tableLoader = false;
+      debugger
       if (this.tableData.length !=0) {
       this.loading = true;
       }

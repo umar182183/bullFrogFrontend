@@ -8,7 +8,11 @@ h1,h2,h3,h4,h5,h6 {
 .table th, .table td{
   max-width: 94px !important;
 }
-
+.tb p{
+  margin-left: 17rem;
+    margin-top: 5rem;
+    color: red;
+}
 .text-primary {
   color: #285599 !important;
 }
