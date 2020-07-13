@@ -13,6 +13,17 @@
     z-index: 8;
 }
 
+.t1{
+    /* margin-left: 3px; */
+}
+mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+    /* padding-right: 0px !important; */
+}
+
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+    /* padding-left: 0px !important; */
+}
+
 .btn-success:active, .btn-success:focus  {
     background: #285599 !important;
     border-color: #285599 !important;

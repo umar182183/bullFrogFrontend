@@ -5,6 +5,10 @@ h1,h2,h3,h4,h5,h6 {
   color: #414042;
 }
 
+.table th, .table td{
+  max-width: 94px !important;
+}
+
 .text-primary {
   color: #285599 !important;
 }
