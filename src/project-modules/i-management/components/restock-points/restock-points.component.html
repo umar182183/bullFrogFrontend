@@ -41,18 +41,18 @@
                         <tbody>
 
                             <tr>
-                                <td style="width: 60%;">{{this.partArr[0]?.location}}</td>
-                                <td ><input (change)="getRestockFormData($event.target.value)" [disabled]="isOther == false" type="text"></td>
+                                <!-- <td style="width: 60%;">{{this.partArr[0]?.location}}</td> -->
+                                <td>
+                                  <div class="form-group row mx-0">
+                                      <input style="margin-top: 14px;" (click)="getOtherCheck($event.target.checked)" type="checkbox">
+                                      <label for="" class="col col-form-label">Other</label>
+                                      </div>
+                              </td>
+                                <td ><input (change)="getRestockFormData($event.target.value)" class="form-control" [disabled]="isOther == false" type="text"></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="form-group row mx-0">
-                                        <input style="margin-top: 14px;" (click)="getOtherCheck($event.target.checked)" type="checkbox">
-                                        <label for="" class="col col-form-label">Other</label>
-                                        </div>
-                                </td>
-                                <td></td>
-                                <td><input type="text" class="form-control"></td>
+                               
+                                <!-- <td><input type="text" class="form-control"></td> -->
                             </tr>
                         </tbody>
                     </table>
