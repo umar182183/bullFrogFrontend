@@ -28,7 +28,7 @@ export class ReorderPointsComponent implements OnInit {
   {
     this.reorderService.getReOrderData().subscribe((data: any) => {
       debugger
-      data
+      data.responseData.reviewLog
     })
   }
 }

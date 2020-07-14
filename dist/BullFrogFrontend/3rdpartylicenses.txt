@@ -198,6 +198,9 @@ SOFTWARE.
 
 
 
+ngx-owl-carousel-o
+MIT
+
 primeng
 MIT
 
