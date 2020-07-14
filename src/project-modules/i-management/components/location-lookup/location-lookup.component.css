@@ -30,7 +30,7 @@ button.close{
 .btn-success{
     width: 1138px;
     height: 78px;
-    font-size: 30px;
+    font-size: 21px;
     font-weight: 500;
     background-color: #3961A0 !important;
     border-color: #3961A0 !important;
@@ -134,6 +134,7 @@ td {
     width: 100%;
   }
 
-  .lookup-main-content{
-    
+  .lookup button{
+    height: 38px !important;
+    width: 1136px !important;
   }

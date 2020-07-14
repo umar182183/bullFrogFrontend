@@ -119,7 +119,7 @@ loadRestockPopup(partNum){
 private getPartData(partNum)
 {
   this.partNumber = partNum;
-  debugger
+  
    this.partArr = this.tableArr.filter(p =>
     {
       return p.partNo == partNum;
