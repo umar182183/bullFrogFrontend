@@ -45,10 +45,15 @@ header .menu-text .mt-badge {
     min-width: 37px;
     text-align: center;
     margin-left: 10px;
+    height: 25px;
 }
 
 
-
+@media (max-width: 1199px) {
+    .logoutP{
+        width: 70px;
+    }
+}
 @media (max-width: 767.98px) {
     header .logo {
         text-align: center;

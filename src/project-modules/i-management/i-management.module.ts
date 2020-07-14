@@ -30,6 +30,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { AreaManagementComponent } from './components/area-management/area-management.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { AreaManagementComponent } from './components/area-management/area-manag
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    CarouselModule
   ],
 
   exports: [MatTableModule, MatPaginatorModule],

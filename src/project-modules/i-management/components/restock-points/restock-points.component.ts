@@ -52,7 +52,7 @@ getRestockFormData(event)
 this.otherQty = +event;
 }
 
-sendRestockPart()
+sendRestockPart(otherQtyText, otherQtyCheck)
 {
   this.Buttonloading = true;
   let logId: number = this.partArr[0].id;
@@ -64,6 +64,8 @@ sendRestockPart()
     // this.ordersArr = [];
     this.isLoaded = true;
     this.loadTabledata();
+    otherQtyCheck.checked = false;
+    otherQtyText.value = '';
   })
 }
 

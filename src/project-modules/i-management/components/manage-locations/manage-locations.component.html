@@ -68,354 +68,402 @@
   <area-management *ngIf="isFirstTable"></area-management>
 
 
-  <div class="location-main" *ngIf="isLocation">
-    <div class="row">
-
-      <div class="col-md-12">
-          <div class="row">
-
-         
-
+  <div class="container-fluid inventory_form" *ngIf="isLocation">
+    <h1>Inventory Management</h1>
+    <div class="export_btn_container">
+      <button type="button" class="blue_btn">Export</button>
+    </div>
+    <fieldset>
+      <legend> Location Look-up </legend>
+      <div>
+        <input type="text" placeholder="Item" />
+        <button type="button" class="blue_btn">Search</button>
+        <button type="button" class="light_blue_btn">Clear</button>
       </div>
-
-      </div>
-
-      <div class="das-head row">
-         
-          <div class="col-md-12 dh-2">
-              <h4>Location Look-up</h4>
+    </fieldset>
+    <fieldset>
+      <legend> Area Look-up </legend>
+      <div class="row">
+          <div class="col-md-12 aisle_info">Location: 666, Used: 179, Open: 487</div>
+            <div class="col-md-4">
+          <div class="form-group"><label>Building Name</label><select></select></div>
           </div>
-      </div>
-
-      <div class="col-md-12">
-          <div class="das-body imang-cont">
-
-              <div class="col-md-12">
-                  <form>
-                        
-                      <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Item" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
-                          <div class="input-group-append" id="button-addon4">
-                            <button class="btn btn-next" type="button">Search</button>
-                            <button class="btn btn-next" type="button">Clear</button>
-                          </div>
-                        </div>
-
-                    </form>
-              </div>
+          <div class="col-md-4">
+          <div class="form-group"><label>Area Name</label><select></select></div>
+              <div class="text-right"><button type="button" class="blue_btn" data-toggle="modal" data-target="#create_area">Create Area</button></div>
           </div>
-      </div>  
+          <div class="col-md-4">
+          <div class="form-group"><label>Aisle</label><select></select></div>
+              <div class="text-right"><button type="button" class="blue_btn" data-toggle="modal" data-target="#create_aisle">Create Aisle</button></div>
+          </div>
+          
+      </div>
+    </fieldset>
       
-      <div class="das-head row">
-         
-          <div class="col-md-12 dh-2">
-              <h4>Area Look-up</h4>
-          </div>
-      </div>
-      
-      <div class="col-md-12">
-          <div class="das-body imang-cont">
+      <section class="aisle_container">
+          <h2>Aisle: Overflow</h2>
 
-              <div class="row mx-0">
-
-                  <div class="col-md-3">
-                      <div class="form-group row">
-                          <label class="col-lg-5 col-form-label">Building Name:</label>
-                          <div class="col-lg-7">
-                          <input type="text" class="form-control" placeholder="Herriman">
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="form-group row">
-                          <label class="col-lg-4 col-form-label">Area Name:</label>
-                          <div class="col-lg-8">
-                          <input type="text" class="form-control" placeholder="Parts">
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="form-group row">
-                          <label class="col-lg-2 col-form-label">Aisle:</label>
-                          <div class="col-lg-10">
-                            <select name="" id="" class="form-control">
-                              <option value="">Spa</option>
-                     </select>                          
-                    </div>
-                      </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="input-group ic-input mb-3">
-                          <!-- <input type="text" class="form-control" placeholder="Aisle Name" aria-label="Oil Name" aria-describedby="button-addon2"> -->
-                          <div class="input-group-append">
-                            <button class="btn btn-next" type="button" id="button-addon2" (click)="createAisleModal.show()">Create</button>
-                          </div>
-                        </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="form-group row">
-                          <label class="col-lg-4 col-form-label">Area Type:</label>
-                          <div class="col-lg-8">
-                          <input type="text" class="form-control" placeholder="Parts Room">
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-
-              <div class="col-md-12 text-right">
-                  <p><b>Location</b> 1670, <b>Used</b> 1572, <b>Open</b> 08,</p>
-              </div>
-
-              <hr>
-
-              <div class="col-md-12">
-              <div class="row">
-                  <div class="col-lg-3 imang-left">
-
-                      <div class="form-group">
-                          <h5>Aisle: E1</h5>
-                      </div>
-
-                      <div class="il-oil-cont">
-                          <div class="ioc-left">
-                              <h5>J</h5>
-                          </div>
-                          <div class="ioc-right">
-                              <div class="btn-group btn-group-sm">
-                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                  </div>
-                                  <a href="#" data-toggle="modal" data-target="#partsE">
-                                  <span>E-1-1-J</span>
-                                  <span>5 Item(s)</span>
-                                  </a>
-                          </div>
-                      </div>
-
-                      <div class="il-oil-cont">
-                          <div class="ioc-left">
-                              <h5>J</h5>
-                          </div>
-                          <div class="ioc-right">
-                              <div class="btn-group btn-group-sm">
-                                  <button type="button" class="btn btn-default" id="demo3"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                  </div>
-                                  <a href="#" data-toggle="modal" data-target="#partsE">
-                                  <span>E-1-1-J</span>
-                                  <span>5 Item(s)</span>
-                                  </a>
-                          </div>
-                      </div>
-
-                      <div class="il-oil-cont">
-                          <div class="ioc-left">
-                              <h5>J</h5>
-                          </div>
-                          <div class="ioc-right">
-                              <div class="btn-group btn-group-sm">
-                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                  </div>
-                                  <a href="#" data-toggle="modal" data-target="#partsE">
-                                  <span>E-1-1-J</span>
-                                  <span>5 Item(s)</span>
-                                  </a>
-                          </div>
-                      </div>
-
-                      <div class="il-oil-cont">
-                          <div class="ioc-left">
-                              <h5>J</h5>
-                          </div>
-                          <div class="ioc-right">
-                              <div class="btn-group btn-group-sm">
-                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                  </div>
-                                  <a href="#" data-toggle="modal" data-target="#partsE">
-                                  <span>E-1-1-J</span>
-                                  <span>5 Item(s)</span>
-                                  </a>
-                          </div>
-                      </div>
-
-                      <div class="il-oil-cont">
-                          <div class="ioc-left">
-                              <h5>J</h5>
-                          </div>
-                          <div class="ioc-right">
-                              <div class="btn-group btn-group-sm">
-                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                  </div>
-                                  <a href="#" data-toggle="modal" data-target="#partsE">
-                                  <span>E-1-1-J</span>
-                                  <span>5 Item(s)</span>
-                                  </a>
-                          </div>
-                      </div>
-
-                      <div class="il-oil-cont">
-                          <div class="ioc-left">
-                              <h5>J</h5>
-                          </div>
-                          <div class="ioc-right">
-                              <div class="btn-group btn-group-sm">
-                                  <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                  </div>
-                                  <a href="#" data-toggle="modal" data-target="#partsE">
-                                  <span>E-1-1-J</span>
-                                  <span>5 Item(s)</span>
-                                  </a>
-                          </div>
-                      </div>
-                      
-
-                  </div>
-
-                  <div class="col-lg-9 imang-right pt-5">
-                      
-                      <div class="row">
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-lg-4">
-                              <div class="il-oil-cont">
-                                  <div class="ioc-left">
-                                      <h5>J</h5>
-                                  </div>
-                                  <div class="ioc-right">
-                                      <div class="btn-group btn-group-sm">
-                                          <button type="button" class="btn btn-default" id="demo2"><span class="color-fill-icon dropdown-color-fill-icon" style="background-color: rgb(255, 255, 255);"></span>&nbsp;<b class="caret"></b></button>
-                                          </div>
-                                          <a href="#" data-toggle="modal" data-target="#partsE">
-                                          <span>E-1-1-J</span>
-                                          <span>5 Item(s)</span>
-                                          </a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-md-12">
-                              <a href="#" class="btn btn-next">Delete Aisle</a>
-                          </div>
-
-                      </div>
-                      
-                  </div>
-              </div>
-          </div>
-
+          <div class="aisle_carousel_container">
+              <div class="aisle_legends"><label>D</label><label>C</label><label>B</label><label>A</label></div>
+              <div class="arrow_carousel_left"><img src="assets/inventory-management/images/arrow_left.svg" id="left_move" style="cursor: pointer;" alt=""/></div>
               
+              <div class="carousel_container">
+                  <div class="carousel_container_slider">
+                    <owl-carousel-o [options]="customOptions">
 
-                
+                  <div >
+                    <div class="aisel_detail" >
 
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                      <div class="aisel_detail">
+                          <button type="button" class="aisel_delete"><img src="assets/inventory-management/images/cross.svg" alt=""/></button>
+                            <div class="color_piker"><span class="colorpicker-input-addon"><i></i></span></div>
+                          <div class="aisel_name"><p>Overflow-1-D</p><b>R5L</b></div>
+                          <div class="aisel_number"><p>236757</p><b>Inventory</b></div>
+                    </div>
+                  </div>
+                </owl-carousel-o>
+
+                  </div>
+              </div>
+
+            <div class="menu_container">
+                  <div class="menu_inner">
+                <div class="dropdown dropleft" data-toggle="tooltip" data-placement="top" title="Add/Edit/Delete">
+                  <button class="hamburger_menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/hamburger.svg" alt=""/></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Add Stack</a>
+                      <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#edit_stock_position">Edit Stack Positions</a>
+                      <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#delete_stock">Delete Stack</a>
+                    </div>
+                  </div>			  
+                </div>
+                <div class="menu_inner">
+                <div class="dropdown dropleft" data-toggle="tooltip" data-placement="top" title="Add/Edit/Delete">
+                  <button class="hamburger_menu" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/hamburger.svg" alt=""/></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                      <a class="dropdown-item" href="#">Add Stack</a>
+                      <a class="dropdown-item" href="#">Edit Stack Positions</a>
+                      <a class="dropdown-item" href="#">Delete Stack</a>
+                    </div>
+                  </div>			  
+                </div>
+                <div class="menu_inner">
+                <div class="dropdown dropleft" data-toggle="tooltip" data-placement="top" title="Add/Edit/Delete">
+                  <button class="hamburger_menu" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/hamburger.svg" alt=""/></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                      <a class="dropdown-item" href="#">Add Stack</a>
+                      <a class="dropdown-item" href="#">Edit Stack Positions</a>
+                      <a class="dropdown-item" href="#">Delete Stack</a>
+                    </div>
+                  </div>			  
+                </div>
+                <div class="menu_inner">
+                <div class="dropdown dropleft" data-toggle="tooltip" data-placement="top" title="Add/Edit/Delete">
+                  <button class="hamburger_menu" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/hamburger.svg" alt=""/></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4s">
+                      <a class="dropdown-item" href="#">Add Stack</a>
+                      <a class="dropdown-item" href="#">Edit Stack Positions</a>
+                      <a class="dropdown-item" href="#">Delete Stack</a>
+                    </div>
+                  </div>			  
+                </div>
+            </div>
+              <div class="arrow_carousel_right"><img src="images/arrow_right.svg" id="right_move" style="cursor: pointer;" alt=""/></div>
           </div>
 
+      </section>
+      
+       
+      
+      
+      
+      
+      
+      
+      
       </div>
-  </div>
-  </div>
+      
+      
+  
+      
+  
 
 
 </div>
@@ -625,3 +673,134 @@
         </div>
       </div>
 
+    <!-- Modal -->
+    <div class="modal fade inventory_modal" id="create_area" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Areaa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group"><label>Area Name</label><input type="text" /></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="grey_btn" data-dismiss="modal">Cancel</button>
+              <button type="button" class="blue_btn">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+          
+      <div class="modal fade inventory_modal" id="create_aisle" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Aisle</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12"><div class="form-group"><label>Aisle Name/Number</label><input type="text" /></div></div>
+                    <div class="col-md-6"><div class="form-group"><label># of Stacks</label><input type="text" /></div></div>
+                    <div class="col-md-6"><div class="form-group"><label>Vertical Positions per Stack</label><select></select></div></div>
+                </div>
+                
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="grey_btn" data-dismiss="modal">Cancel</button>
+              <button type="button" class="blue_btn">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+          
+      <div class="modal fade inventory_modal" id="edit_stock_position" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Stack Positions</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6"><div class="form-group"><label>Horizontal Stack</label><select></select></div></div>
+                    <div class="col-md-6"><div class="form-group"><label>Vertical Stack</label><select></select></div></div>
+                </div>
+                
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="grey_btn" data-dismiss="modal">Cancel</button>
+              <button type="button" class="blue_btn">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>	
+          
+      <div class="modal fade inventory_modal" id="delete_stock" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete Stack</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete Stack?</p>
+                
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="grey_btn" data-dismiss="modal">No</button>
+              <button type="button" class="blue_btn">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>	
+
+
+
+      <script>
+		
+		
+		$(function () {
+			
+			$('.color_piker').colorpicker();
+			
+  $('[data-toggle="tooltip"]').tooltip()
+});
+		$('.carousel_container_slider').slick({
+		
+variableWidth: true,		
+  slidesToShow: 4,
+	arrows: true,		
+	nextArrow: $('#left_move'),
+    prevArrow: $('#right_move'),
+  responsive: [
+    {
+      breakpoint: 767,
+      settings: {
+        arrows: true,
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+	
+	</script>

@@ -5,7 +5,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">RESTOCK</h5>
-          <button type="button" class="close" data-dismiss="modal" (click)="openPopup.hide()" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="openPopup.hide(); otherQtyText.value = ''; otherQtyCheck.checked = false" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -44,11 +44,11 @@
                                 <!-- <td style="width: 60%;">{{this.partArr[0]?.location}}</td> -->
                                 <td>
                                   <div class="form-group row mx-0">
-                                      <input style="margin-top: 14px;" (click)="getOtherCheck($event.target.checked)" type="checkbox">
+                                      <input style="margin-top: 14px;" #otherQtyCheck (click)="getOtherCheck($event.target.checked)" type="checkbox">
                                       <label for="" class="col col-form-label">Other</label>
                                       </div>
                               </td>
-                                <td ><input (change)="getRestockFormData($event.target.value)" class="form-control" [disabled]="isOther == false" type="text"></td>
+                                <td ><input (change)="getRestockFormData($event.target.value)" class="form-control" #otherQtyText [disabled]="isOther == false" type="text"></td>
                             </tr>
                             <tr>
                                
@@ -103,11 +103,11 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="openPopup.hide()">Close</button>
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="openPopup.hide(); otherQtyText.value = ''; otherQtyCheck.checked = false">Close</button>
           <div class="loading-btn" *ngIf="Buttonloading" role="status">
             <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
           </div>
-          <button type="button" class="btn btn-next" (click)="sendRestockPart()">Restock</button>
+          <button type="button" class="btn btn-next" (click)="sendRestockPart(otherQtyText, otherQtyCheck)">Restock</button>
         </div>
       </div>
     </div>
@@ -123,9 +123,9 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-  <div class="example-container mat-elevation-z8" >
+  <div class="tm-body" >
     
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8 example-container">
       <ng-container matColumnDef="partNo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part # </th>
         <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo)"> {{element.partNo}}</td>

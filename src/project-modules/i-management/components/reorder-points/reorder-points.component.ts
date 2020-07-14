@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
+import { ReorderPointsService } from '../../services/reorder-points.service';
 
 @Component({
   selector: 'reorder-points',
@@ -8,7 +9,9 @@ import { AppService } from 'src/project-modules/app/services/app.service';
 })
 export class ReorderPointsComponent implements OnInit {
   
-  constructor(private appService: AppService){}
+  constructor(private appService: AppService,
+    private reorderService: ReorderPointsService
+    ){}
   
   public IsClosedCurrent: boolean = false;
   public isReview: boolean = false;
@@ -18,5 +21,14 @@ export class ReorderPointsComponent implements OnInit {
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
-    }
+    this.loadReorderData();
+  }
+
+  loadReorderData()
+  {
+    this.reorderService.getReOrderData().subscribe((data: any) => {
+      debugger
+      data
+    })
+  }
 }

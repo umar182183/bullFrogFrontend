@@ -26,6 +26,31 @@ export class ManageLocationsComponent implements OnInit {
  
   displayedColumns: string[] = ['id', 'name', 'action'];
 
+  customOptions: any = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['Back', 'Next'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
 
     ngOnInit() {
     this.appService.updateCurrentModule('restock');
