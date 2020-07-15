@@ -58,7 +58,7 @@ sendRestockPart(otherQtyText, otherQtyCheck)
   let logId: number = this.partArr[0].id;
   let obj = {
     logId: logId,
-    otherQty: this.otherQty,
+    otherQty: this.otherQty || 0,
   };
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
     // this.ordersArr = [];

@@ -38,7 +38,7 @@ export class LocationLookupComponent implements OnInit {
       this.tableData =data.responseData.data;
       this.loader = false;
       this.tableLoader = false;
-      debugger
+      
       if (this.tableData.length !=0) {
       this.loading = true;
       }
