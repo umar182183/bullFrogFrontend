@@ -19,4 +19,9 @@ getReOrderData()
  return this.http.get(this.URL+"ReOrder/GetReOrderData");
 }
 
+getrestockLog(param)
+{
+ return this.http.get(this.URL+"ReOrder/GetReorderRestockLog?param="+param);
+}
+
 }

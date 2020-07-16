@@ -16,7 +16,18 @@ a {
     color: #414042;
     margin-right: 10px;
 }
-
+.dashboard{
+    position: relative;
+}
+.loading img{
+}
+.loading{
+    position: absolute;
+    margin-left: 33rem;
+}
+.review-loading{
+    margin-left: 26rem;
+}
 a:hover {
     color: #414042;
     text-decoration: none;
