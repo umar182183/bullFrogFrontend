@@ -24,4 +24,9 @@ getrestockLog(param)
  return this.http.get(this.URL+"ReOrder/GetReorderRestockLog?param="+param);
 }
 
+addEditLog(obj)
+{
+ return this.http.post(this.URL+"ReOrder/AddEditLog?serialized="+obj+"?isApproved="+obj.isApproved+"?isDelete="+obj.isDelete+"?isEdit="+obj.isEdit+"?isAdd="+obj.isAdd, obj);
+}
+
 }

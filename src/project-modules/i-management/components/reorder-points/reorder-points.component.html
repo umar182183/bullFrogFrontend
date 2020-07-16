@@ -355,7 +355,7 @@
                        
                         <tr *ngFor="let restock of restockLogArr">
                             <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="getApproved(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -636,7 +636,7 @@
                     <tbody>
                         <tr *ngFor="let restock of restockLogArr">
                             <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="getApproved(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>

@@ -98,9 +98,29 @@ loadRestockLog(param)
 {
   this.restockLogArr = [];
   this.reorderService.getrestockLog(param).subscribe((data: any) => {
-    debugger
+    
    this.restockLogArr = data.list;
   });
+}
+
+getApproved(statusGot, id){
+  debugger
+  if (statusGot == "Review") {
+    let status = "Purchasing Pending";
+  debugger
+  let obj = {
+    id: id,
+    status: status,
+    isApproved: true,
+    isDelete: false,
+    isEdit: false,
+    isAdd: false
+  }
+  this.reorderService.addEditLog(obj).subscribe((res: any) => {
+    debugger
+    res
+  })
+}
 }
 
 }
