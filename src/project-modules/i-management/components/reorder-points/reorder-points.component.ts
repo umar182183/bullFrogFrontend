@@ -107,7 +107,7 @@ getApproved(statusGot, id){
   debugger
   if (statusGot == "Review") {
     let status = "Purchasing Pending";
-  debugger
+  
   let obj = {
     id: id,
     status: status,
@@ -115,6 +115,9 @@ getApproved(statusGot, id){
     isDelete: false,
     isEdit: false,
     isAdd: false
+  }
+  let serializedObj = {
+    
   }
   this.reorderService.addEditLog(obj).subscribe((res: any) => {
     debugger
