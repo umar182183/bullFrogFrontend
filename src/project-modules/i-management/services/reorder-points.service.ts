@@ -26,12 +26,10 @@ getrestockLog(param)
 
 addEditLog(obj)
 {
-  let serializedObj = {
-    id: obj.id,
-    status: obj.status
-  }
- return this.http.post(this.URL+"ReOrder/AddEdit?serialized="+JSON.stringify(serializedObj)+
- "&isApproved="+obj.isApproved+"&isDelete="+obj.isDelete+"&isEdit="+obj.isEdit+"&isAdd="+obj.isAdd, obj);
+  
+ return this.http.post(this.URL+"ReOrder/AddEdit?serialized="+JSON.stringify(obj)+
+                        "&isApproved="+obj.isApproved+"&isDelete="+obj.isDelete+"&isEdit="+
+                        obj.isEdit+"&isAdd="+obj.isAdd, obj);
 }
 
 }

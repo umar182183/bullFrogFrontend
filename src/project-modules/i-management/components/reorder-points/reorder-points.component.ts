@@ -15,6 +15,7 @@ export class ReorderPointsComponent implements OnInit {
     ){}
 
   @ViewChild('logDetails', { static: false }) logDetails: ModalDirective;
+  @ViewChild('approveLogModal', { static: false }) approveLogModal: ModalDirective;
   
   public loader:boolean = false;
   public IsClosedCurrent: boolean = false;
@@ -103,27 +104,50 @@ loadRestockLog(param)
   });
 }
 
+approveLog()
+{
+
+}
+
 getApproved(statusGot, id){
   debugger
-  if (statusGot == "Review") {
-    let status = "Purchasing Pending";
+  let obj = {};
+  let status = "";
+  switch (statusGot) {
+    case 'Review':
+      let status = "Purchasing Pending";
+      obj = {
+        id: id,
+        status: status,
+        isApproved: true,
+        isDelete: false,
+        isEdit: false,
+        isAdd: false
+      }
+      break;
   
-  let obj = {
-    id: id,
-    status: status,
-    isApproved: true,
-    isDelete: false,
-    isEdit: false,
-    isAdd: false
+      case 'Purchasing Pending':
+        status = "";
+         status = "Purchasing Pending";
+        obj = {
+          id: id,
+          status: status,
+          isApproved: true,
+          isDelete: false,
+          isEdit: false,
+          isAdd: false,
+          PoNum:"",
+          PODueDate:"07/16/2020",
+          PONum:9966
+        }
+        break;
   }
-  let serializedObj = {
     
-  }
   this.reorderService.addEditLog(obj).subscribe((res: any) => {
     debugger
     res
   })
-}
+
 }
 
 }
