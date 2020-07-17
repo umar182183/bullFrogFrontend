@@ -16,6 +16,8 @@ export class ReorderPointsComponent implements OnInit {
 
   @ViewChild('logDetails', { static: false }) logDetails: ModalDirective;
   @ViewChild('approveLogModal', { static: false }) approveLogModal: ModalDirective;
+  @ViewChild('markReceivedModal', { static: false }) markReceivedModal: ModalDirective;
+  @ViewChild('deleteLogModal', { static: false }) deleteLogModal: ModalDirective;
   
   public loader:boolean = false;
   public IsClosedCurrent: boolean = false;
@@ -26,6 +28,7 @@ export class ReorderPointsComponent implements OnInit {
   public reviewLogArr: any[] = [];
   public restockLogArr: any[] = [];
   public partPopupArr: any[] = [];
+  public approvedLogsArr: any[] = [];
   public purchasingPendingArr: any[] = [];
   public openPOArr: any[] = [];
   public toPutAwayArr: any[] = [];
@@ -33,6 +36,15 @@ export class ReorderPointsComponent implements OnInit {
   public purchasePendCount;
   public openPoCount;
   public toPutAwayCount;
+  public partId;
+  public partIdToDel;
+  public partStatus;
+  public statusToSend;
+  public partPoNum;
+  public partNum;
+  public partDesc;
+  public partPoDuedate;
+  public objToSend = {};
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
@@ -104,50 +116,154 @@ loadRestockLog(param)
   });
 }
 
-approveLog()
+submitApprove(poNum, poDueDate)
 {
+debugger
+this.partPoNum = '';
+this.partPoNum = poNum;
+this.partPoDuedate = '';
+this.partPoDuedate = poDueDate;
+  if (this.partStatus == 'Purchasing Pending')
+  {
+    if (this.approvedLogsArr.length > 1) {
 
-}
-
-getApproved(statusGot, id){
-  debugger
-  let obj = {};
-  let status = "";
-  switch (statusGot) {
-    case 'Review':
-      let status = "Purchasing Pending";
-      obj = {
-        id: id,
-        status: status,
-        isApproved: true,
-        isDelete: false,
-        isEdit: false,
-        isAdd: false
+      this.objToSend = {};
+      this.objToSend = {
+       status: this.statusToSend,
+       PoNum:"",
+       PODueDate: this.partPoDuedate,
+       ApprovedLogs: this.approvedLogsArr.toString(),
+       PONum: this.partPoNum,
       }
-      break;
-  
-      case 'Purchasing Pending':
-        status = "";
-         status = "Purchasing Pending";
-        obj = {
-          id: id,
-          status: status,
-          isApproved: true,
-          isDelete: false,
-          isEdit: false,
-          isAdd: false,
-          PoNum:"",
-          PODueDate:"07/16/2020",
-          PONum:9966
-        }
-        break;
-  }
-    
-  this.reorderService.addEditLog(obj).subscribe((res: any) => {
-    debugger
-    res
-  })
+      this.escalateMultiApproveLogs();
 
+    } 
+    else {
+      this.objToSend = {};
+      this.objToSend = {
+       id: this.partId,
+       status: this.statusToSend,
+       isApproved: true,
+       isDelete: false,
+       isEdit: false,
+       isAdd: false,
+       PoNum:"",
+       PODueDate: this.partPoDuedate,
+       PONum: this.partPoNum,
+    }
+  
+    this.escalateApproveLog();
+   }
+  }
 }
 
+processMultiApprove()
+{
+  this.statusToSend = "";
+  this.statusToSend = "PO Pending";
+  this.partStatus = ''
+  this.partStatus = 'Purchasing Pending'
+  this.approveLogModal.show();
+}
+
+getApproveData(statusGot, id){
+  debugger
+  this.partStatus = '';
+  this.partStatus = statusGot;
+  this.partId = '';
+  this.partId = id;
+  this.statusToSend = '';
+
+  if (this.partStatus == 'Review') {
+    this.statusToSend = '';
+    this.statusToSend = "Purchasing Pending";
+   this.processApproveRequest();
+  }
+  if (this.partStatus == 'Purchasing Pending') {
+    this.statusToSend = '';
+    this.statusToSend = "PO Pending";
+    this.approveLogModal.show();
+  }
+  if (this.partStatus == 'PO Pending') {
+    this.statusToSend = '';
+    this.statusToSend = "PO Received";
+    this.markReceivedModal.show();
+}
+}
+
+private escalateApproveLog()
+ {
+this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
+
+        debugger
+        this.approveLogModal.hide();
+        this.markReceivedModal.hide();
+        this.deleteLogModal.hide();
+        res
+      });
+ }
+
+private escalateMultiApproveLogs()
+ {
+this.reorderService.getMultiApproveLogs(this.objToSend).subscribe((res: any) => {
+
+        debugger
+        this.approveLogModal.hide();
+        res
+      });
+ }
+
+public processApproveRequest()
+{
+  this.objToSend = {};
+  this.objToSend = {
+    id: this.partId,
+    status: this.statusToSend,
+    isApproved: true,
+    isDelete: false,
+    isEdit: false,
+    isAdd: false
+  }
+  this.escalateApproveLog();
+}
+
+getCheckedItems(approveCheck, id)
+{
+    let idToSend = +id;
+  if (approveCheck == true) {
+        this.approvedLogsArr.push(idToSend);
+    } 
+  else {
+    for( var i = 0; i < this.approvedLogsArr.length; i++){ 
+      if ( this.approvedLogsArr[i] == idToSend) { 
+          this.approvedLogsArr.splice(i, 1); 
+      }
+    }
+    }
+    console.log('Total approvedLogsArr: ', this.approvedLogsArr);
+}
+
+processDelete(partNum, partDescription, id)
+{
+  this.partNum = '';
+  this.partNum = partNum;
+  this.partDesc = '';
+  this.partDesc = partDescription;
+  this.partIdToDel = '';
+  this.partIdToDel = +id;
+  this.deleteLogModal.show();
+}
+
+deleteLog()
+{
+  this.objToSend = {};
+      this.objToSend = {
+       id: this.partIdToDel,
+       isApproved: false,
+       isDelete: true,
+       isEdit: false,
+       isAdd: false,
+                  }
+      this.escalateApproveLog();
+  }
 }

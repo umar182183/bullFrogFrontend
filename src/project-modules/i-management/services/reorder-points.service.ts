@@ -26,10 +26,19 @@ getrestockLog(param)
 
 addEditLog(obj)
 {
-  
- return this.http.post(this.URL+"ReOrder/AddEdit?serialized="+JSON.stringify(obj)+
+  debugger
+  let objToSend = JSON.stringify(obj);
+ return this.http.post(this.URL+"ReOrder/AddEdit?serialized="+objToSend+
                         "&isApproved="+obj.isApproved+"&isDelete="+obj.isDelete+"&isEdit="+
                         obj.isEdit+"&isAdd="+obj.isAdd, obj);
 }
+
+getMultiApproveLogs(obj)
+{
+  debugger
+  let objToSend = JSON.stringify(obj);
+ return this.http.post(this.URL+"ReOrder/ApprovedLogs?serialized="+objToSend, obj);
+}
+
 
 }

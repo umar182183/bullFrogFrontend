@@ -306,7 +306,7 @@
                     <thead class="thead-dark">
                         
                         <tr>
-                            <th scope="col"><i class="fa fa-check" aria-hidden="true"></i></th>
+                            <!-- <th scope="col"><i class="fa fa-check" aria-hidden="true"></i></th> -->
                             <th scope="col">Approve</th>
                             <th scope="col">
                                 Part #
@@ -354,8 +354,8 @@
                     <tbody>
                        
                         <tr *ngFor="let restock of restockLogArr">
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td (click)="getApproved(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -370,7 +370,7 @@
                                 <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                <a class="db-delete" href="javascript:void()" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
@@ -404,7 +404,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="" class="">PO Due Date:</label>
-                        <input type="date" class="form-control">
+                        <input type="date" #poDueDate class="form-control">
                     </div>
                 </div>
                
@@ -412,14 +412,14 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-back" data-dismiss="modal" (click)="approveLogModal.hide()">Close</button>
-          <button type="button" class="btn btn-next" >Submit</button>
+          <button type="submit" class="btn btn-next" (click)="submitApprove(poNum.value, poDueDate.value)" >Submit</button>
         </div>
       </div>
     </div>
   </div>
 
 <!-- Edit Log -->
-<div class="modal fade dsh-modal" id="editLog" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" #editLog tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -504,12 +504,12 @@
   </div>
 
    <!-- Delete Log -->
-<div class="modal fade dsh-modal" id="deleteLog" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" bsModal #deleteLogModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Delete Log</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="deleteLogModal.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -536,8 +536,8 @@
                         <tbody>
 
                             <tr>
-                                <td>10-2090</td>
-                                <td>JET, NECK, ADI, FACE</td>
+                                <td>{{partNum}}</td>
+                                <td>{{partDesc}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -548,8 +548,8 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Delete</button>
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="deleteLogModal.hide()">Close</button>
+          <button type="button" class="btn btn-next" (click)="deleteLog()">Delete</button>
         </div>
       </div>
     </div>
@@ -583,8 +583,8 @@
 
             <div class="col-md-12">
                 <a href="#" class="btn btn-back mb-1">Sent Back</a>
-                <a href="#" class="btn btn-next mb-1">Select Parts (0)</a>
-                <a href="#" class="btn btn-next mb-1">Approve</a>
+                <a href="#" class="btn btn-next mb-1">Selected Parts ({{this.approvedLogsArr.length}})</a>
+                <a href="javascript:void()" (click)="processMultiApprove()" class="btn btn-next mb-1">Approve</a>
                 <table class="table table-striped table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -635,8 +635,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let restock of restockLogArr">
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td (click)="getApproved(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="getCheckedItems(approveCheck.checked, restock.id)"><input #approveCheck type="checkbox" ></td>
+                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -651,7 +651,7 @@
                                 <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                <a class="db-delete" href="#" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
@@ -843,7 +843,7 @@
                 <table class="table table-striped table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col"><i class="fa fa-check" aria-hidden="true"></i></th>
+                            <!-- <th scope="col"><i class="fa fa-check" aria-hidden="true"></i></th> -->
                             <th scope="col">PO Submit</th>
                             <th scope="col">
                                 Part #
@@ -891,8 +891,8 @@
                     <tbody>
 
                         <tr *ngFor="let restock of restockLogArr">
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -907,7 +907,7 @@
                                 <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                <a class="db-delete" href="#" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
@@ -925,12 +925,12 @@
 
 
    <!-- Mark Log Received -->
-   <div class="modal fade dsh-modal" id="markLog" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal fade dsh-modal" bsModal #markReceivedModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Mark Log Received</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" (click)="markReceivedModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -945,8 +945,8 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Mark Received</button>
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="markReceivedModal.hide()">Close</button>
+          <button type="button" class="btn btn-next" (click)="processApproveRequest()">Mark Received</button>
         </div>
       </div>
     </div>
@@ -1214,7 +1214,7 @@
                     <tbody>
  
                         <tr *ngFor="let restock of restockLogArr">
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
                             <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
@@ -1230,7 +1230,7 @@
                                 <a class="db-edit" href="#" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" data-target="#deleteLog">
+                                <a class="db-delete" href="#" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
