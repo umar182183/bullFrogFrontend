@@ -40,5 +40,9 @@ getMultiApproveLogs(obj)
  return this.http.post(this.URL+"ReOrder/ApprovedLogs?serialized="+objToSend, obj);
 }
 
+getAllVendorList()
+{
+ return this.http.get(this.URL+"ReOrder/GetAllVendorList");
+}
 
 }

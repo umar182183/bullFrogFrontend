@@ -31,10 +31,7 @@ export class LocationLookupComponent implements OnInit {
     this.loader = true;
     this.partNumber = partNum;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
-      // let form = new FormGroup({
-      //   first: new FormControl({name: 'partNumber', disabled: true}),
-      // });
-      // form.get('partNumber').disable();
+     
       this.tableData =data.responseData.data;
       this.loader = false;
       this.tableLoader = false;
@@ -57,20 +54,7 @@ export class LocationLookupComponent implements OnInit {
 });
 
   }
-  // toDataURL(url, callback) {
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.onload = function() {
-  //     var reader = new FileReader();
-  //     reader.onloadend = function() {
-  //       callback(reader.result);
-  //     }
-  //     reader.readAsDataURL(xhr.response);
-  //   };
-  //   xhr.open('GET', url);
-  //   xhr.responseType = 'blob';
-  //   xhr.send();
-  // }
-  
+ 
   
   
   resetData()

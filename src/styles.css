@@ -4,3 +4,11 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-autocomplete-panel {
+    position: fixed !important;
+    z-index:100000 !important;
+}
+
+/* Mat Autocomplete on Modal Fixes */ 
+.cdk-overlay-container {z-index: 999999 !important;}
+

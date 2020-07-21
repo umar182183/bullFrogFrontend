@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
 import { ReorderPointsService } from '../../services/reorder-points.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { LocationLookupService } from '../../services/location-lookup.service';
 
 @Component({
   selector: 'reorder-points',
@@ -11,14 +15,19 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 export class ReorderPointsComponent implements OnInit {
   
   constructor(private appService: AppService,
-    private reorderService: ReorderPointsService
+    private reorderService: ReorderPointsService,
+    private locationService: LocationLookupService,
     ){}
 
   @ViewChild('logDetails', { static: false }) logDetails: ModalDirective;
   @ViewChild('approveLogModal', { static: false }) approveLogModal: ModalDirective;
   @ViewChild('markReceivedModal', { static: false }) markReceivedModal: ModalDirective;
   @ViewChild('deleteLogModal', { static: false }) deleteLogModal: ModalDirective;
+  @ViewChild('editLogModal', { static: false }) editLogModal: ModalDirective;
+  @ViewChild('editLog2Modal', { static: false }) editLog2Modal: ModalDirective;
+  @ViewChild('addNewLogModal', { static: false }) addNewLogModal: ModalDirective;
   
+  public tableData: any[] = [];
   public loader:boolean = false;
   public IsClosedCurrent: boolean = false;
   public isReview: boolean = false;
@@ -32,6 +41,7 @@ export class ReorderPointsComponent implements OnInit {
   public purchasingPendingArr: any[] = [];
   public openPOArr: any[] = [];
   public toPutAwayArr: any[] = [];
+  public allvendorListArr: any[] = [];
   public reviewCount;
   public purchasePendCount;
   public openPoCount;
@@ -43,12 +53,53 @@ export class ReorderPointsComponent implements OnInit {
   public partPoNum;
   public partNum;
   public partDesc;
+  public partDateCreated;
   public partPoDuedate;
+  public selectedVendor;
+  public orderQty;
+  public dateRequired;
+  public notesRec;
+  public logReviewed;
   public objToSend = {};
+
+  myControl = new FormControl();
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
   
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
     this.loadReorderData();
+    this.loadPartsList();
+
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+  }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  selectPartNum(partNumStr)
+  {
+    this.partNum = partNumStr;
+  }
+  
+
+  loadPartsList()
+  {
+    this.loader = true;
+    this.locationService.getPartsList().subscribe((data: any) =>
+    {
+      debugger
+      data.responseData.forEach(element => {
+        this.options.push(element.partNumber)
+      });
+      this.loader = false;
+    });
   }
 
   loadReorderData()
@@ -196,11 +247,28 @@ private escalateApproveLog()
 this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
         debugger
-        this.approveLogModal.hide();
-        this.markReceivedModal.hide();
-        this.deleteLogModal.hide();
-        res
+       this.resetData();
       });
+ }
+
+ private resetData()
+ {
+  this.editLogModal.hide();
+  this.addNewLogModal.hide();
+  this.editLog2Modal.hide();
+  this.approveLogModal.hide();
+  this.markReceivedModal.hide();
+  this.deleteLogModal.hide();
+  this.partNum = '';
+  this.partDateCreated = '';
+  this.partDesc = '';
+  this.partId = null;
+  this.statusToSend = '';
+  this.partPoNum = '';
+  this.partPoDuedate = '';
+  this.logReviewed = false;
+  this.selectedVendor = '';
+  this.orderQty = '';
  }
 
 private escalateMultiApproveLogs()
@@ -266,4 +334,96 @@ deleteLog()
                   }
       this.escalateApproveLog();
   }
+
+editLog(partNum, partDesc, partDateCreated, partId, status)
+{
+  debugger
+  this.partNum = '';
+  this.partNum = partNum;
+  this.partDateCreated = '';
+  this.partDateCreated = partDateCreated;
+  this.partDesc = '';
+  this.partDesc = partDesc;
+  this.partId = null;
+  this.partId = +partId;
+  this.statusToSend = '';
+  this.statusToSend = status;
+  this.partPoNum = '';
+  this.partPoDuedate = '';
+  this.logReviewed = false;
+  this.selectedVendor = '';
+  this.orderQty = '';
+  status == 'Review'? this.editLogModal.show(): this.editLog2Modal.show();
+}
+
+getSelectedVendor(selectedVendor)
+{
+  debugger
+  this.selectedVendor = selectedVendor
+}
+
+saveEditedLog()
+{
+  debugger
+
+  this.objToSend = {};
+  this.objToSend = {
+    id: this.partId,
+    PartNo: this.partNum,
+    Description: this.partDesc,
+    Vendor: this.selectedVendor,
+    OrderQty: this.orderQty,
+    Status: this.statusToSend,
+    DatePartsRequired: this.dateRequired,
+    Notes: this.notesRec,
+    DateCreated: this.partDateCreated,
+    PONum: this.partPoNum,
+    PODueDate: this.partPoDuedate,
+    LogReviewed: this.logReviewed,
+    isApproved: false,
+    isDelete: false,
+    isEdit: true,
+    isAdd: false
+  }
+  this.escalateApproveLog();
+}
+
+loadAllVendoList()
+{
+  this.reorderService.getAllVendorList().subscribe((data: any) => {
+    // debugger
+   this.allvendorListArr = data.responseData;
+  });
+}
+
+addNewLog()
+{
+  this.addNewLogModal.show();
+  this.orderQty = '';
+  this.dateRequired = '';
+  this.notesRec = '';
+  this.logReviewed = false;
+  this.loadAllVendoList();
+}
+
+saveNewLog()
+{
+  
+  this.objToSend = {};
+  this.objToSend = {
+    PartNo: this.partNum,
+    Vendor: this.selectedVendor,
+    OrderQty: this.orderQty,
+    DatePartsRequired: this.dateRequired,
+    Notes: this.notesRec,
+    LogReviewed: this.logReviewed,
+    PartNoObj: {PartNumber: this.partNum, Description: ''},
+    isApproved: false,
+    isDelete: false,
+    isEdit: false,
+    isAdd: true
+  }
+  this.escalateApproveLog();
+}
+
 }
