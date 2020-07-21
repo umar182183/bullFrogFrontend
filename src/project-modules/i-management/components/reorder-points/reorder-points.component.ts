@@ -27,7 +27,7 @@ export class ReorderPointsComponent implements OnInit {
   @ViewChild('editLog2Modal', { static: false }) editLog2Modal: ModalDirective;
   @ViewChild('addNewLogModal', { static: false }) addNewLogModal: ModalDirective;
   
-  public tableData: any[] = [];
+  public tableDataArr: any[] = [];
   public loader:boolean = false;
   public IsClosedCurrent: boolean = false;
   public isReview: boolean = false;
@@ -35,7 +35,6 @@ export class ReorderPointsComponent implements OnInit {
   public isOpenPO: boolean = false;
   public isPutAway: boolean = false;
   public reviewLogArr: any[] = [];
-  public restockLogArr: any[] = [];
   public partPopupArr: any[] = [];
   public approvedLogsArr: any[] = [];
   public purchasingPendingArr: any[] = [];
@@ -64,6 +63,8 @@ export class ReorderPointsComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = [];
+  public restockLogArr: any[] = [];
+
   filteredOptions: Observable<string[]>;
   
   ngOnInit() {
@@ -78,10 +79,31 @@ export class ReorderPointsComponent implements OnInit {
     );
 
   }
+ 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  private _filterRestockArr(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    let arr = this.tableDataArr;
+    return arr.filter(option =>{
+      
+     return option.partNo.toLowerCase().includes(filterValue) || option.description.toLowerCase().includes(filterValue)
+            || option.vendor.toLowerCase().includes(filterValue) || option.orderQty.toString().toLowerCase().includes(filterValue)
+            || option.dateCreated.toLowerCase().includes(filterValue) || option.datePartsRequired.toLowerCase().includes(filterValue)
+            || option.poNum.toLowerCase().includes(filterValue) || option.poDueDate.toLowerCase().includes(filterValue)
+            || option.status.toLowerCase().includes(filterValue) || option.notes.toLowerCase().includes(filterValue);
+    });
+  }
+
+  applyFilter(filterValue: string)
+  {
+    
+   this.restockLogArr = this._filterRestockArr(filterValue);
   }
   selectPartNum(partNumStr)
   {
@@ -94,7 +116,7 @@ export class ReorderPointsComponent implements OnInit {
     this.loader = true;
     this.locationService.getPartsList().subscribe((data: any) =>
     {
-      debugger
+      
       data.responseData.forEach(element => {
         this.options.push(element.partNumber)
       });
@@ -162,14 +184,14 @@ loadRestockLog(param)
 {
   this.restockLogArr = [];
   this.reorderService.getrestockLog(param).subscribe((data: any) => {
-    
    this.restockLogArr = data.list;
+   this.tableDataArr = data.list;
   });
 }
 
 submitApprove(poNum, poDueDate)
 {
-debugger
+
 this.partPoNum = '';
 this.partPoNum = poNum;
 this.partPoDuedate = '';
@@ -218,7 +240,7 @@ processMultiApprove()
 }
 
 getApproveData(statusGot, id){
-  debugger
+  
   this.partStatus = '';
   this.partStatus = statusGot;
   this.partId = '';
@@ -337,7 +359,7 @@ deleteLog()
 
 editLog(partNum, partDesc, partDateCreated, partId, status)
 {
-  debugger
+  
   this.partNum = '';
   this.partNum = partNum;
   this.partDateCreated = '';
@@ -358,13 +380,13 @@ editLog(partNum, partDesc, partDateCreated, partId, status)
 
 getSelectedVendor(selectedVendor)
 {
-  debugger
+  
   this.selectedVendor = selectedVendor
 }
 
 saveEditedLog()
 {
-  debugger
+  
 
   this.objToSend = {};
   this.objToSend = {
@@ -391,7 +413,7 @@ saveEditedLog()
 loadAllVendoList()
 {
   this.reorderService.getAllVendorList().subscribe((data: any) => {
-    // debugger
+    
    this.allvendorListArr = data.responseData;
   });
 }
