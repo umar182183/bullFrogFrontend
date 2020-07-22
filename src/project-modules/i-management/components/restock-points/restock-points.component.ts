@@ -61,8 +61,8 @@ sendRestockPart(otherQtyText, otherQtyCheck)
     logId: logId,
     otherQty: this.otherQty || 0,
   };
-  this.loader = false;
-
+  this.loader = true;
+  this.openPopup.hide();
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
     // this.ordersArr = [];
     this.isLoaded = true;
