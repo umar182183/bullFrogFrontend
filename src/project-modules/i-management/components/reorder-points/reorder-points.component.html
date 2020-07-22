@@ -1,5 +1,9 @@
 
-       
+      <div  [ngClass]="{'dashboard-overlay': loader}">
+        <div class="loading" *ngIf="loader" role="status">
+            <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
+          </div>
+      
        <div class="row dashboard"  *ngIf="!IsClosedCurrent">
 
             <div class="col-md-12">
@@ -10,9 +14,7 @@
 
             <div class="col-md-12">
                 <div class="inv-sub-body">
-                    <div class="loading" *ngIf="loader" role="status">
-                        <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-                      </div>
+                   
                     <div class="isb-main">
                         <div class="row">
                             <div class="col-md-2">
@@ -55,12 +57,7 @@
 
                       <hr>
 
-                      <div class="loading" *ngIf="loader" role="status">
-                        <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-                      </div>
-                      <div class="loading" *ngIf="loader" role="status">
-                        <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-                      </div>
+                     
                       <div class="isb-main">
                         <div class="row">
                             <div class="col-md-2">
@@ -103,9 +100,7 @@
                     </div>
 
                     <hr>
-                    <div class="loading" *ngIf="loader" role="status">
-                        <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-                      </div>
+                   
 
                     <div class="isb-main">
                         <div class="row">
@@ -149,9 +144,7 @@
 
 
                     <hr>
-                    <div class="loading" *ngIf="loader" role="status">
-                        <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-                      </div>
+                  
 
                     <div class="isb-main">
                         <div class="row">
@@ -336,7 +329,7 @@
                                 PO #
                                 <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
-                            <th style="min-width: 60px;" scope="col">
+                            <th style="min-width: 67px;" scope="col">
                                 PO Due Date
                                 <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
@@ -602,7 +595,7 @@
                                 Vendor
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
-                            <th scope="col">
+                            <th scope="col" style="min-width: 67px;">
                                 Order Qty
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
@@ -614,11 +607,11 @@
                                 Date Required
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
-                            <th scope="col">
+                            <th scope="col" style="min-width: 67px;">
                                 PO #
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
-                            <th style="min-width: 60px;" scope="col">
+                            <th style="min-width: 78px;" scope="col">
                                 PO Due Date
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
@@ -875,7 +868,7 @@
                                 Vendor
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
-                            <th scope="col">
+                            <th scope="col" style="min-width: 67px;">
                                 Order Qty
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
@@ -1198,7 +1191,7 @@
                                 Vendor
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
-                            <th scope="col">
+                            <th scope="col" style="min-width: 67px;">
                                 Order Qty
                                 <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
@@ -1500,3 +1493,4 @@
           </div>
         </div>
 </div>
+</div> 

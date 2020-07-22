@@ -49,6 +49,7 @@ export class ReorderPointsComponent implements OnInit {
   public multiLocationArr: any[] = [];
   public singleLocationArr: any[] = [];
   public locationToSendArr: any[] = [];
+  public param;
   public selectedLocation;
   public reviewCount;
   public purchasePendCount;
@@ -194,13 +195,20 @@ export class ReorderPointsComponent implements OnInit {
   }
 loadRestockLog(param)
 {
-  this.restockLogArr = [];
-  this.reorderService.getrestockLog(param).subscribe((data: any) => {
-   this.restockLogArr = data.list;
-   this.tableDataArr = data.list;
-  });
+ this.param = '';
+ this.param = param;
+ this.callRestockLogarr()
 }
-
+private callRestockLogarr()
+{
+  this.loader = true;
+  this.restockLogArr = [];
+  this.reorderService.getrestockLog(this.param).subscribe((data: any) => {
+    this.restockLogArr = data.list;
+    this.tableDataArr = data.list;
+    this.loader = false;
+   });
+}
 submitApprove(poNum, poDueDate)
 {
 
@@ -278,10 +286,13 @@ getApproveData(statusGot, id){
 
 private escalateApproveLog()
  {
+  this.loader = true;
 this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
         debugger
        this.resetData();
+       this.loader = false;
+       this.callRestockLogarr();
       });
  }
 
@@ -307,11 +318,12 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
 private escalateMultiApproveLogs()
  {
+  this.loader = true;
 this.reorderService.getMultiApproveLogs(this.objToSend).subscribe((res: any) => {
 
         debugger
         this.approveLogModal.hide();
-        res
+        this.loader = false;
       });
  }
 
@@ -427,9 +439,11 @@ saveEditedLog()
 
 loadAllVendoList()
 {
+  this.loader = true;
   this.reorderService.getAllVendorList().subscribe((data: any) => {
     
    this.allvendorListArr = data.responseData;
+   this.loader = false;
   });
 }
 
@@ -487,18 +501,22 @@ loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
 
 loadLocationdata(partNum)
 {
+  this.loader = true;
   this.reorderService.getLocationdata(partNum).subscribe((data: any) => {
     
     this.partLocationArr = data.responseData.data;
+    this.loader = false;
   });
 }
 
 loadOpenLocations(isBlufdale)
 {
+  this.loader = true;
   this.reorderService.getOpenLocationdata(isBlufdale).subscribe((data: any) => {
     
     this.openLocationArr = data.responseData;
     this.openLocationBackArr = data.responseData;
+    this.loader = false;
   })
 }
 
@@ -534,16 +552,19 @@ this.remainQty = this.remainQty - this.cumulatedQty;
 }
 sendPutPartPostReq()
 {
+  this.loader = true;
   this.reorderService.putPartAwayPost(this.isMultipleLocation? this.multiLocationArr: this.singleLocationArr).subscribe((res: any) => {
     debugger
-    res
+    this.loader = false;
+    this.putAwayModal.hide();
   })
 }
 putBacklogstatus()
 {
+  this.loader = true;
   this.reorderService.PutBackLogStatusPost(this.partId, this.partStatus).subscribe((res: any) => {
     debugger
-    res
+    this.loader = false;
   })
 }
 
