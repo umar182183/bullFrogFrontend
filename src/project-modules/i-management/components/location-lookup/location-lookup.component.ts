@@ -59,9 +59,6 @@ export class LocationLookupComponent implements OnInit {
   
   resetData()
   {
-    this.loader = false;
-    this.loading = false;
-    this.tableLoader = true;
     this.tableData = [];
   }
   

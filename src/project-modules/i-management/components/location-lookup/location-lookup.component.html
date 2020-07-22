@@ -1,6 +1,8 @@
 
-<div class="lookup-main-content">
-
+<div [ngClass]="{'dashboard-overlay': loader}">
+  <div class="loading" *ngIf="loader" role="status">
+    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
+</div>
 <div class="lookup">
     <button type="button" class="btn btn-success">Parts Location Lookup</button>
 
@@ -21,19 +23,15 @@
           </mat-option>
         </mat-autocomplete>
       </div>
-    <button class="close" type="reset" (click)="resetData()">×</button>
+    <button *ngIf="options.length != 0 && options != undefined" class="close" type="reset" (click)="resetData()">×</button>
 
     </form>
 
-    <!-- <div class="spinner-border text-primary loader" *ngIf="loader" role="status">
-      <span class="sr-only">Loading...</span>
-    </div> -->
+   
 
   </div>
   
-  <div class="loader" *ngIf="loader" role="status">
-    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-</div>
+  
  
   
   <div class="container" [hidden]="tableLoader == true">

@@ -61,12 +61,16 @@ sendRestockPart(otherQtyText, otherQtyCheck)
     logId: logId,
     otherQty: this.otherQty || 0,
   };
+  this.loader = false;
+
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
     // this.ordersArr = [];
     this.isLoaded = true;
     this.loadTabledata();
     otherQtyCheck.checked = false;
     otherQtyText.value = '';
+    this.loader = false;
+
   })
 }
 
@@ -90,7 +94,6 @@ loadTabledata()
   this.loader = true;
   this.loading = false;
   this.restockService.getTabledata().subscribe((data:any) => {
-    this.loader = false;
     this.loading = true;
     this.tableArr = data.responseData.restockOpen.map((a) => {
       return {
@@ -104,6 +107,7 @@ loadTabledata()
     this.dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.loader = false;
 
     if (this.isLoaded == true) {
       this.openPopup.hide();
@@ -114,18 +118,23 @@ loadTabledata()
   })
 }
 
-loadRestockPopup(partNum){
+loadRestockPopup(partNum, locationId){
   this.getPartData(partNum)
-  this.loadPartNumData(partNum);
+  debugger
+  this.loadPartNumData(partNum, locationId);
   this.openPopup.show()
 }
 
-private loadPartNumData(partnum)
+private loadPartNumData(partnum, locationId)
 {
   this.partNumDataArr = [];
-  this.restockService.getPartNumber(partnum).subscribe((data:any) => {
+  this.loader = true;
+
+  this.restockService.getPartNumber(partnum, locationId).subscribe((data:any) => {
     debugger
     this.partNumDataArr = data.responseData.data;
+    this.loader = false;
+
   })
 }
 
@@ -139,10 +148,14 @@ private getPartData(partNum)
     });
     this.ordersArr = [];
     this.popTableloading = true;
+    this.loader = true;
+
     this.restockService.getAllpendingOrders(partNum).subscribe((data:any) =>
     {
       this.ordersArr = data.responseData.pendingReordersLogs;
       this.popTableloading = false;
+    this.loader = false;
+
     })
 
 }

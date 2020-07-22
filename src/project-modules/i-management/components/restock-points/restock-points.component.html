@@ -1,6 +1,14 @@
 
-  <!-- Restock -->
-  <div class="modal fade dsh-modal" id="restock" bsModal #openPopup="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+ 
+
+
+<div  [ngClass]="{'dashboard-overlay': loader}">
+  
+  <div class="loading" *ngIf="loader" role="status">
+    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
+  </div>
+   <!-- Restock -->
+   <div class="modal fade dsh-modal" id="restock" bsModal #openPopup="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -47,17 +55,14 @@
                                 <td style="width: 60%;" *ngIf="partNumDataArr.length != 0">{{this.partNumDataArr[0]?.location}}</td>
                                 <td style="width: 60%;" *ngIf="partNumDataArr.length != 0">{{this.partNumDataArr[0]?.qty}}</td>
                               <td ><input (change)="getRestockFormData($event.target.value)" class="form-control" #otherQtyText [disabled]="isOther == false" type="text"></td>
-                               
-                            </tr>
-                            <tr>
                               <td>
                                 <div class="form-group row mx-0">
                                     <input style="margin-top: 14px;" #otherQtyCheck (click)="getOtherCheck($event.target.checked)" type="checkbox">
                                     <label for="" class="col col-form-label">Other</label>
                                     </div>
                             </td>
-                                <!-- <td><input type="text" class="form-control"></td> -->
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -97,9 +102,7 @@
                           
                       </tbody>
                   </table>
-                  <div class="loading-popup" *ngIf="popTableloading" role="status">
-                    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-                  </div>
+                 
                 </div>
 
         </div>
@@ -108,17 +111,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-back" data-dismiss="modal" (click)="openPopup.hide(); otherQtyText.value = ''; otherQtyCheck.checked = false">Close</button>
-          <div class="loading-btn" *ngIf="Buttonloading" role="status">
-            <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-          </div>
+         
           <button type="button" class="btn btn-next" (click)="sendRestockPart(otherQtyText, otherQtyCheck)">Restock</button>
         </div>
       </div>
     </div>
   </div>
-
-
-<div class="strt-table" >
 <div> <button type="button" class="btn btn-success">Open Restock Logs: {{tableArr.length}}</button></div>
 
 
@@ -132,22 +130,22 @@
     <table mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8 example-container">
       <ng-container matColumnDef="partNo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part # </th>
-        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo)"> {{element.partNo}}</td>
+        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.partNo}}</td>
       </ng-container>
   
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part Description </th>
-        <td mat-cell *matCellDef="let element" class="t1" (click)="loadRestockPopup(element.partNo)"> {{element.description}} </td>
+        <td mat-cell *matCellDef="let element" class="t1" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.description}} </td>
       </ng-container>
   
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
-        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo)"> {{element.location}}</td>
+        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.location}}</td>
       </ng-container>
 
       <ng-container matColumnDef="partCurrentQty">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
-        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo)"> {{element.partCurrentQty}}</td>
+        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.partCurrentQty}}</td>
       </ng-container>
   
     
@@ -158,7 +156,5 @@
     <!-- Angular 8 pagination -->
     <mat-paginator [pageSizeOptions]="[25, 100]"></mat-paginator>
   </div>
-  <div class="loading" *ngIf="loader" role="status">
-    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
-  </div>
+  
 </div>
