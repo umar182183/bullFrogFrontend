@@ -18,6 +18,7 @@ export class RestockPointsComponent implements OnInit {
   
   public tableArr:RestockModel[] = [];
   public partArr:any[] = [];
+  public partNumDataArr:any[] = [];
   public ordersArr:any[] = [];
   public partNumber;
   public otherQty: number;
@@ -115,7 +116,16 @@ loadTabledata()
 
 loadRestockPopup(partNum){
   this.getPartData(partNum)
+  this.loadPartNumData(partNum);
   this.openPopup.show()
+}
+
+private loadPartNumData(partnum)
+{
+  this.restockService.getPartNumber(partnum).subscribe((data:any) => {
+    debugger
+    this.partNumDataArr = data.responseData.data;
+  })
 }
 
 private getPartData(partNum)

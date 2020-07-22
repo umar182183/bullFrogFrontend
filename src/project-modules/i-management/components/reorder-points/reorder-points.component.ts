@@ -26,10 +26,12 @@ export class ReorderPointsComponent implements OnInit {
   @ViewChild('editLogModal', { static: false }) editLogModal: ModalDirective;
   @ViewChild('editLog2Modal', { static: false }) editLog2Modal: ModalDirective;
   @ViewChild('addNewLogModal', { static: false }) addNewLogModal: ModalDirective;
+  @ViewChild('putAwayModal', { static: false }) putAwayModal: ModalDirective;
   
   public tableDataArr: any[] = [];
   public loader:boolean = false;
   public IsClosedCurrent: boolean = false;
+  public isMultipleLocation: boolean = false;
   public isReview: boolean = false;
   public isPurchasePending: boolean = false;
   public isOpenPO: boolean = false;
@@ -41,6 +43,12 @@ export class ReorderPointsComponent implements OnInit {
   public openPOArr: any[] = [];
   public toPutAwayArr: any[] = [];
   public allvendorListArr: any[] = [];
+  public partLocationArr: any[] = [];
+  public openLocationArr: any[] = [];
+  public multiLocationArr: any[] = [];
+  public singleLocationArr: any[] = [];
+  public locationToSendArr: any[] = [];
+  public selectedLocation;
   public reviewCount;
   public purchasePendCount;
   public openPoCount;
@@ -56,6 +64,9 @@ export class ReorderPointsComponent implements OnInit {
   public partPoDuedate;
   public selectedVendor;
   public orderQty;
+  public remainingQty;
+  public cumulatedQty: number = 0;
+  public remainQty: number = 0;
   public dateRequired;
   public notesRec;
   public logReviewed;
@@ -375,6 +386,9 @@ editLog(partNum, partDesc, partDateCreated, partId, status)
   this.logReviewed = false;
   this.selectedVendor = '';
   this.orderQty = '';
+  this.partStatus = '';
+  debugger
+  this.partStatus = status;
   status == 'Review'? this.editLogModal.show(): this.editLog2Modal.show();
 }
 
@@ -447,5 +461,87 @@ saveNewLog()
   }
   this.escalateApproveLog();
 }
+loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
+  {
+  
+  this.partNum = '';
+  this.partNum = partNum;
+  this.partDesc = '';
+  this.partDesc = desc;
+  this.selectedVendor = '';
+  this.selectedVendor = vendor;
+  this.orderQty = '';
+  this.orderQty = qty;
+  this.partPoNum = '';
+  this.partPoNum = poNum;
+  this.notesRec = '';
+  this.notesRec = notes;
+  this.remainQty = +this.orderQty;
 
+  this.loadLocationdata(partNum);
+  this.loadOpenLocations(false);
+  this.multiLocationArr = [];
+  this.putAwayModal.show();
+  }
+
+loadLocationdata(partNum)
+{
+  this.reorderService.getLocationdata(partNum).subscribe((data: any) => {
+    
+    this.partLocationArr = data.responseData.data;
+  });
+}
+
+loadOpenLocations(isBlufdale)
+{
+  this.reorderService.getOpenLocationdata(isBlufdale).subscribe((data: any) => {
+    
+    this.openLocationArr = data.responseData;
+  })
+}
+
+getSelectedLocation(location, locationObj)
+{
+  debugger
+  this.selectedLocation = location;
+  
+  let previousLocation = this.multiLocationArr.includes(location);
+  if (!previousLocation) {
+  this.multiLocationArr.push(locationObj);
+  }
+  if (this.isMultipleLocation == false) {
+    this.singleLocationArr.push(locationObj);
+  }
+}
+
+getQty(qty, location)
+{
+debugger
+this.multiLocationArr.forEach((res: any) => {
+   if (res.location.indexOf(location)) {
+     res.qty = +qty;
+   } 
+});
+if (qty.length == 0) {
+this.remainQty = this.remainQty + this.cumulatedQty;
+} else {
+  this.cumulatedQty =  (+qty);
+this.remainQty = this.remainQty - this.cumulatedQty;
+}
+
+}
+sendPutPartPostReq()
+{
+  this.reorderService.putPartAwayPost(this.isMultipleLocation? this.multiLocationArr: this.singleLocationArr).subscribe((res: any) => {
+    debugger
+    res
+  })
+}
+putBacklogstatus()
+{
+  this.reorderService.PutBackLogStatusPost(this.partId, this.partStatus).subscribe((res: any) => {
+    debugger
+    res
+  })
+}
 }

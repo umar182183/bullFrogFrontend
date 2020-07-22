@@ -31,5 +31,8 @@ public postRstockPart(recObj){
   let obj = recObj;
  return this.http.post(this.URL+"ReOrder/PostReStockPart?logId="+obj.logId+"&otherQty="+obj.otherQty, obj);
 }
-
+getPartNumber(partNum)
+{
+ return this.http.get(this.URL+"InventoryManagement/GetPartNumber?partNumber="+partNum);
+}
 }

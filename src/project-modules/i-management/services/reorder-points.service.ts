@@ -45,4 +45,26 @@ getAllVendorList()
  return this.http.get(this.URL+"ReOrder/GetAllVendorList");
 }
 
+getLocationdata(partNum)
+{
+ return this.http.get(this.URL+"InventoryManagement/GetPartNumber?partNumber="+partNum);
+}
+
+getOpenLocationdata(isBluffdale)
+{
+ return this.http.get(this.URL+"ReOrder/PutPartAwayOpenpartLocations?isBluffdale="+isBluffdale);
+}
+
+
+putPartAwayPost(arr)
+{
+  debugger
+ return this.http.post(this.URL+"ReOrder/PutPartAwayPost?data="+JSON.stringify(arr), arr);
+}
+
+PutBackLogStatusPost(id, status)
+{
+ return this.http.get(this.URL+"ReOrder/PutBackLogStatusPost?status="+status+"&id="+id);
+}
+
 }

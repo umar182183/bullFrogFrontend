@@ -753,7 +753,9 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <a href="#" class="btn btn-next mb-3">Send Back for Review</a>
+                        <a href="javascript:void(0)" *ngIf="partStatus == 'Purchasing Pending'" (click)="putBacklogstatus()" class="btn btn-next mb-3">Send Back for Review</a>
+                        <a href="javascript:void(0)" *ngIf="partStatus == 'PO Pending'" (click)="putBacklogstatus()" class="btn btn-next mb-3">Send Back for PO pending</a>
+                        <a href="javascript:void(0)" *ngIf="partStatus == 'PO Received'" (click)="putBacklogstatus()" class="btn btn-next mb-3">Send Back for Open Po's</a>
                     </div>
 
                     <div class="col-md-12">
@@ -1231,7 +1233,7 @@
  
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -1264,12 +1266,12 @@
 
 
       <!-- add New Log -->
-<div class="modal fade dsh-modal" id="putPartAway" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
+<div class="modal fade dsh-modal" bsModal #putAwayModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Put Parts Away</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" (click)="putAwayModal.hide()" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -1280,13 +1282,13 @@
                             <label class="form-check-label" for="exampleRadios1">
                                 Assign A Location
                             </label>
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <input class="form-check-input" (change)="isMultipleLocation = false" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" [checked]="isMultipleLocation == false">
                         </div>
                         <div class="form-check col-md-6 text-center">
                             <label class="form-check-label" for="exampleRadios1">
-                                Assign A Location
+                                Assign Multiple Locations
                             </label>
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <input class="form-check-input" (change)="isMultipleLocation = true; multiLocationArr = []" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" [checked]="isMultipleLocation == true">
                         </div>
                     </div>
     
@@ -1316,12 +1318,12 @@
                         <tbody>
     
                             <tr>
-                                <td>65-00130</td>
-                                <td>CONTROL, PAD, VL406T, X-SERIES</td>
-                                <td>BALBOA WATER GROUP</td>
-                                <td>21</td>
-                                <td>585</td>
-                                <td></td>
+                                <td>{{partNum}}</td>
+                                <td>{{partDesc}}</td>
+                                <td>{{selectedVendor}}</td>
+                                <td>{{orderQty}}</td>
+                                <td>{{partPoNum}}</td>
+                                <td>{{notesRec}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1342,9 +1344,9 @@
                                 </thead>
                                 <tbody>
             
-                                    <tr>
-                                        <td>Herriman Parts PR6-1-B</td>
-                                        <td>0</td>
+                                    <tr *ngFor="let location of partLocationArr" (click)="getSelectedLocation(location.location, location)">
+                                        <td >{{location.location}}</td>
+                                        <td>{{location.qty}}</td>
                                     </tr>
                                     
                                 </tbody>
@@ -1358,29 +1360,14 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">
-                                                    <label for="" class="">Description</label>
+                                                    <label for="" class="">Other Locations</label>
                                                     <input type="text" class="form-control">
                                                 </th>
                                             </tr>
                                         </thead>
                 
-                                        <tr>
-                                            <td>Herriman Parts E1-1-A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herriman Parts E1-1-A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herriman Parts E1-1-A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herriman Parts E1-1-A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herriman Parts E1-1-A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herriman Parts E1-1-A</td>
+                                        <tr *ngFor="let location of openLocationArr">
+                                            <td (click)="getSelectedLocation(location.location, location)">{{location.location}}</td>
                                         </tr>
                                         
                                     </tbody>
@@ -1388,48 +1375,22 @@
                             </div>
     
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" *ngIf="isMultipleLocation == false">
+                            <p><b>You have selected location:</b></p>
+                            <p>{{selectedLocation}}</p>
+                        </div>
+                        <div class="col-md-6" *ngIf="isMultipleLocation == true">
                             <p>Enter quantity assigned to each location</p>
                             <p class="error">Select at least 2 locations</p>
-                            <p><b>Qty Remaining to Assign: 21</b></p>
+                            <p><b>Qty Remaining to Assign: {{remainQty}}</b></p>
     
-                            <div class="form-group row">
-                                <label for="" class="col-5 col-form-label">Herriman Parts E1</label>
+                            <div class="form-group row" *ngFor="let location of multiLocationArr; let i = index">
+                                <label for="" class="col-5 col-form-label">{{location.location}}</label>
                                 <div class="col-5">
-                                    <input type="text" class="form-control">
+                                    <input type="text" id="{{'remainQtyVlue'+i}}" (change)="getQty($event.target.value, location)" name="remainingQty" class="form-control">
                                 </div>
                                 <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <span aria-hidden="true">&times;</span>
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="" class="col-5 col-form-label">Herriman Parts E1</label>
-                                <div class="col-5">
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <span aria-hidden="true">&times;</span>
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="" class="col-5 col-form-label">Herriman Parts E1</label>
-                                <div class="col-5">
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <span aria-hidden="true">&times;</span>
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="" class="col-5 col-form-label">Herriman Parts E1</label>
-                                <div class="col-5">
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true" >&times;</span>
                                 </div>
                             </div>
     
@@ -1440,8 +1401,8 @@
                   </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-next">Confirm & Close Recorder Log</button>
+              <button type="button" class="btn btn-back" data-dismiss="modal" (click)="putAwayModal.hide()">Close</button>
+              <button type="button" class="btn btn-next" (click)="sendPutPartPostReq()">Confirm & Close Recorder Log</button>
             </div>
           </div>
         </div>

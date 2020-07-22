@@ -26,32 +26,36 @@
 
                     <div class="col-md-12">
                         <p><b>RESTOCK FROM</b></p>
+                        <p *ngIf="partNumDataArr.length == 0">No additional log exit for</p>
                         <table class="table table-striped table-hover table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">
                                     Location
                                 </th>
+                                <th *ngIf="partNumDataArr.length != 0" scope="col">
+                                  Qty
+                                </th>
                                 <th  scope="col">
                                   Qty Pulled
                                 </th>
-                                
                             </tr>
                         </thead>
                         <tbody>
 
                             <tr>
-                                <!-- <td style="width: 60%;">{{this.partArr[0]?.location}}</td> -->
-                                <td>
-                                  <div class="form-group row mx-0">
-                                      <input style="margin-top: 14px;" #otherQtyCheck (click)="getOtherCheck($event.target.checked)" type="checkbox">
-                                      <label for="" class="col col-form-label">Other</label>
-                                      </div>
-                              </td>
-                                <td ><input (change)="getRestockFormData($event.target.value)" class="form-control" #otherQtyText [disabled]="isOther == false" type="text"></td>
+                                <td style="width: 60%;" *ngIf="partNumDataArr.length != 0">{{this.partNumDataArr[0]?.location}}</td>
+                                <td style="width: 60%;" *ngIf="partNumDataArr.length != 0">{{this.partNumDataArr[0]?.qty}}</td>
+                              <td ><input (change)="getRestockFormData($event.target.value)" class="form-control" #otherQtyText [disabled]="isOther == false" type="text"></td>
+                               
                             </tr>
                             <tr>
-                               
+                              <td>
+                                <div class="form-group row mx-0">
+                                    <input style="margin-top: 14px;" #otherQtyCheck (click)="getOtherCheck($event.target.checked)" type="checkbox">
+                                    <label for="" class="col col-form-label">Other</label>
+                                    </div>
+                            </td>
                                 <!-- <td><input type="text" class="form-control"></td> -->
                             </tr>
                         </tbody>
