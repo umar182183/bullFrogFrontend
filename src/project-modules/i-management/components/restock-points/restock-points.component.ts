@@ -121,7 +121,7 @@ loadTabledata()
 loadRestockPopup(partNum, locationId){
   this.getPartData(partNum)
   debugger
-  this.loadPartNumData(partNum, locationId);
+  this.loadPartNumData(partNum, 0);
   this.openPopup.show()
 }
 
@@ -157,6 +157,15 @@ private getPartData(partNum)
     this.loader = false;
 
     })
+}
+getPulledQty(event, qty)
+{
+  debugger  
+  event = +event;
+  qty = +qty;
+  if (event > qty) {
+    return alert("Qty should not be greater thanthe Qty in Location!")
+  }
 
 }
 
