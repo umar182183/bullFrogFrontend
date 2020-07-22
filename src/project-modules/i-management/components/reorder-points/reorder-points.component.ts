@@ -45,6 +45,7 @@ export class ReorderPointsComponent implements OnInit {
   public allvendorListArr: any[] = [];
   public partLocationArr: any[] = [];
   public openLocationArr: any[] = [];
+  public openLocationBackArr: any[] = [];
   public multiLocationArr: any[] = [];
   public singleLocationArr: any[] = [];
   public locationToSendArr: any[] = [];
@@ -497,6 +498,7 @@ loadOpenLocations(isBlufdale)
   this.reorderService.getOpenLocationdata(isBlufdale).subscribe((data: any) => {
     
     this.openLocationArr = data.responseData;
+    this.openLocationBackArr = data.responseData;
   })
 }
 
@@ -544,4 +546,22 @@ putBacklogstatus()
     res
   })
 }
+
+getFilteredOpenLocationArr(value)
+{
+  
+  this.openLocationArr = this._filterOpenLockArr(value)
+}
+ private _filterOpenLockArr(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    let arr = this.openLocationBackArr;
+    return arr.filter(option =>{
+      
+     return option.location.toLowerCase().includes(filterValue);
+            
+    });
+  }
+
+
 }

@@ -122,6 +122,7 @@ loadRestockPopup(partNum){
 
 private loadPartNumData(partnum)
 {
+  this.partNumDataArr = [];
   this.restockService.getPartNumber(partnum).subscribe((data:any) => {
     debugger
     this.partNumDataArr = data.responseData.data;
