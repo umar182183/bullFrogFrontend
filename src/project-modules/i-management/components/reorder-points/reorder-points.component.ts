@@ -4,8 +4,10 @@ import { ReorderPointsService } from '../../services/reorder-points.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { LocationLookupService } from '../../services/location-lookup.service';
+import { ToastrService } from 'ngx-toastr';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'reorder-points',
@@ -17,6 +19,7 @@ export class ReorderPointsComponent implements OnInit {
   constructor(private appService: AppService,
     private reorderService: ReorderPointsService,
     private locationService: LocationLookupService,
+    private toastr: ToastrService
     ){}
 
   @ViewChild('logDetails', { static: false }) logDetails: ModalDirective;
@@ -27,6 +30,7 @@ export class ReorderPointsComponent implements OnInit {
   @ViewChild('editLog2Modal', { static: false }) editLog2Modal: ModalDirective;
   @ViewChild('addNewLogModal', { static: false }) addNewLogModal: ModalDirective;
   @ViewChild('putAwayModal', { static: false }) putAwayModal: ModalDirective;
+  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective;
   
   public tableDataArr: any[] = [];
   public loader:boolean = false;
@@ -73,9 +77,11 @@ export class ReorderPointsComponent implements OnInit {
   public notesRec;
   public logReviewed;
   public objToSend = {};
+  public logExists: boolean;
 
   myControl = new FormControl();
   options: string[] = [];
+  optionsBackupArr: string[] = [];
   public restockLogArr: any[] = [];
 
   filteredOptions: Observable<string[]>;
@@ -86,17 +92,23 @@ export class ReorderPointsComponent implements OnInit {
     this.loadPartsList();
 
     this.filteredOptions = this.myControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+      .pipe(
+        startWith(''),
+        debounceTime(2000),
+        distinctUntilChanged(),
+        map(value =>{ 
+          debugger
+           this.options = this._filter(value);
+           return this.options;
+        })
+      );
 
   }
  
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    let arr = this.optionsBackupArr;
+    return arr.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   private _filterRestockArr(value: string): string[] {
@@ -131,7 +143,7 @@ export class ReorderPointsComponent implements OnInit {
     {
       
       data.responseData.forEach(element => {
-        this.options.push(element.partNumber)
+        this.optionsBackupArr.push(element.partNumber)
       });
       this.loader = false;
     });
@@ -290,6 +302,12 @@ private escalateApproveLog()
 this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
         debugger
+        if (res.success == false) {
+          this.toastr.error(res.message);
+          }
+          else{
+            this.toastr.success(res.message);
+          }
        this.resetData();
        this.loader = false;
        this.callRestockLogarr();
@@ -322,8 +340,15 @@ private escalateMultiApproveLogs()
 this.reorderService.getMultiApproveLogs(this.objToSend).subscribe((res: any) => {
 
         debugger
+        if (res.success == false) {
+          this.toastr.error(res.message);
+          }
+          else{
+            this.toastr.success("All Logs Approved Successfully");
+          }
         this.approveLogModal.hide();
         this.loader = false;
+        this.callRestockLogarr();
       });
  }
 
@@ -423,7 +448,7 @@ saveEditedLog()
     Vendor: this.selectedVendor,
     OrderQty: this.orderQty,
     Status: this.statusToSend,
-    DatePartsRequired: this.dateRequired,
+    DatePartsRequired: this.dateRequired? this.dateRequired: '',
     Notes: this.notesRec,
     DateCreated: this.partDateCreated,
     PONum: this.partPoNum,
@@ -434,6 +459,7 @@ saveEditedLog()
     isEdit: true,
     isAdd: false
   }
+  debugger
   this.escalateApproveLog();
 }
 
@@ -459,6 +485,7 @@ addNewLog()
 
 saveNewLog()
 {
+  debugger
   
   this.objToSend = {};
   this.objToSend = {
@@ -474,8 +501,31 @@ saveNewLog()
     isEdit: false,
     isAdd: true
   }
+  let splittedartNum = this.partNum.split(":", 2); 
+
+   this.restockLogArr.forEach((element:any) => {
+    
+    if (element.partNo.includes(splittedartNum[0])) {
+      return this.logExists = true;
+    }
+    
+  })
+  
+
+  if (this.logExists) {
+    this.addNewLogModal.hide();
+    this.confirmModal.show();
+  } else {
   this.escalateApproveLog();
+  }
 }
+
+loadExistPartModal()
+{
+  this.confirmModal.hide();
+  this.editLogModal.show();
+}
+
 loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
   {
   
@@ -555,6 +605,12 @@ sendPutPartPostReq()
   this.loader = true;
   this.reorderService.putPartAwayPost(this.isMultipleLocation? this.multiLocationArr: this.singleLocationArr).subscribe((res: any) => {
     debugger
+    if (res.success == false) {
+      this.toastr.error(res.message);
+      }
+      else{
+        this.toastr.success(res.message);
+      }
     this.loader = false;
     this.putAwayModal.hide();
   })
@@ -564,6 +620,12 @@ putBacklogstatus()
   this.loader = true;
   this.reorderService.PutBackLogStatusPost(this.partId, this.partStatus).subscribe((res: any) => {
     debugger
+    if (res.success == false) {
+      this.toastr.error(res.message);
+      }
+      else{
+        this.toastr.success(res.message);
+      }
     this.loader = false;
   })
 }

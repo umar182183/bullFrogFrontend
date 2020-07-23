@@ -32,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AreaManagementComponent } from './components/area-management/area-management.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     MatSortModule,
     MatInputModule,
     CarouselModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(),
+    TooltipModule 
 
   ],
 

@@ -280,13 +280,13 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isReview = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)" tooltip="Go To Dashboard" (click)="IsClosedCurrent = false; isReview = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - REVIEW REQUIRED</h4>
         </div>
         <div class="col-md-2 dh-3">
-            <a href="#" data-toggle="modal" (click)="addNewLog()"><i class="fa fa-plus" aria-hidden="true"></i> Add New Log</a>
+            <a href="#" tooltip="Add New Log" data-toggle="modal" (click)="addNewLog()"><i class="fa fa-plus" aria-hidden="true"></i> Add New Log</a>
         </div>
     </div>
    
@@ -294,7 +294,7 @@
         <div class="das-body">
 
             <div class="col-md-12">
-                <a href="#" class="btn btn-back mb-1">Sent Back</a>
+                <a href="javascript:void(0)" class="btn btn-back mb-1" tooltip="send Back">Sent Back</a>
                 <table class="table table-striped table-hover table-responsive">
                     <thead class="thead-dark">
                         
@@ -348,7 +348,7 @@
                        
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="getApproveData(restock.status, restock.id)"><i tooltip="Approve Log" class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -360,10 +360,10 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" data-target="#editLog">
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="javascript:void()" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
+                                <a class="db-delete" href="javascript:void()" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
@@ -561,7 +561,7 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isPurchasePending = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)" tooltip="Go To Dashboard" (click)="IsClosedCurrent = false; isPurchasePending = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - PURCHASING PENDING</h4>
@@ -575,9 +575,9 @@
         <div class="das-body">
 
             <div class="col-md-12">
-                <a href="#" class="btn btn-back mb-1">Sent Back</a>
+                <a href="#" class="btn btn-back mb-1" tooltip="Send Back">Sent Back</a>
                 <a href="#" class="btn btn-next mb-1">Selected Parts ({{this.approvedLogsArr.length}})</a>
-                <a href="javascript:void()" (click)="processMultiApprove()" class="btn btn-next mb-1">Approve</a>
+                <a href="javascript:void()" (click)="processMultiApprove()" class="btn btn-next mb-1" tooltip="Approve All Log">Approve</a>
                 <table class="table table-striped table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -628,8 +628,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let restock of restockLogArr">
-                            <td (click)="getCheckedItems(approveCheck.checked, restock.id)"><input #approveCheck type="checkbox" ></td>
-                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="getCheckedItems(approveCheck.checked, restock.id)"><input #approveCheck type="checkbox" tooltip="Mark Log"></td>
+                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true" tooltip="Approve Log"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -641,10 +641,10 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" data-toggle="modal" data-target="#editLog">
+                                <a class="db-edit" href="#" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
+                                <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
@@ -836,7 +836,7 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isOpenPO = false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isOpenPO = false" tooltip="Go To Dashboard"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - Open PO's</h4>
@@ -850,7 +850,7 @@
         <div class="das-body">
 
             <div class="col-md-12">
-                <a href="#" class="btn btn-back mb-1">Sent Back</a>
+                <a href="#" class="btn btn-back mb-1" tooltip="Sent Back">Sent Back</a>
                 <table class="table table-striped table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -903,7 +903,7 @@
 
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td (click)="getApproveData(restock.status, restock.id)" tooltip="Approve Log"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -915,10 +915,10 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" >
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
+                                <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
@@ -958,6 +958,29 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-back" data-dismiss="modal" (click)="markReceivedModal.hide()">Close</button>
           <button type="button" class="btn btn-next" (click)="processApproveRequest()">Mark Received</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Confirm Log -->
+   <div class="modal fade dsh-modal" bsModal #confirmModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" (click)="confirmModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           
+                        <p>An active Reorder Log already exists for 45-2095. Would you like to see it now?</p>
+                
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="confirmModal.hide()">No</button>
+          <button type="button" class="btn btn-next" (click)="loadExistPartModal()">Yes</button>
         </div>
       </div>
     </div>
@@ -1161,7 +1184,7 @@
 
     <div class="das-head row">
         <div class="col-md-2 dh-1">
-            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isPutAway =false"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Dashboard</a>
+            <a href="javascript:void(0)"  (click)="IsClosedCurrent = false; isPutAway =false"><i class="fa fa-chevron-circle-left" aria-hidden="true" tooltip="Go To Dashboard"></i> Dashboard</a>
         </div>
         <div class="col-md-8 dh-2">
             <h4>REORDER LOG - PARTS TO PUT AWAY</h4>
@@ -1226,7 +1249,7 @@
  
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td (click)="loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td tooltip="Put Part Away" (click)="loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -1238,10 +1261,10 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()">
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a class="db-delete" href="#" data-toggle="modal" (click)="processDelete(restock.partNo, restock.description, restock.id)">
+                                <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>

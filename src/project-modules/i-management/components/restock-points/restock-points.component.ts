@@ -127,7 +127,7 @@ loadTabledata()
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.loader = false;
-
+   
     if (this.isLoaded == true) {
       this.openPopup.hide();
     this.isLoaded = false;
@@ -158,6 +158,7 @@ private loadPartNumData(partnum, locationId)
       o.NewQty = 0
       return o;
     });
+    
 
   this.sendArrToRestock = result;
   for (let i=0; i < this.sendArrToRestock.length; i++) {
@@ -185,6 +186,7 @@ private getPartData(partNum)
       this.ordersArr = data.responseData.pendingReordersLogs;
       this.popTableloading = false;
     this.loader = false;
+  
 
     })
 }
