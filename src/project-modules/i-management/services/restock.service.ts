@@ -29,7 +29,8 @@ getAllpendingOrders(partNum)
 
 public postRstockPart(recObj){
   let obj = recObj;
- return this.http.post(this.URL+"ReOrder/PostReStockPart?logId="+obj.logId+"&otherQty="+obj.otherQty, obj);
+  debugger
+ return this.http.post(this.URL+"ReOrder/PostReStockPart?val="+JSON.stringify(obj.val)+"&logId="+obj.logId+"&otherQty="+obj.otherQty, obj);
 }
 getPartNumber(partNum, locationId)
 {

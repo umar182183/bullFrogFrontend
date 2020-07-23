@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { RestockModel } from '../../models/restock.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { element } from 'protractor';
 
 @Component({
   selector: 'restock-points',
@@ -20,15 +21,18 @@ export class RestockPointsComponent implements OnInit {
   public tableArr:RestockModel[] = [];
   public partArr:any[] = [];
   public partNumDataArr:any[] = [];
+  public sendArrToRestock:any[] = [];
   public ordersArr:any[] = [];
   public partNumber;
-  public otherQty: number;
+  public otherQty: number = 0;
+  public TotalQty: number=0;
+  public qtyInLocation: number=0;
   public isOther: boolean = false;
   public loading = false;
   public Buttonloading = false;
   public popTableloading = false;
   public isLoaded = false;
-  public loader = false;
+  public loader = true;
   dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -53,25 +57,38 @@ ngOnInit() {
 getRestockFormData(event)
 {
 this.otherQty = +event;
+this.TotalQty = this.TotalQty + this.otherQty;
 }
 
 sendRestockPart(otherQtyText, otherQtyCheck)
 {
+  
   this.Buttonloading = true;
   let logId: number = this.partArr[0].id;
   let obj = {
     logId: logId,
     otherQty: this.otherQty || 0,
+    val: this.sendArrToRestock
   };
+  debugger
+  
   this.loader = true;
   this.openPopup.hide();
   this.restockService.postRstockPart(obj).subscribe((data: any) => {
     // this.ordersArr = [];
+    debugger
+    if (data.success == false) {
+    this.toastr.error(data.message);
+    }
+    else{
+      this.toastr.success(data.message);
+    }
     this.isLoaded = true;
     this.loadTabledata();
     otherQtyCheck.checked = false;
     otherQtyText.value = '';
     this.loader = false;
+    this.loadTabledata();
 
   })
 }
@@ -135,6 +152,17 @@ private loadPartNumData(partnum, locationId)
   this.restockService.getPartNumber(partnum, locationId).subscribe((data:any) => {
     debugger
     this.partNumDataArr = data.responseData.data;
+    let result = this.partNumDataArr.map((el: any) => {
+      var o = Object.assign({}, el);
+      o.QtyInLocation = 0;
+      o.NewQty = 0
+      return o;
+    });
+
+  this.sendArrToRestock = result;
+  for (let i=0; i < this.sendArrToRestock.length; i++) {
+    this.sendArrToRestock[i].QtyInLocation = this.sendArrToRestock[i].qty;
+  }
     this.loader = false;
 
   })
@@ -160,13 +188,24 @@ private getPartData(partNum)
 
     })
 }
-getPulledQty(event, qty)
+getPulledQty(pulledQty, qty, currentLocation)
 {
   debugger  
-  event = +event;
-  qty = +qty;
-  if (event > qty) {
-    this.toastr.warning("Qty should not be greater thanthe Qty in Location!");
+  pulledQty = +pulledQty;
+  qty = +qty;  
+  
+for (let i=0; i < this.sendArrToRestock.length; i++) {
+  if (this.sendArrToRestock[i].location === currentLocation) {
+       this.sendArrToRestock[i].NewQty = pulledQty;
+  }
+}
+
+
+if (pulledQty > qty) {
+    this.toastr.warning("Qty should not be greater than the Qty in Location!");
+  }
+  else{
+    this.TotalQty = this.TotalQty + pulledQty;
   }
 
 }

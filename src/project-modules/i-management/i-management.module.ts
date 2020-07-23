@@ -31,7 +31,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { AreaManagementComponent } from './components/area-management/area-management.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
 @NgModule({
@@ -70,7 +70,7 @@ import { ToastrModule } from 'ngx-toastr';
 
   exports: [MatTableModule, MatPaginatorModule],
 
-  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, RelocateService, ManageLocationService, InventoryCountsService,]
+  providers: [LocationLookupService, RestockService, StockInventoryService, ReorderPointsService, ToastrService, RelocateService, ManageLocationService, InventoryCountsService,]
 
 })
 export class InventoryManagementModule { }

@@ -54,7 +54,7 @@
                             <tr  *ngFor="let location of partNumDataArr; let i = index">
                                 <td style="width: 60%;" >{{location.location}}</td>
                                 <td style="width: 60%;" >{{location.qty}}</td>
-                                <td><input type="text" (keyup)="getPulledQty($event.target.value, location.qty)" id="{{i}}" class="form-control"></td>
+                                <td><input type="text" (change)="getPulledQty($event.target.value, location.qty, location.location)" id="{{i}}" class="form-control"></td>
                             </tr>
                           </ng-container>
                             <tr >
@@ -71,6 +71,12 @@
                             <td>
                               
                             </td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td></td>
+                            <td *ngIf="pulledQty != 0">Total=<b>{{TotalQty}}</b></td>
+
                             </tr>
                         </tbody>
                     </table>
