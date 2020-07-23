@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { LocationLookupService } from '../../services/location-lookup.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { element } from 'protractor';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'location-lookup',
@@ -20,10 +21,13 @@ export class LocationLookupComponent implements OnInit {
   public loader = false;
   public tableLoader = true;
   public partNumber;
-  constructor(private appService: AppService, private locationService: LocationLookupService, private senitizer: DomSanitizer){}
+  constructor(private appService: AppService, private locationService: LocationLookupService,
+    private toastr: ToastrService, 
+    private senitizer: DomSanitizer){}
   
   myControl = new FormControl();
-  options: string[] = [];
+  options: any[] = [];
+  optionsBackupArr: string[] = [];
   filteredOptions: Observable<string[]>;
 
   loadLocationData(partNum)
@@ -60,6 +64,7 @@ export class LocationLookupComponent implements OnInit {
   resetData()
   {
     this.tableData = [];
+    this.tableLoader = true;
   }
   
   ngOnInit() {
@@ -67,15 +72,25 @@ export class LocationLookupComponent implements OnInit {
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
-        map(value => this._filter(value))
+        debounceTime(2000),
+        distinctUntilChanged(),
+        map(value =>{ 
+          debugger
+           this.options = this._filter(value);
+           if (this.options.length == 1) {
+             debugger
+             this.selectPartNum(this.options[0]);
+           }
+           return this.options;
+        })
       );
       this.loadPartsList();
     }
 
     private _filter(value: string): string[] {
       const filterValue = value.toLowerCase();
-  
-      return this.options.filter(option => option.toLowerCase().includes(filterValue));
+      let arr = this.optionsBackupArr;
+      return arr.filter(option => option.toLowerCase().includes(filterValue));
     }
 
     selectPartNum(partNumStr)
@@ -90,8 +105,9 @@ export class LocationLookupComponent implements OnInit {
     this.loader = true;
     this.locationService.getPartsList().subscribe((data: any) =>
     {
+      debugger
       data.responseData.forEach(element => {
-        this.options.push(element.partNumber)
+        this.optionsBackupArr.push(element.partNumber)
       });
       this.loader = false;
     });

@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { RestockModel } from '../../models/restock.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'restock-points',
@@ -36,7 +37,8 @@ export class RestockPointsComponent implements OnInit {
 
   displayedColumns: string[] = ['partNo', 'description', 'location', 'partCurrentQty'];
 
-  constructor(private appService: AppService, private restockService: RestockService){
+  constructor(private appService: AppService, private restockService: RestockService,
+    private toastr: ToastrService){
 
   }
  
@@ -121,7 +123,7 @@ loadTabledata()
 loadRestockPopup(partNum, locationId){
   this.getPartData(partNum)
   debugger
-  this.loadPartNumData(partNum, 0);
+  this.loadPartNumData(partNum, locationId);
   this.openPopup.show()
 }
 
@@ -164,7 +166,7 @@ getPulledQty(event, qty)
   event = +event;
   qty = +qty;
   if (event > qty) {
-    return alert("Qty should not be greater thanthe Qty in Location!")
+    this.toastr.warning("Qty should not be greater thanthe Qty in Location!");
   }
 
 }

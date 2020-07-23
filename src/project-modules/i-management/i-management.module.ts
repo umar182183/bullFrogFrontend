@@ -31,6 +31,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { AreaManagementComponent } from './components/area-management/area-management.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -62,7 +63,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
-    CarouselModule
+    CarouselModule,
+    ToastrModule.forRoot(), // ToastrModule added
+
   ],
 
   exports: [MatTableModule, MatPaginatorModule],
