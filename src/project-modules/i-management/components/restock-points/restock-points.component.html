@@ -34,7 +34,7 @@
 
                     <div class="col-md-12">
                         <p><b>RESTOCK FROM</b></p>
-                        <p *ngIf="partNumDataArr.length == 0">No additional stock exists for this part</p>
+                        <p class="noStock" *ngIf="partNumDataArr.length == 0">No additional stock exists for this part</p>
                         <table class="table table-striped table-hover table-responsive">
                         <thead>
                             <tr>

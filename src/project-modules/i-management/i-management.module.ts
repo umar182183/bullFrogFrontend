@@ -33,6 +33,9 @@ import { AreaManagementComponent } from './components/area-management/area-manag
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { ImageViewerModule } from 'ng2-image-viewer';
+
 
 
 @NgModule({
@@ -47,7 +50,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     InventoryManagementHeaderComponent,
     InventoryBreadCrumbComponent,
     StockInventoryComponent,
-    AreaManagementComponent
+    AreaManagementComponent,
+    SafeHtmlPipe
   ],
   imports: [
     InventoryManagementRoutingModule,
@@ -66,8 +70,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     MatInputModule,
     CarouselModule,
     ToastrModule.forRoot(),
-    TooltipModule 
-
+    TooltipModule,
+    ImageViewerModule
   ],
 
   exports: [MatTableModule, MatPaginatorModule],

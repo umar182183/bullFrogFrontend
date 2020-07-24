@@ -50,8 +50,6 @@ ngOnInit() {
     this.appService.updateCurrentModule('restock');
     this.loadTabledata();
     this.dataSource;
-    this.tableArr
-
 }
 
 getRestockFormData(event)
@@ -117,6 +115,7 @@ loadTabledata()
   this.loader = true;
   this.loading = false;
   this.restockService.getTabledata().subscribe((data:any) => {
+    debugger
     this.loading = true;
     this.tableArr = data.responseData.restockOpen.map((a) => {
       return {
@@ -124,7 +123,8 @@ loadTabledata()
         'description': a.description,
         'location': a.location,
         'partCurrentQty': a.partCurrentQty,
-        'id': a.id
+        'id': a.id,
+        'locationId': a.locationId
       }
     });
     this.dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
@@ -146,6 +146,7 @@ loadRestockPopup(partNum, locationId){
   debugger
   this.loadPartNumData(partNum, locationId);
   this.openPopup.show()
+  this.TotalQty = 0;
 }
 
 private loadPartNumData(partnum, locationId)

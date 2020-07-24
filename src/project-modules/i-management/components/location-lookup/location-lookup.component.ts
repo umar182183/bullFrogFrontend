@@ -16,10 +16,12 @@ import { ToastrService } from 'ngx-toastr';
 export class LocationLookupComponent implements OnInit {
   
   public tableData: [] = [];
+  public url;
   public imgToShow: any;
   public loading = false;
   public loader = false;
   public tableLoader = true;
+  public isReset = true;
   public partNumber;
   constructor(private appService: AppService, private locationService: LocationLookupService,
     private toastr: ToastrService, 
@@ -49,11 +51,22 @@ export class LocationLookupComponent implements OnInit {
     this.locationService.getImgUrl(partNum).subscribe((image:Blob) => {
     const reader = new FileReader();
     reader.readAsDataURL(image); 
-    reader.onloadend = function() {
-    let ele = document.getElementsByClassName("image3");
-    ele[0].setAttribute("src", reader.result.toString());
+    reader.onload = (event: any) => {
+      // called once readAsDataURL is completed
+      debugger
+      let safe: any = this.senitizer.bypassSecurityTrustUrl(event.target.result as string);
+      this.url = safe.changingThisBreaksApplicationSecurity;
+      console.log(this.url);
 
-}
+
+    };
+//     reader.onloadend = function() {
+//       debugger
+//     let ele = document.getElementsByClassName("image3");
+//     ele[0].setAttribute("src", reader.result.toString());
+
+//    console.log(reader.result) ;
+// }
 
 });
 }
@@ -64,6 +77,8 @@ export class LocationLookupComponent implements OnInit {
   {
     this.tableData = [];
     this.tableLoader = true;
+    this.myControl.setValue('', {emitEvent: false});
+    this.isReset = true;
   }
   
   ngOnInit() {
@@ -76,6 +91,9 @@ export class LocationLookupComponent implements OnInit {
         map(valueGot =>{ 
           debugger
            this.options = this._filter(valueGot);
+           if (valueGot != "") {
+           this.isReset = false;
+           }
            if (this.options.length == 1) {
              debugger
              valueGot = this.options[0];

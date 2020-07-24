@@ -11,7 +11,7 @@
     <form class="example-form">
       <div class="example-full-width">
         <input type="text"
-               placeholder="Enter Part#"
+                id="searchPart"
                aria-label="Number"
                matInput
                [formControl]="myControl"
@@ -22,7 +22,7 @@
           </mat-option>
         </mat-autocomplete>
       </div>
-    <button *ngIf="options.length != 0 || options != undefined" class="close" type="reset" (click)="resetData()">×</button>
+    <button *ngIf="isReset == false" class="close" type="reset" (click)="resetData()">×</button>
 
     </form>
 
@@ -36,7 +36,11 @@
   <div class="container" [hidden]="tableLoader == true">
     <div class="row">
         <div class="img">
-            <img  src="" alt="photo" class="img-thumbnail umar img-responsive img-fluid image3">
+            <!-- <img  [src]="url" alt="photo" class="img-thumbnail  img-responsive img-fluid"> -->
+            <!-- <ngx-imageviewer  [src]="url"></ngx-imageviewer> -->
+            <app-image-viewer [images]="['https://picsum.photos/900/500/?random']"
+            [idContainer]="'idOnHTML'"
+            [loadOnInit]="true"></app-image-viewer>
           </div > 
           <div class="tb">
             <p *ngIf="tableData.length == 0 || tableData == undefined">No location is assigned for: {{partNumber}}</p>

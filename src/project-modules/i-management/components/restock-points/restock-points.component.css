@@ -80,6 +80,14 @@
     margin: -9rem 24rem;
     z-index: 79076;
 } */
+.noStock{
+    align-items: center;
+    margin-left: 11rem;
+    /* text-transform: uppercase; */
+}
+.example-header{
+    margin-top: 2rem;
+}
 .loading{
     position: fixed;
   bottom: 0;
