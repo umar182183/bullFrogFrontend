@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from 'src/project-modules/app/services/app.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { LocationLookupService } from '../../services/location-lookup.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { element } from 'protractor';
 import { ToastrService } from 'ngx-toastr';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'location-lookup',
@@ -14,6 +15,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./location-lookup.component.css']
 })
 export class LocationLookupComponent implements OnInit {
+  
+  @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
   
   public tableData: [] = [];
   public url;
@@ -37,7 +40,7 @@ export class LocationLookupComponent implements OnInit {
     this.loader = true;
     this.partNumber = partNum;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
-     
+     debugger
       this.tableData =data.responseData.data;
       this.loader = false;
       this.tableLoader = false;
@@ -45,18 +48,18 @@ export class LocationLookupComponent implements OnInit {
       if (this.tableData.length !=0) {
       this.loading = true;
       }
-      console.log("data", this.tableData)
+      // console.log("data", this.tableData)
     });
+    this.myControl.setValue(this.options[0], {emitEvent: false});
 
     this.locationService.getImgUrl(partNum).subscribe((image:Blob) => {
     const reader = new FileReader();
     reader.readAsDataURL(image); 
     reader.onload = (event: any) => {
       // called once readAsDataURL is completed
-      debugger
       let safe: any = this.senitizer.bypassSecurityTrustUrl(event.target.result as string);
       this.url = safe.changingThisBreaksApplicationSecurity;
-      console.log(this.url);
+      // console.log(this.url);
 
 
     };
@@ -89,16 +92,13 @@ export class LocationLookupComponent implements OnInit {
         debounceTime(2000),
         distinctUntilChanged(),
         map(valueGot =>{ 
-          debugger
            this.options = this._filter(valueGot);
            if (valueGot != "") {
            this.isReset = false;
            }
            if (this.options.length == 1) {
-             debugger
              valueGot = this.options[0];
              this.selectPartNum(valueGot);
-           this.myControl.setValue(this.options[0], {emitEvent: false});
             this.options = [];
            }
            if (this.options.length == 0) {
@@ -121,7 +121,7 @@ export class LocationLookupComponent implements OnInit {
     {
       
       if (partNumStr != "" && partNumStr != undefined) {
-        document.getElementsByTagName("input")[0].setAttribute("value", partNumStr);
+        // document.getElementsByTagName("input")[0].setAttribute("value", partNumStr);
         let partNum = partNumStr.split(":", 2); 
         this.tableData = [];
         this.loadLocationData(partNum[0]);
@@ -133,11 +133,21 @@ export class LocationLookupComponent implements OnInit {
     this.loader = true;
     this.locationService.getPartsList().subscribe((data: any) =>
     {
-      debugger
       data.responseData.forEach(element => {
         this.optionsBackupArr.push(element.partNumber)
       });
       this.loader = false;
     });
+  }
+
+  openImgModal()
+  {
+    var modal = document.getElementById("myModal");
+
+    let modalImg = document.getElementById("img01");
+    var img = document.getElementById("myImg");
+      modal.style.display = "block";
+    
+    this.openPopup.show();
   }
 }

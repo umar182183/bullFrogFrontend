@@ -11,4 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Mat Autocomplete on Modal Fixes */ 
 .cdk-overlay-container {z-index: 999999 !important;}
-
+.modal-backdrop{
+    /* position: relative !important; */
+    z-index: 10 !important;
+  }

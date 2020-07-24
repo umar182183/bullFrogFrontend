@@ -3,8 +3,14 @@
   <div class="loading" *ngIf="loader" role="status">
     <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
 </div>
+<!-- The Modal -->
+<div id="myModal" class="modal" bsModal #openPopup="bs-modal">
+  <span (click)="openPopup.hide()" class="close">&times;</span>
+  <img class="modal-content" src="{{url}}" id="img01">
+  <div id="caption"></div>
+</div>
 <div class="lookup">
-    <button type="button" class="btn btn-success">Parts Location Lookup</button>
+    <button type="button" class=" lookup-btn btn btn-success">Parts Location Lookup</button>
 
 <div class="arch_search">
     <p>Part Number: </p>
@@ -22,7 +28,7 @@
           </mat-option>
         </mat-autocomplete>
       </div>
-    <button *ngIf="isReset == false" class="close" type="reset" (click)="resetData()">×</button>
+    <button *ngIf="isReset == false" class="reset" type="reset" (click)="resetData()">×</button>
 
     </form>
 
@@ -36,11 +42,8 @@
   <div class="container" [hidden]="tableLoader == true">
     <div class="row">
         <div class="img">
-            <!-- <img  [src]="url" alt="photo" class="img-thumbnail  img-responsive img-fluid"> -->
-            <!-- <ngx-imageviewer  [src]="url"></ngx-imageviewer> -->
-            <app-image-viewer [images]="['https://picsum.photos/900/500/?random']"
-            [idContainer]="'idOnHTML'"
-            [loadOnInit]="true"></app-image-viewer>
+            <img (click)="openImgModal()" [src]="url" alt="photo" class="img-thumbnail  img-responsive img-fluid">
+           
           </div > 
           <div class="tb">
             <p *ngIf="tableData.length == 0 || tableData == undefined">No location is assigned for: {{partNumber}}</p>

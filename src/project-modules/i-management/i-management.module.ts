@@ -34,7 +34,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
-import { ImageViewerModule } from 'ng2-image-viewer';
 
 
 
@@ -71,7 +70,6 @@ import { ImageViewerModule } from 'ng2-image-viewer';
     CarouselModule,
     ToastrModule.forRoot(),
     TooltipModule,
-    ImageViewerModule
   ],
 
   exports: [MatTableModule, MatPaginatorModule],
