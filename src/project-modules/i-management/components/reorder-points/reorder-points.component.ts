@@ -234,9 +234,9 @@ this.partPoDuedate = poDueDate;
 
       this.objToSend = {};
       this.objToSend = {
-       status: this.statusToSend,
+       status: this.statusToSend? this.statusToSend: "",
        PoNum:"",
-       PODueDate: this.partPoDuedate,
+       PODueDate: this.partPoDuedate? this.partPoDuedate: "",
        ApprovedLogs: this.approvedLogsArr.toString(),
        PONum: this.partPoNum,
       }
@@ -247,14 +247,14 @@ this.partPoDuedate = poDueDate;
       this.objToSend = {};
       this.objToSend = {
        id: this.partId,
-       status: this.statusToSend,
+       status: this.statusToSend? this.statusToSend: "",
        isApproved: true,
        isDelete: false,
        isEdit: false,
        isAdd: false,
        PoNum:"",
-       PODueDate: this.partPoDuedate,
-       PONum: this.partPoNum,
+       PODueDate: this.partPoDuedate? this.partPoDuedate: "",
+       PONum: this.partPoNum? this.partPoNum: "",
     }
   
     this.escalateApproveLog();
@@ -316,6 +316,8 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
  private resetData()
  {
+   debugger
+   this.myControl.reset();
   this.editLogModal.hide();
   this.addNewLogModal.hide();
   this.editLog2Modal.hide();
@@ -357,7 +359,7 @@ public processApproveRequest()
   this.objToSend = {};
   this.objToSend = {
     id: this.partId,
-    status: this.statusToSend,
+    status: this.statusToSend? this.statusToSend: "",
     isApproved: true,
     isDelete: false,
     isEdit: false,
@@ -406,7 +408,7 @@ deleteLog()
       this.escalateApproveLog();
   }
 
-editLog(partNum, partDesc, partDateCreated, partId, status)
+editLog(partNum, partDesc, partDateCreated, partId, status, notes)
 {
   
   this.partNum = '';
@@ -425,6 +427,8 @@ editLog(partNum, partDesc, partDateCreated, partId, status)
   this.selectedVendor = '';
   this.orderQty = '';
   this.partStatus = '';
+  this.notesRec = '';
+  this.notesRec = notes;
   debugger
   this.partStatus = status;
   status == 'Review'? this.editLogModal.show(): this.editLog2Modal.show();
@@ -445,14 +449,14 @@ saveEditedLog()
     id: this.partId,
     PartNo: this.partNum,
     Description: this.partDesc,
-    Vendor: this.selectedVendor,
-    OrderQty: this.orderQty,
-    Status: this.statusToSend,
+    Vendor: this.selectedVendor? this.selectedVendor:"",
+    OrderQty: this.orderQty? this.orderQty: 0,
+    Status: this.statusToSend? this.statusToSend:"",
     DatePartsRequired: this.dateRequired? this.dateRequired: '',
-    Notes: this.notesRec,
-    DateCreated: this.partDateCreated,
-    PONum: this.partPoNum,
-    PODueDate: this.partPoDuedate,
+    Notes: this.notesRec? this.notesRec: "",
+    DateCreated: this.partDateCreated? this.partDateCreated: "",
+    PONum: this.partPoNum?this.partPoNum: "",
+    PODueDate: this.partPoDuedate?this.partPoDuedate: "",
     LogReviewed: this.logReviewed,
     isApproved: false,
     isDelete: false,
@@ -490,10 +494,10 @@ saveNewLog()
   this.objToSend = {};
   this.objToSend = {
     PartNo: this.partNum,
-    Vendor: this.selectedVendor,
-    OrderQty: this.orderQty,
-    DatePartsRequired: this.dateRequired,
-    Notes: this.notesRec,
+    Vendor: this.selectedVendor? this.selectedVendor:"",
+    OrderQty: this.orderQty? this.orderQty: "",
+    DatePartsRequired: this.dateRequired? this.dateRequired: "",
+    Notes: this.notesRec? this.notesRec: "",
     LogReviewed: this.logReviewed,
     PartNoObj: {PartNumber: this.partNum, Description: ''},
     isApproved: false,

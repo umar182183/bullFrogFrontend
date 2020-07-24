@@ -360,7 +360,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" data-target="#editLog">
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="javascript:void()" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -477,7 +477,7 @@
 
                 <div class="form-group col-md-12">
                     <label for="" class="">Notes</label>
-                    <textarea [(ngModel)]="notesRec" class="form-control" name="notes"></textarea>
+                    <textarea [(ngModel)]="notesRec" [formControl]="myControl" class="form-control" name="notes"></textarea>
                 </div>
 
                 <div class="form-group row mx-0">
@@ -641,7 +641,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" data-toggle="modal" data-target="#editLog">
+                                <a class="db-edit" href="#" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -915,7 +915,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()" >
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()" >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -1261,7 +1261,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status); loadAllVendoList()">
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
