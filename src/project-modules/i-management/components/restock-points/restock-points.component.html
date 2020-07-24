@@ -51,10 +51,10 @@
                         </thead>
                         <tbody>
                           <ng-container *ngIf="partNumDataArr.length != 0">
-                            <tr  *ngFor="let location of partNumDataArr; let i = index">
+                            <tr  *ngFor="let location of sendArrToRestock; let i = index">
                                 <td style="width: 60%;" >{{location.location}}</td>
                                 <td style="width: 60%;" >{{location.qty}}</td>
-                                <td><input type="text" (change)="getPulledQty($event.target.value, location.qty, location.location)" id="{{i}}" class="form-control"></td>
+                                <td><input type="text" (keyup)="getPulledQty($event.target.value, location.qty, location.location)" id="{{i}}" class="form-control"></td>
                             </tr>
                           </ng-container>
                             <tr >
@@ -66,7 +66,7 @@
                             </td>
                             <td></td>
                             <td >
-                              <input (change)="getRestockFormData($event.target.value)" class="form-control" #otherQtyText [disabled]="isOther == false" type="text"></td>
+                              <input (keyup)="getRestockFormData($event.target.value)" class="form-control" #otherQtyText [disabled]="isOther == false" type="text"></td>
 
                             <td>
                               
@@ -145,22 +145,22 @@
     <table mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8 example-container">
       <ng-container matColumnDef="partNo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part # </th>
-        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.partNo}}</td>
+        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.locationId)"> {{element.partNo}}</td>
       </ng-container>
   
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Part Description </th>
-        <td mat-cell *matCellDef="let element" class="t1" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.description}} </td>
+        <td mat-cell *matCellDef="let element" class="t1" (click)="loadRestockPopup(element.partNo, element.locationId)"> {{element.description}} </td>
       </ng-container>
   
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
-        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.location}}</td>
+        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.locationId)"> {{element.location}}</td>
       </ng-container>
 
       <ng-container matColumnDef="partCurrentQty">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
-        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.id)"> {{element.partCurrentQty}}</td>
+        <td mat-cell *matCellDef="let element" (click)="loadRestockPopup(element.partNo, element.locationId)"> {{element.partCurrentQty}}</td>
       </ng-container>
   
     

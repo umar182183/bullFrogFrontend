@@ -56,8 +56,12 @@ ngOnInit() {
 
 getRestockFormData(event)
 {
-this.otherQty = +event;
-this.TotalQty = this.TotalQty + this.otherQty;
+  debugger
+  event == ""? event = 0: event = +event;
+  this.TotalQty = this.TotalQty - this.otherQty;
+  this.otherQty =  0;
+  this.otherQty =  event;
+  this.TotalQty = this.TotalQty + this.otherQty;
 }
 
 sendRestockPart(otherQtyText, otherQtyCheck)
@@ -192,22 +196,26 @@ private getPartData(partNum)
 }
 getPulledQty(pulledQty, qty, currentLocation)
 {
-  debugger  
-  pulledQty = +pulledQty;
+  debugger
+  pulledQty == ""? pulledQty = 0:  pulledQty = +pulledQty;
   qty = +qty;  
   
 for (let i=0; i < this.sendArrToRestock.length; i++) {
   if (this.sendArrToRestock[i].location === currentLocation) {
+       this.sendArrToRestock[i].NewQty = 0;
        this.sendArrToRestock[i].NewQty = pulledQty;
   }
 }
 
+this.TotalQty = 0;
 
 if (pulledQty > qty) {
     this.toastr.warning("Qty should not be greater than the Qty in Location!");
   }
   else{
-    this.TotalQty = this.TotalQty + pulledQty;
+    for (let i=0; i < this.sendArrToRestock.length; i++) {
+      this.TotalQty = this.TotalQty + this.sendArrToRestock[i].NewQty;
+    }
   }
 
 }

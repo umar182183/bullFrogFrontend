@@ -11,7 +11,6 @@
     <form class="example-form">
       <div class="example-full-width">
         <input type="text"
-
                placeholder="Enter Part#"
                aria-label="Number"
                matInput
@@ -23,7 +22,7 @@
           </mat-option>
         </mat-autocomplete>
       </div>
-    <button *ngIf="options.length != 0 && options != undefined" class="close" type="reset" (click)="resetData()">×</button>
+    <button *ngIf="options.length != 0 || options != undefined" class="close" type="reset" (click)="resetData()">×</button>
 
     </form>
 

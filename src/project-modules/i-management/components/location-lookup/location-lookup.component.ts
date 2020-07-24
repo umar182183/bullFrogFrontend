@@ -56,8 +56,7 @@ export class LocationLookupComponent implements OnInit {
 }
 
 });
-
-  }
+}
  
   
   
@@ -74,14 +73,21 @@ export class LocationLookupComponent implements OnInit {
         startWith(''),
         debounceTime(2000),
         distinctUntilChanged(),
-        map(value =>{ 
+        map(valueGot =>{ 
           debugger
-           this.options = this._filter(value);
+           this.options = this._filter(valueGot);
            if (this.options.length == 1) {
              debugger
-             this.selectPartNum(this.options[0]);
+             valueGot = this.options[0];
+             this.selectPartNum(valueGot);
+           this.myControl.setValue(this.options[0], {emitEvent: false});
+            this.options = [];
            }
-           return this.options;
+           if (this.options.length == 0) {
+             this.tableData = [];
+             this.tableLoader = true;
+           }
+          return this.options;
         })
       );
       this.loadPartsList();
@@ -95,9 +101,13 @@ export class LocationLookupComponent implements OnInit {
 
     selectPartNum(partNumStr)
     {
-      let partNum = partNumStr.split(":", 2); 
-      this.tableData = [];
-      this.loadLocationData(partNum[0]);
+      
+      if (partNumStr != "" && partNumStr != undefined) {
+        document.getElementsByTagName("input")[0].setAttribute("value", partNumStr);
+        let partNum = partNumStr.split(":", 2); 
+        this.tableData = [];
+        this.loadLocationData(partNum[0]);
+      }
     }
   
   loadPartsList()

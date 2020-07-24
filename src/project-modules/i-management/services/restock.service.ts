@@ -34,6 +34,7 @@ public postRstockPart(recObj){
 }
 getPartNumber(partNum, locationId)
 {
+  debugger
  return this.http.get(this.URL+"InventoryManagement/GetPartNumber?partNumber="+partNum+"&locationId="+locationId);
 }
 }
