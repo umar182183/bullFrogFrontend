@@ -38,6 +38,20 @@ a {
     opacity: 0.6;
 }
 .loading img{
+    z-index: 99999999999 !important;
+}
+
+.other-locations{
+    padding-right: 91px !important;
+}
+.other-locations input{
+    width: 300px !important
+}
+.form-group-custom{
+    width: 42rem;
+    height: 41px;
+    border: none;
+    background: #E6E7E8;
 }
 .loading{
     position: fixed;
@@ -46,7 +60,7 @@ a {
 	margin: 1rem 2rem;;
 	width: 50%;
 	height: 50%;
-    z-index: 999999999999;
+    z-index: 1000000099 !important;
 }
 .review-loading{
     margin-left: 26rem;

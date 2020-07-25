@@ -85,7 +85,7 @@ sendRestockPart(otherQtyText, otherQtyCheck)
     this.toastr.error(data.message);
     }
     else{
-      this.toastr.success(data.message);
+      this.toastr.info(data.message);
     }
     this.isLoaded = true;
     this.loadTabledata();
@@ -118,6 +118,9 @@ loadTabledata()
   this.loading = false;
   this.restockService.getTabledata().subscribe((data:any) => {
     debugger
+    if (data.success == false) {
+      this.toastr.info(data.responseData)
+    }
     this.loading = true;
     this.tableArr = data.responseData.restockOpen.map((a) => {
       return {

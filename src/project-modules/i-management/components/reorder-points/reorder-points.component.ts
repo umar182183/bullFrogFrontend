@@ -70,9 +70,7 @@ export class ReorderPointsComponent implements OnInit {
   public partPoDuedate;
   public selectedVendor;
   public orderQty;
-  public remainingQty;
-  public cumulatedQty: number = 0;
-  public remainQty: number = 0;
+  public remainingQty: number = 0;
   public dateRequired;
   public notesRec;
   public logReviewed;
@@ -157,6 +155,11 @@ export class ReorderPointsComponent implements OnInit {
     this.openPOArr = [];
     this.toPutAwayArr = [];
     this.reorderService.getReOrderData().subscribe((data: any) => {
+      
+      if (data.success == false) {
+        this.toastr.info(data.responseData)
+      }
+      else{
      this.reviewLogArr = data.responseData.reviewLog;
      this.purchasingPendingArr = data.responseData.purchasingLog;
      this.openPOArr = data.responseData.poPending;
@@ -166,6 +169,7 @@ export class ReorderPointsComponent implements OnInit {
      this.openPoCount = data.responseData.log.reorderIntransitCount;
      this.toPutAwayCount = data.responseData.log.reorderPutAwayCount;
       this.loader = false;
+      }
     });
   }
 
@@ -213,8 +217,12 @@ loadRestockLog(param)
 }
 private callRestockLogarr()
 {
+  
   this.loader = true;
   this.restockLogArr = [];
+  if (this.param == "PO Received") {
+    this.loadOpenLocations(false);
+  }
   this.reorderService.getrestockLog(this.param).subscribe((data: any) => {
     this.restockLogArr = data.list;
     this.tableDataArr = data.list;
@@ -301,12 +309,12 @@ private escalateApproveLog()
   this.loader = true;
 this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
-        debugger
+        
         if (res.success == false) {
           this.toastr.error(res.message);
           }
           else{
-            this.toastr.success(res.message);
+            this.toastr.info(res.message);
           }
        this.resetData();
        this.loader = false;
@@ -316,7 +324,7 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
 
  private resetData()
  {
-   debugger
+   
    this.myControl.reset();
   this.editLogModal.hide();
   this.addNewLogModal.hide();
@@ -341,12 +349,12 @@ private escalateMultiApproveLogs()
   this.loader = true;
 this.reorderService.getMultiApproveLogs(this.objToSend).subscribe((res: any) => {
 
-        debugger
+        
         if (res.success == false) {
           this.toastr.error(res.message);
           }
           else{
-            this.toastr.success("All Logs Approved Successfully");
+            this.toastr.info("All Logs Approved Successfully");
           }
         this.approveLogModal.hide();
         this.loader = false;
@@ -429,7 +437,7 @@ editLog(partNum, partDesc, partDateCreated, partId, status, notes)
   this.partStatus = '';
   this.notesRec = '';
   this.notesRec = notes;
-  debugger
+  
   this.partStatus = status;
   status == 'Review'? this.editLogModal.show(): this.editLog2Modal.show();
 }
@@ -463,7 +471,7 @@ saveEditedLog()
     isEdit: true,
     isAdd: false
   }
-  debugger
+  
   this.escalateApproveLog();
 }
 
@@ -489,7 +497,7 @@ addNewLog()
 
 saveNewLog()
 {
-  debugger
+  
   
   this.objToSend = {};
   this.objToSend = {
@@ -532,7 +540,7 @@ loadExistPartModal()
 
 loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
   {
-  
+  this.selectedLocation = "";
   this.partNum = '';
   this.partNum = partNum;
   this.partDesc = '';
@@ -540,24 +548,24 @@ loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
   this.selectedVendor = '';
   this.selectedVendor = vendor;
   this.orderQty = '';
-  this.orderQty = qty;
+  this.orderQty = +qty;
   this.partPoNum = '';
   this.partPoNum = poNum;
   this.notesRec = '';
   this.notesRec = notes;
-  this.remainQty = +this.orderQty;
-
-  this.loadLocationdata(partNum);
-  this.loadOpenLocations(false);
+  this.remainingQty = this.orderQty;
+  this.isMultipleLocation = false;
   this.multiLocationArr = [];
+  this.loadLocationdata(partNum);
+  this.multiLocationArr = [];
+  
   this.putAwayModal.show();
   }
 
 loadLocationdata(partNum)
 {
   this.loader = true;
-  this.reorderService.getLocationdata(partNum).subscribe((data: any) => {
-    
+  this.reorderService.getLocationdata(partNum).subscribe((data: any) => { 
     this.partLocationArr = data.responseData.data;
     this.loader = false;
   });
@@ -565,9 +573,12 @@ loadLocationdata(partNum)
 
 loadOpenLocations(isBlufdale)
 {
+  debugger
   this.loader = true;
+  this.openLocationArr = [];
+  this.openLocationBackArr = [];
   this.reorderService.getOpenLocationdata(isBlufdale).subscribe((data: any) => {
-    
+    debugger
     this.openLocationArr = data.responseData;
     this.openLocationBackArr = data.responseData;
     this.loader = false;
@@ -576,44 +587,70 @@ loadOpenLocations(isBlufdale)
 
 getSelectedLocation(location, locationObj)
 {
-  debugger
-  this.selectedLocation = location;
   
-  let previousLocation = this.multiLocationArr.includes(location);
-  if (!previousLocation) {
-  this.multiLocationArr.push(locationObj);
-  }
+  this.selectedLocation = location;
+ 
   if (this.isMultipleLocation == false) {
     this.singleLocationArr.push(locationObj);
   }
+  else{
+    if (this.multiLocationArr.length == 0) {
+      this.multiLocationArr.push(locationObj);
+    }
+    else{
+      let locationArr = [];
+    this.multiLocationArr.forEach((res: any) => {
+      locationArr.push(res.location);
+   });
+   let isExist = locationArr.indexOf(location);
+   if( isExist === -1) {
+     this.multiLocationArr.push(locationObj);
+ }
+  }
+  }
+  this.multiLocationArr = this.multiLocationArr.map((a) => {
+    return {
+      'partNumber': a.partNumber,
+      'qtyInLocation': a.qty,
+      'location': a.location,
+      'newQty': 0,
+      'locationId': a.locationId
+    }
+  });
+  
 }
 
 getQty(qty, location)
 {
-debugger
-this.multiLocationArr.forEach((res: any) => {
-   if (res.location.indexOf(location)) {
-     res.qty = +qty;
+
+qty = +qty;
+
+  
+  for (let index = 0; index < this.multiLocationArr.length; index++) {
+   if (this.multiLocationArr[index].location == location.location) {
+    this.multiLocationArr[index].newQty = qty;
    } 
-});
-if (qty.length == 0) {
-this.remainQty = this.remainQty + this.cumulatedQty;
-} else {
-  this.cumulatedQty =  (+qty);
-this.remainQty = this.remainQty - this.cumulatedQty;
+  }
+let totalNewQty = 0;
+this.remainingQty = this.orderQty;
+
+for (let i=0; i < this.multiLocationArr.length; i++) {
+  totalNewQty = totalNewQty + this.multiLocationArr[i].newQty;
 }
+this.remainingQty = this.remainingQty - totalNewQty
 
 }
 sendPutPartPostReq()
 {
   this.loader = true;
+  
   this.reorderService.putPartAwayPost(this.isMultipleLocation? this.multiLocationArr: this.singleLocationArr).subscribe((res: any) => {
-    debugger
+    
     if (res.success == false) {
       this.toastr.error(res.message);
       }
       else{
-        this.toastr.success(res.message);
+        this.toastr.info(res.message);
       }
     this.loader = false;
     this.putAwayModal.hide();
@@ -628,7 +665,7 @@ putBacklogstatus()
       this.toastr.error(res.message);
       }
       else{
-        this.toastr.success(res.message);
+        this.toastr.info(res.message);
       }
     this.loader = false;
   })

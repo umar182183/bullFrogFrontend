@@ -140,6 +140,9 @@ export class LocationLookupComponent implements OnInit {
     this.loader = true;
     this.locationService.getPartsList().subscribe((data: any) =>
     {
+      if (data.success == false) {
+        this.toastr.info(data.responseData)
+      }
       data.responseData.forEach(element => {
         this.optionsBackupArr.push(element.partNumber)
       });

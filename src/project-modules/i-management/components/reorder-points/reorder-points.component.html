@@ -676,24 +676,22 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Part #</label>
                   <!-- <input type="text" class="form-control" placeholder="Select Part #"> -->
-                  <form class="example-form">
-                    <div class="example-full-width">
-                      <input type="text"
-              
-                             
-                             aria-label="Number"
-                             matInput
-                             [formControl]="myControl"
-                             [matAutocomplete]="auto">
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectPartNum(option)">
-                          {{option}}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </div>
+                  <div class="example-full-width">
+                    <input type="text"
+            
+                           class="form-group-custom"
+                           aria-label="Number"
+                           matInput
+                           [formControl]="myControl"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectPartNum(option)">
+                        {{option}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </div>
                   <!-- <button class="close" type="reset" (click)="resetData()">×</button> -->
               
-                  </form>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Vendor List</label>
@@ -1292,19 +1290,20 @@
               </button>
             </div>
             <div class="modal-body das-body">
+                
                 <form>
                     <div class="row mb-3 assign-loc">
                         <div class="form-check col-md-6 text-center">
                             <label class="form-check-label" for="exampleRadios1">
                                 Assign A Location
                             </label>
-                            <input class="form-check-input" (change)="isMultipleLocation = false" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" [checked]="isMultipleLocation == false">
+                            <input class="form-check-input" (click)="remainingQty = orderQty; selectedLocation = ''; multiLocationArr = [] " (change)="isMultipleLocation = false" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" [checked]="isMultipleLocation == false">
                         </div>
                         <div class="form-check col-md-6 text-center">
                             <label class="form-check-label" for="exampleRadios1">
                                 Assign Multiple Locations
                             </label>
-                            <input class="form-check-input" (change)="isMultipleLocation = true; multiLocationArr = []" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" [checked]="isMultipleLocation == true">
+                            <input class="form-check-input" (click)="remainingQty = orderQty; selectedLocation = ''; multiLocationArr = [] " (change)="isMultipleLocation = true; multiLocationArr = []" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" [checked]="isMultipleLocation == true">
                         </div>
                     </div>
     
@@ -1375,7 +1374,7 @@
     
                                         <thead>
                                             <tr>
-                                                <th scope="col">
+                                                <th scope="col" class="other-locations">
                                                     <label for="" class="">Other Locations</label>
                                                     <input (keyup)="getFilteredOpenLocationArr($event.target.value)" type="text" class="form-control">
                                                 </th>
@@ -1391,19 +1390,19 @@
                             </div>
     
                         </div>
-                        <div class="col-md-6" *ngIf="isMultipleLocation == false">
+                        <div class="col-md-6" *ngIf="isMultipleLocation == false && selectedLocation != ''">
                             <p><b>You have selected location:</b></p>
                             <p>{{selectedLocation}}</p>
                         </div>
                         <div class="col-md-6" *ngIf="isMultipleLocation == true">
                             <p>Enter quantity assigned to each location</p>
                             <p class="error">Select at least 2 locations</p>
-                            <p><b>Qty Remaining to Assign: {{remainQty}}</b></p>
+                            <p><b>Qty Remaining to Assign: {{remainingQty}}</b></p>
     
                             <div class="form-group row" *ngFor="let location of multiLocationArr; let i = index">
                                 <label for="" class="col-5 col-form-label">{{location.location}}</label>
                                 <div class="col-5">
-                                    <input type="text" id="{{'remainQtyVlue'+i}}" (change)="getQty($event.target.value, location)" name="remainingQty" class="form-control">
+                                    <input type="text" id="{{'remainQtyVlue'+i}}" (keyup)="getQty($event.target.value, location)" name="remainingQty" class="form-control">
                                 </div>
                                 <div class="col-2 d-flex justify-content-center align-items-center">
                                     <span aria-hidden="true" >&times;</span>
