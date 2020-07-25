@@ -54,7 +54,7 @@
                             <tr  *ngFor="let location of sendArrToRestock; let i = index">
                                 <td style="width: 60%;" >{{location.location}}</td>
                                 <td style="width: 60%;" >{{location.qty}}</td>
-                                <td><input type="text" (keyup)="getPulledQty($event.target.value, location.qty, location.location)" id="{{i}}" class="form-control"></td>
+                                <td><input type="text" [formControl]="myControl" (keyup)="getPulledQty($event.target.value, location.qty, location.location, i)" id="{{i}}" class="form-control"></td>
                             </tr>
                           </ng-container>
                             <tr >

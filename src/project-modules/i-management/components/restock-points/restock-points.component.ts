@@ -8,6 +8,7 @@ import { RestockModel } from '../../models/restock.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'restock-points',
@@ -37,6 +38,7 @@ export class RestockPointsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
+  public myControl = new FormControl();
 
 
   displayedColumns: string[] = ['partNo', 'description', 'location', 'partCurrentQty'];
@@ -142,7 +144,8 @@ loadTabledata()
 }
 
 loadRestockPopup(partNum, locationId){
-  this.getPartData(partNum)
+  this.getPartData(partNum);
+  this.myControl.reset();
   debugger
   this.loadPartNumData(partNum, locationId);
   this.openPopup.show()
@@ -195,9 +198,9 @@ private getPartData(partNum)
 
     })
 }
-getPulledQty(pulledQty, qty, currentLocation)
+getPulledQty(pulledQty, qty, currentLocation, elementId)
 {
-  debugger
+  
   pulledQty == ""? pulledQty = 0:  pulledQty = +pulledQty;
   qty = +qty;  
   
@@ -211,7 +214,10 @@ for (let i=0; i < this.sendArrToRestock.length; i++) {
 this.TotalQty = 0;
 
 if (pulledQty > qty) {
+  debugger
     this.toastr.warning("Qty should not be greater than the Qty in Location!");
+       let ele: any = document.getElementById(elementId);
+       ele.value = "";
   }
   else{
     for (let i=0; i < this.sendArrToRestock.length; i++) {

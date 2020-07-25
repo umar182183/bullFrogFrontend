@@ -25,6 +25,7 @@ export class LocationLookupComponent implements OnInit {
   public loader = false;
   public tableLoader = true;
   public isReset = true;
+  public isSelected = false;
   public partNumber;
   constructor(private appService: AppService, private locationService: LocationLookupService,
     private toastr: ToastrService, 
@@ -37,6 +38,7 @@ export class LocationLookupComponent implements OnInit {
 
   loadLocationData(partNum)
   {
+    debugger
     this.loader = true;
     this.partNumber = partNum;
     this.locationService.getLocationdata(partNum).subscribe((data: any) => {
@@ -44,15 +46,15 @@ export class LocationLookupComponent implements OnInit {
       this.tableData =data.responseData.data;
       this.loader = false;
       this.tableLoader = false;
-      
+      this.options = [];
       if (this.tableData.length !=0) {
       this.loading = true;
       }
       // console.log("data", this.tableData)
     });
-    this.myControl.setValue(this.options[0], {emitEvent: false});
 
     this.locationService.getImgUrl(partNum).subscribe((image:Blob) => {
+      debugger
     const reader = new FileReader();
     reader.readAsDataURL(image); 
     reader.onload = (event: any) => {
@@ -92,19 +94,19 @@ export class LocationLookupComponent implements OnInit {
         debounceTime(2000),
         distinctUntilChanged(),
         map(valueGot =>{ 
+          debugger
            this.options = this._filter(valueGot);
            if (valueGot != "") {
            this.isReset = false;
            }
-           if (this.options.length == 1) {
-             valueGot = this.options[0];
-             this.selectPartNum(valueGot);
-            this.options = [];
+           if (this.options.length == 1 && this.isSelected == false) {
+             this.selectPartNum(this.options[0]);
            }
            if (this.options.length == 0) {
              this.tableData = [];
              this.tableLoader = true;
            }
+           this.isSelected = false;
           return this.options;
         })
       );
@@ -124,7 +126,12 @@ export class LocationLookupComponent implements OnInit {
         // document.getElementsByTagName("input")[0].setAttribute("value", partNumStr);
         let partNum = partNumStr.split(":", 2); 
         this.tableData = [];
+        this.isSelected = true;
+    this.myControl.setValue(this.options[0], {emitEvent: false});
+
         this.loadLocationData(partNum[0]);
+        this.options = [];
+        
       }
     }
   
