@@ -27,6 +27,7 @@ export class LocationLookupComponent implements OnInit {
   public isReset = true;
   public isSelected = false;
   public partNumber;
+  public partNumWithImg = "";
   constructor(private appService: AppService, private locationService: LocationLookupService,
     private toastr: ToastrService, 
     private senitizer: DomSanitizer){}
@@ -98,6 +99,8 @@ export class LocationLookupComponent implements OnInit {
            this.options = this._filter(valueGot);
            if (valueGot != "") {
            this.isReset = false;
+           this.tableData = [];
+             this.tableLoader = true;
            }
            if (this.options.length == 1 && this.isSelected == false) {
              this.selectPartNum(this.options[0]);
@@ -121,7 +124,7 @@ export class LocationLookupComponent implements OnInit {
 
     selectPartNum(partNumStr)
     {
-      
+      this.partNumWithImg = partNumStr;
       if (partNumStr != "" && partNumStr != undefined) {
         // document.getElementsByTagName("input")[0].setAttribute("value", partNumStr);
         let partNum = partNumStr.split(":", 2); 

@@ -27,10 +27,17 @@ getrestockLog(param)
 addEditLog(obj)
 {
   debugger
-  let objToSend = JSON.stringify(obj);
- return this.http.post(this.URL+"ReOrder/AddEdit?serialized="+objToSend+
-                        "&isApproved="+obj.isApproved+"&isDelete="+obj.isDelete+"&isEdit="+
-                        obj.isEdit+"&isAdd="+obj.isAdd, obj);
+  let objReceived = {
+    serialized: obj,
+    isAdd: obj.isAdd,
+    isApproved: obj.isApproved,
+    isDelete: obj.isDelete,
+    isEdit: obj.isEdit
+  };
+  let serializedObj: any = JSON.stringify(objReceived.serialized);
+ return this.http.post(this.URL+"ReOrder/AddEdit?serialized="+serializedObj+
+                        "&isApproved="+objReceived.isApproved+"&isDelete="+objReceived.isDelete+"&isEdit="+
+                        objReceived.isEdit+"&isAdd="+objReceived.isAdd, objReceived);
 }
 
 getMultiApproveLogs(obj)
@@ -70,9 +77,14 @@ putPartAwayPost(arr)
  return this.http.post(this.URL+"ReOrder/PutPartAwayPost?data="+JSON.stringify(arr), arr);
 }
 
-PutBackLogStatusPost(id, status)
+PutBackLogStatusPost(idRec, statusRec)
 {
- return this.http.get(this.URL+"ReOrder/PutBackLogStatusPost?status="+status+"&id="+id);
+  let serializedStatus = JSON.stringify(statusRec);
+  let obj = {
+    id: idRec,
+    status: statusRec
+  }
+ return this.http.post(this.URL+"ReOrder/PutBackLogStatusPost?status="+serializedStatus+"&id="+idRec, obj);
 }
 
 }

@@ -8,6 +8,7 @@ import { startWith, map, debounceTime, distinctUntilChanged } from 'rxjs/operato
 import { LocationLookupService } from '../../services/location-lookup.service';
 import { ToastrService } from 'ngx-toastr';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import * as moment from 'moment';
 
 @Component({
   selector: 'reorder-points',
@@ -126,9 +127,9 @@ export class ReorderPointsComponent implements OnInit {
   }
  
   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    const filterValue = value?value.toLowerCase(): value;
     let arr = this.optionsBackupArr;
-    return arr.filter(option => option.toLowerCase().includes(filterValue));
+    return arr.filter(option => option? option.toLowerCase().includes(filterValue): "");
   }
 
   private _filterRestockArr(value: string): string[] {
@@ -169,14 +170,14 @@ export class ReorderPointsComponent implements OnInit {
 
   loadPartsList()
   {
-    this.loader = true;
+    // this.loader = true;
     this.locationService.getPartsList().subscribe((data: any) =>
     {
       
       data.responseData.forEach(element => {
         this.optionsBackupArr.push(element.partNumber)
       });
-      this.loader = false;
+      // this.loader = false;
     });
   }
 
@@ -187,6 +188,7 @@ export class ReorderPointsComponent implements OnInit {
     this.purchasingPendingArr = [];
     this.openPOArr = [];
     this.toPutAwayArr = [];
+    this.loadPartsList();
     this.reorderService.getReOrderData().subscribe((data: any) => {
       debugger
       if (data.success == false) {
@@ -260,6 +262,7 @@ private callRestockLogarr()
     this.restockLogArr = data.list;
     this.tableDataArr = data.list;
     this.loader = false;
+    this.myControl.reset();
    });
 }
 submitApprove(poNum, poDueDate)
@@ -313,7 +316,7 @@ processMultiApprove()
 }
 
 getApproveData(statusGot, id){
-  
+  this.myControl.reset();
   this.partStatus = '';
   this.partStatus = statusGot;
   this.partId = '';
@@ -328,17 +331,25 @@ getApproveData(statusGot, id){
   if (this.partStatus == 'Purchasing Pending') {
     this.statusToSend = '';
     this.statusToSend = "PO Pending";
+    this.partPoDuedate = "";
+  this.partPoNum = "";
     this.approveLogModal.show();
   }
   if (this.partStatus == 'PO Pending') {
     this.statusToSend = '';
     this.statusToSend = "PO Received";
+    this.partPoDuedate = "";
+  this.partPoNum = "";
     this.markReceivedModal.show();
   }
   if (this.partStatus == 'PO Received') {
     this.statusToSend = '';
     this.statusToSend = "Complete";
+    this.partPoDuedate = "";
+  this.partPoNum = "";
   }
+  this.myControl.reset();
+  
 }
 
 private escalateApproveLog()
@@ -455,7 +466,7 @@ deleteLog()
 
 editLog(partNum, partDesc, partDateCreated, partId, status, notes)
 {
-  
+  this.myControl.reset();  
   this.partNum = '';
   this.partNum = partNum;
   this.partDateCreated = '';
@@ -473,11 +484,11 @@ editLog(partNum, partDesc, partDateCreated, partId, status, notes)
   this.orderQty = '';
   this.partStatus = '';
   this.notesRec = '';
+  debugger
   this.notesRec = notes;
-  
+  // this.myControl.reset();
   this.partStatus = status;
   status == 'Review'? this.editLogModal.show(): this.editLog2Modal.show();
-  this.myControl.reset();
 }
 
 getSelectedVendor(selectedVendor)
@@ -535,7 +546,7 @@ loadAllVendoList()
 
 addNewLog()
 {
-  this.loadPartsList();
+  // this.loadPartsList();
   this.addNewLogModal.show();
   this.orderQty = '';
   this.dateRequired = '';
@@ -589,6 +600,7 @@ saveNewLog()
 loadExistPartModal()
 {
   this.confirmModal.hide();
+  this.loadAllVendoList();
   this.editLogModal.show();
   this.myControl.reset();
 }
@@ -632,12 +644,12 @@ loadLocationdata(partNum)
 
 loadOpenLocations(isBlufdale)
 {
-  debugger
+  
   this.loader = true;
   this.openLocationArr = [];
   this.openLocationBackArr = [];
   this.reorderService.getOpenLocationdata(isBlufdale).subscribe((data: any) => {
-    debugger
+    
     this.openLocationArr = data.responseData;
     this.openLocationBackArr = data.responseData;
     this.loader = false;
@@ -717,9 +729,32 @@ sendPutPartPostReq()
     this.loadRestockLog(this.param);
   })
 }
-putBacklogstatus()
+putBacklogstatus(statusReceived)
 {
+  this.statusToSend = statusReceived;
+  let date = moment().format('MM/DD/YYYY');
+  this.dateRequired = date;
+  this.partPoNum = 1234;
+  this.partPoDuedate = date;
+  debugger
+  this.saveEditedLog();
   this.loader = true;
+
+
+  if (statusReceived == 'Purchasing Pending') {
+    this.partStatus = 'Review';
+    
+  }
+  if (statusReceived == 'PO Pending') {
+    this.partStatus = 'Purchasing Pending';
+    
+  }
+  if (statusReceived == 'PO Received') {
+    this.partStatus = 'PO Pending';
+    
+  }
+  debugger
+
   this.reorderService.PutBackLogStatusPost(this.partId, this.partStatus).subscribe((res: any) => {
     debugger
     if (res.success == false) {

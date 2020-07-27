@@ -190,7 +190,14 @@ background: #28a745;
      width: 100%;
      position: relative;
 }
-  
+.cutum-modal-img{
+  z-index: 9999999999999999999999;
+    width: 631px;
+}
+  .modal-content{
+    width: 126% !important;
+    max-width: 631px !important;
+  }
   button.reset {
     background: white;
     background-color: none;

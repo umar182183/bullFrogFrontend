@@ -477,7 +477,7 @@
 
                 <div class="form-group col-md-12">
                     <label for="" class="">Notes</label>
-                    <textarea [(ngModel)]="notesRec" [formControl]="myControl" class="form-control" name="notes"></textarea>
+                    <textarea [(ngModel)]="notesRec" class="form-control" name="notesRec"></textarea>
                 </div>
 
                 <div class="form-group row mx-0">
@@ -745,9 +745,9 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <a href="javascript:void(0)" *ngIf="partStatus == 'Purchasing Pending'" (click)="putBacklogstatus()" class="btn btn-next mb-3">Send Back for Review</a>
-                        <a href="javascript:void(0)" *ngIf="partStatus == 'PO Pending'" (click)="putBacklogstatus()" class="btn btn-next mb-3">Send Back for PO pending</a>
-                        <a href="javascript:void(0)" *ngIf="partStatus == 'PO Received'" (click)="putBacklogstatus()" class="btn btn-next mb-3">Send Back for Open Po's</a>
+                        <a href="javascript:void(0)" *ngIf="partStatus == 'Purchasing Pending'" (click)="putBacklogstatus('Purchasing Pending')" class="btn btn-next mb-3">Send Back for Review</a>
+                        <a href="javascript:void(0)" *ngIf="partStatus == 'PO Pending'" (click)="putBacklogstatus('PO Pending')" class="btn btn-next mb-3">Send Back for PO pending</a>
+                        <a href="javascript:void(0)" *ngIf="partStatus == 'PO Received'" (click)="putBacklogstatus('PO Received')" class="btn btn-next mb-3">Send Back for Open Po's</a>
                     </div>
 
                     <div class="col-md-12">
@@ -974,196 +974,12 @@
         </div>
         <div class="modal-body">
            
-                        <p>An active Reorder Log already exists for 45-2095. Would you like to see it now?</p>
+                        <p>An active Reorder Log already exists for {{partNum}}. Would you like to see it now?</p>
                 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-back" data-dismiss="modal" (click)="confirmModal.hide()">No</button>
           <button type="button" class="btn btn-next" (click)="loadExistPartModal()">Yes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Edit Log 3 -->
-  <div class="modal fade dsh-modal" id="editLog3" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Log</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-next mb-3">Send Back to Purchasing</a>
-                    </div>
-
-                    <div class="col-md-12">
-                        <p><b>Log Information</b></p>
-                        <table class="table table-striped table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    Part Number
-                                </th>
-                                <th scope="col">
-                                    Description
-                                </th>
-                                <th scope="col">
-                                    Date Created
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>10-3725</td>
-                                <td>@EASE SYSTEM KIT</td>
-                                <td>06/08/2020</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col-md-12">
-                    <p><b>Update Log Information</b></p>
-                    <hr>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Vendor List</label>
-                    <select class="form-control">
-                        <option value="">KING TECHNOLOGY, INC</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Order Qty</label>
-                    <input type="number" class="form-control" placeholder="8">
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Notes</label>
-                    <textarea class="form-control"></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="" class="">Date Required</label>
-                    <input type="date" class="form-control">
-                </div>
-
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO #</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO Due Date</label>
-                        <input type="date" class="form-control">
-                    </div>
-                </div>
-               
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
- 
-  <!-- Edit Log 4 -->
-<div class="modal fade dsh-modal" id="editLog4" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Log</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-next mb-3">Send Back to Purchasing</a>
-                    </div>
-
-                    <div class="col-md-12">
-                        <p><b>Log Information</b></p>
-                        <table class="table table-striped table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    Part Number
-                                </th>
-                                <th scope="col">
-                                    Description
-                                </th>
-                                <th scope="col">
-                                    Date Created
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>10-3725</td>
-                                <td>@EASE SYSTEM KIT</td>
-                                <td>06/08/2020</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col-md-12">
-                    <p><b>Update Log Information</b></p>
-                    <hr>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Vendor List</label>
-                    <select class="form-control">
-                        <option value="">KING TECHNOLOGY, INC</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Order Qty</label>
-                    <input type="number" class="form-control" placeholder="8">
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="" class="">Notes</label>
-                    <textarea class="form-control"></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="" class="">Date Required</label>
-                    <input type="date" class="form-control">
-                </div>
-
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO #</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="">PO Due Date</label>
-                        <input type="date" class="form-control">
-                    </div>
-                </div>
-               
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-next">Save</button>
         </div>
       </div>
     </div>
@@ -1280,7 +1096,7 @@
 </div>
 
 
-      <!-- add New Log -->
+      <!-- putAwayModal Log -->
 <div class="modal fade dsh-modal" bsModal #putAwayModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -1424,96 +1240,4 @@
         </div>
 </div>
     
-    
-    
-     <!-- Edit Log 4 -->
-<div class="modal fade dsh-modal" id="editLog4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Log</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-    
-                        <div class="col-md-12">
-                            <a href="#" class="btn btn-next mb-3">Send Back to Open PO's</a>
-                        </div>
-    
-                        <div class="col-md-12">
-                            <p><b>Log Information</b></p>
-                            <table class="table table-striped table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th scope="col">
-                                        Part Number
-                                    </th>
-                                    <th scope="col">
-                                        Description
-                                    </th>
-                                    <th scope="col">
-                                        Date Created
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-    
-                                <tr>
-                                    <td>10-3725</td>
-                                    <td>@EASE SYSTEM KIT</td>
-                                    <td>06/08/2020</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-    
-                    <div class="col-md-12">
-                        <p><b>Update Log Information</b></p>
-                        <hr>
-                    </div>
-    
-                    <div class="form-group col-md-12">
-                        <label for="" class="">Vendor List</label>
-                        <select class="form-control">
-                            <option value="">BALBO WATER GROUP</option>
-                        </select>
-                    </div>
-    
-                    <div class="form-group col-md-12">
-                        <label for="" class="">Order Qty</label>
-                        <input type="number" class="form-control" placeholder="21">
-                    </div>
-    
-                    <div class="form-group col-md-12">
-                        <label for="" class="">Notes</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="">Date Required</label>
-                        <input type="date" class="form-control">
-                    </div>
-    
-                        <div class="form-group col-md-12">
-                            <label for="" class="">PO #</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="" class="">PO Due Date</label>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
-                   
-                  </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-back" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-next">Save</button>
-            </div>
-          </div>
-        </div>
-</div>
 </div> 
