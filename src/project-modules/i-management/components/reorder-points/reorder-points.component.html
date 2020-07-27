@@ -696,8 +696,8 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Vendor List</label>
-                    <select aria-placeholder="select vendor" name="" id="" class="form-control" (change)="getSelectedVendor($event.target.value)">
-                        <option *ngFor="let vendor of vendorsNameArr" value="{{vendor.vendor}}">{{vendor.vendor}}</option>
+                    <select aria-placeholder="select vendor" name="vendorName" id="vendorName" class="form-control">
+                        <option value="{{vendorName}}">{{vendorName}}</option>
                        
                     </select>
                   </div>
@@ -713,7 +713,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Notes</label>
-                    <textarea [(ngModel)]="notesRec" name="notes" class="form-control" id="" cols="30" rows="2"></textarea>
+                    <textarea [(ngModel)]="receivedNotes" name="receivedNotes" class="form-control" id="receivedNotes" cols="30" rows="2"></textarea>
                   </div>
                   <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="mark1" [(ngModel)]="logReviewed" name="logReviewed">
@@ -1248,7 +1248,7 @@
  
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td tooltip="Put Part Away" (click)="loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td tooltip="Put Part Away" (click)="getApproveData(restock.status, restock.id) ;loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>

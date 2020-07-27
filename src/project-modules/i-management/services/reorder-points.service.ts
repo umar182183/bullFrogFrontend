@@ -47,7 +47,9 @@ getAllVendorList()
 
 getVendorName(partNum)
 {
- return this.http.get(this.URL+"ReOrder/GetVendorName?part="+partNum);
+  debugger
+  let partObj = JSON.stringify(partNum);
+ return this.http.get(this.URL+"ReOrder/GetVendorName?part="+partObj);
 }
 
 

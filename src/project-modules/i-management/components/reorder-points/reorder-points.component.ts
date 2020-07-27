@@ -47,7 +47,7 @@ export class ReorderPointsComponent implements OnInit {
   public openPOArr: any[] = [];
   public toPutAwayArr: any[] = [];
   public allvendorListArr: any[] = [];
-  public vendorsNameArr: any[] = [];
+  public vendorName = "";
   public partLocationArr: any[] = [];
   public openLocationArr: any[] = [];
   public openLocationBackArr: any[] = [];
@@ -74,6 +74,7 @@ export class ReorderPointsComponent implements OnInit {
   public remainingQty: number = 0;
   public dateRequired;
   public notesRec;
+  public receivedNotes;
   public logReviewed;
   public objToSend = {};
   public logExists: boolean;
@@ -97,7 +98,7 @@ export class ReorderPointsComponent implements OnInit {
       debounceTime(2000),
       distinctUntilChanged(),
       map(valueGot =>{ 
-        
+        debugger
          this.options = this._filter(valueGot);
          if (valueGot != "") {
          this.isReset = false;
@@ -120,6 +121,8 @@ export class ReorderPointsComponent implements OnInit {
     let ele: any = document.getElementById("selectedPart");
     ele.value = "";
     this.isReset = true;
+    this.vendorName = "";
+  this.options = [];
   }
  
   private _filter(value: string): string[] {
@@ -152,9 +155,14 @@ export class ReorderPointsComponent implements OnInit {
     debugger
     let ele: any = document.getElementById("selectedPart");
     ele.value = partNumStr;
-    let partNum = partNumStr.split(":", 2);
     this.partNum = partNumStr;
-    this.loadVendorName(partNum[0]);
+    this.isSelected = true;
+    let partObj ={
+      PartNumber: partNumStr,
+      Description: ""
+    }
+
+    this.loadVendorName(partObj);
     this.options = [];
   }
   
@@ -326,7 +334,11 @@ getApproveData(statusGot, id){
     this.statusToSend = '';
     this.statusToSend = "PO Received";
     this.markReceivedModal.show();
-}
+  }
+  if (this.partStatus == 'PO Received') {
+    this.statusToSend = '';
+    this.statusToSend = "Complete";
+  }
 }
 
 private escalateApproveLog()
@@ -350,7 +362,6 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
  private resetData()
  {
    
-   this.myControl.reset();
   this.editLogModal.hide();
   this.myControl.reset();
   this.addNewLogModal.hide();
@@ -506,7 +517,7 @@ loadVendorName(partNum)
 {
   this.loader = true;
   this.reorderService.getVendorName(partNum).subscribe((data: any) => {
-   this.vendorsNameArr = data.responseData;
+   this.vendorName = data.responseData;
    this.loader = false;
   });
 }
@@ -529,6 +540,9 @@ addNewLog()
   this.orderQty = '';
   this.dateRequired = '';
   this.notesRec = '';
+  this.receivedNotes = '';
+  this.options = [];
+  this.vendorName = "";
   let ele: any = document.getElementById("selectedPart");
   ele.value = "";
   this.logReviewed = false;
@@ -541,10 +555,10 @@ saveNewLog()
   this.objToSend = {};
   this.objToSend = {
     PartNo: this.partNum,
-    Vendor: this.selectedVendor? this.selectedVendor:"",
-    OrderQty: this.orderQty? this.orderQty: "",
+    Vendor: this.vendorName? this.vendorName:"",
+    OrderQty: this.orderQty? this.orderQty: 0,
     DatePartsRequired: this.dateRequired? this.dateRequired: "",
-    Notes: this.notesRec? this.notesRec: "",
+    Notes: this.receivedNotes? this.receivedNotes: "",
     LogReviewed: this.logReviewed,
     PartNoObj: {PartNumber: this.partNum, Description: ''},
     isApproved: false,
@@ -552,6 +566,7 @@ saveNewLog()
     isEdit: false,
     isAdd: true
   }
+  debugger
   let splittedartNum = this.partNum.split(":", 2); 
 
    this.restockLogArr.forEach((element:any) => {
@@ -654,8 +669,8 @@ getSelectedLocation(location, locationObj)
   }
   this.multiLocationArr = this.multiLocationArr.map((a) => {
     return {
-      'partNumber': a.partNumber,
-      'qtyInLocation': a.qty,
+      'partNumber': a.partNumber?a.partNumber: 0,
+      'qtyInLocation': a.qty? a.qty: 0,
       'location': a.location,
       'newQty': 0,
       'locationId': a.locationId
@@ -687,7 +702,7 @@ this.remainingQty = this.remainingQty - totalNewQty
 sendPutPartPostReq()
 {
   this.loader = true;
-  
+  this.processApproveRequest();
   this.reorderService.putPartAwayPost(this.isMultipleLocation? this.multiLocationArr: this.singleLocationArr).subscribe((res: any) => {
     
     if (res.success == false) {
@@ -699,6 +714,7 @@ sendPutPartPostReq()
     this.loader = false;
     this.putAwayModal.hide();
     this.myControl.reset();
+    this.loadRestockLog(this.param);
   })
 }
 putBacklogstatus()
