@@ -12,9 +12,19 @@ h1,h2,h3,h4,h5,h6 {
   }
   
   .example-full-width {
-    width: 100%;
+    width: 80%;
   }
- 
+ .reset{
+     width: 20%;
+    background: none;
+    color: red;
+    border: 0;
+    font-weight: bold;
+    position: absolute;
+    z-index: 1;
+    margin-left: 37rem;
+    margin-top: -2rem;
+ }
 h2 {
     font-weight: bold;
 }
@@ -40,7 +50,9 @@ a {
 .loading img{
     z-index: 99999999999 !important;
 }
-
+.align-things{
+    display: block;
+}
 .other-locations{
     padding-right: 91px !important;
 }
@@ -48,10 +60,13 @@ a {
     width: 300px !important
 }
 .form-group-custom{
-    width: 42rem;
+    width: 40rem;
     height: 41px;
     border: none;
     background: #E6E7E8;
+}
+.mat-autocomplete-panel.mat-autocomplete-visible {
+    width: 45% !important;
 }
 .loading{
     position: fixed;

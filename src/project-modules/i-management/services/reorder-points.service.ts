@@ -45,6 +45,12 @@ getAllVendorList()
  return this.http.get(this.URL+"ReOrder/GetAllVendorList");
 }
 
+getVendorName(partNum)
+{
+ return this.http.get(this.URL+"ReOrder/GetVendorName?part="+partNum);
+}
+
+
 getLocationdata(partNum)
 {
  return this.http.get(this.URL+"InventoryManagement/GetPartNumber?partNumber="+partNum);

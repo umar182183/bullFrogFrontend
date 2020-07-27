@@ -47,6 +47,7 @@ export class ReorderPointsComponent implements OnInit {
   public openPOArr: any[] = [];
   public toPutAwayArr: any[] = [];
   public allvendorListArr: any[] = [];
+  public vendorsNameArr: any[] = [];
   public partLocationArr: any[] = [];
   public openLocationArr: any[] = [];
   public openLocationBackArr: any[] = [];
@@ -76,6 +77,9 @@ export class ReorderPointsComponent implements OnInit {
   public logReviewed;
   public objToSend = {};
   public logExists: boolean;
+  public isSelected = false;
+  public isReset = true;
+
 
   myControl = new FormControl();
   options: string[] = [];
@@ -87,20 +91,35 @@ export class ReorderPointsComponent implements OnInit {
   ngOnInit() {
     this.appService.updateCurrentModule('restock');
     this.loadReorderData();
-    this.loadPartsList();
-
     this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        debounceTime(2000),
-        distinctUntilChanged(),
-        map(value =>{ 
-          debugger
-           this.options = this._filter(value);
-           return this.options;
-        })
-      );
+    .pipe(
+      startWith(''),
+      debounceTime(2000),
+      distinctUntilChanged(),
+      map(valueGot =>{ 
+        
+         this.options = this._filter(valueGot);
+         if (valueGot != "") {
+         this.isReset = false;
+         }
+         if (this.options.length == 1 && this.isSelected == false) {
+           this.selectPartNum(this.options[0]);
+         }
+         
+         this.isSelected = false;
+        return this.options;
+      })
+    );
 
+ 
+  }
+
+  resetParts()
+  {
+    // this.myControl.setValue('', {emitEvent: false});
+    let ele: any = document.getElementById("selectedPart");
+    ele.value = "";
+    this.isReset = true;
   }
  
   private _filter(value: string): string[] {
@@ -130,7 +149,13 @@ export class ReorderPointsComponent implements OnInit {
   }
   selectPartNum(partNumStr)
   {
+    debugger
+    let ele: any = document.getElementById("selectedPart");
+    ele.value = partNumStr;
+    let partNum = partNumStr.split(":", 2);
     this.partNum = partNumStr;
+    this.loadVendorName(partNum[0]);
+    this.options = [];
   }
   
 
@@ -155,7 +180,7 @@ export class ReorderPointsComponent implements OnInit {
     this.openPOArr = [];
     this.toPutAwayArr = [];
     this.reorderService.getReOrderData().subscribe((data: any) => {
-      
+      debugger
       if (data.success == false) {
         this.toastr.info(data.responseData)
       }
@@ -327,6 +352,7 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
    
    this.myControl.reset();
   this.editLogModal.hide();
+  this.myControl.reset();
   this.addNewLogModal.hide();
   this.editLog2Modal.hide();
   this.approveLogModal.hide();
@@ -440,6 +466,7 @@ editLog(partNum, partDesc, partDateCreated, partId, status, notes)
   
   this.partStatus = status;
   status == 'Review'? this.editLogModal.show(): this.editLog2Modal.show();
+  this.myControl.reset();
 }
 
 getSelectedVendor(selectedVendor)
@@ -475,6 +502,15 @@ saveEditedLog()
   this.escalateApproveLog();
 }
 
+loadVendorName(partNum)
+{
+  this.loader = true;
+  this.reorderService.getVendorName(partNum).subscribe((data: any) => {
+   this.vendorsNameArr = data.responseData;
+   this.loader = false;
+  });
+}
+
 loadAllVendoList()
 {
   this.loader = true;
@@ -485,14 +521,17 @@ loadAllVendoList()
   });
 }
 
+
 addNewLog()
 {
+  this.loadPartsList();
   this.addNewLogModal.show();
   this.orderQty = '';
   this.dateRequired = '';
   this.notesRec = '';
+  let ele: any = document.getElementById("selectedPart");
+  ele.value = "";
   this.logReviewed = false;
-  this.loadAllVendoList();
 }
 
 saveNewLog()
@@ -536,6 +575,7 @@ loadExistPartModal()
 {
   this.confirmModal.hide();
   this.editLogModal.show();
+  this.myControl.reset();
 }
 
 loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
@@ -553,6 +593,9 @@ loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
   this.partPoNum = poNum;
   this.notesRec = '';
   this.notesRec = notes;
+  if (this.openLocationArr.length == 0) {
+    this.loader = true;
+  }
   this.remainingQty = this.orderQty;
   this.isMultipleLocation = false;
   this.multiLocationArr = [];
@@ -560,6 +603,7 @@ loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
   this.multiLocationArr = [];
   
   this.putAwayModal.show();
+  this.myControl.reset();
   }
 
 loadLocationdata(partNum)
@@ -654,6 +698,7 @@ sendPutPartPostReq()
       }
     this.loader = false;
     this.putAwayModal.hide();
+    this.myControl.reset();
   })
 }
 putBacklogstatus()

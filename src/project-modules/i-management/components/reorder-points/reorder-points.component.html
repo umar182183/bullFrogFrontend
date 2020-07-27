@@ -249,10 +249,10 @@
                             <td>{{pop.vendor}}</td>
                             <td>{{pop.orderQty}}</td>
                             <td>{{pop.dateCreated}}</td>
-                            <td>{{pop.datePartsRequired? pop.datePartsRequired: 'NULL'}}</td>
-                            <td>{{pop.poNum? pop.poNum: 'NULL'}}</td>
-                            <td>{{pop.poDueDate? pop.poDueDate: 'NULL'}}</td>
-                            <td>{{pop.notes? pop.notes: 'NULL'}}</td>
+                            <td>{{pop.datePartsRequired}}</td>
+                            <td>{{pop.poNum}}</td>
+                            <td>{{pop.poDueDate}}</td>
+                            <td>{{pop.notes}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -303,43 +303,43 @@
                             <th scope="col">Approve</th>
                             <th scope="col">
                                 Part #
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input type="text" id="filter1" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Description
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input id="filter2" type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Vendor
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input id="filter3" type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Order Qty
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input type="text" id="filter4" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Created
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input type="text" id="filter5" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Required
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input type="text" id="filter6" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 PO #
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input type="text" id="filter7" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th style="min-width: 67px;" scope="col">
                                 PO Due Date
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input type="text" id="filter8" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Status
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input id="filter9" type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">
                                 Notes
-                                <input type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                                <input id="filter10" type="text" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                             </th>
                             <th scope="col">Action</th>
                         </tr>
@@ -585,43 +585,43 @@
                             <th scope="col">Approve</th>
                             <th scope="col">
                                 Part #
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter11" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Description
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter12" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Vendor
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter13" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col" style="min-width: 67px;">
                                 Order Qty
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter14" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Created
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter15" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Required
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter16" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col" style="min-width: 67px;">
                                 PO #
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter17" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th style="min-width: 78px;" scope="col">
                                 PO Due Date
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter18" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Status
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter19" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Notes
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter20" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">Action</th>
                         </tr>
@@ -676,11 +676,12 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Part #</label>
                   <!-- <input type="text" class="form-control" placeholder="Select Part #"> -->
+                  <div class="align-things">
                   <div class="example-full-width">
                     <input type="text"
-            
+                        placeholder="select part #"
                            class="form-group-custom"
-                           aria-label="Number"
+                           id="selectedPart"
                            matInput
                            [formControl]="myControl"
                            [matAutocomplete]="auto">
@@ -690,13 +691,13 @@
                       </mat-option>
                     </mat-autocomplete>
                   </div>
-                  <!-- <button class="close" type="reset" (click)="resetData()">×</button> -->
-              
+                  <button *ngIf="isReset == false" class="reset" type="reset" (click)="resetParts()">×</button>
+                </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Vendor List</label>
-                    <select name="" id="" class="form-control" (change)="getSelectedVendor($event.target.value)">
-                        <option *ngFor="let vendor of allvendorListArr" value="{{vendor.vendor}}">{{vendor.vendor}}</option>
+                    <select aria-placeholder="select vendor" name="" id="" class="form-control" (change)="getSelectedVendor($event.target.value)">
+                        <option *ngFor="let vendor of vendorsNameArr" value="{{vendor.vendor}}">{{vendor.vendor}}</option>
                        
                     </select>
                   </div>
@@ -856,43 +857,43 @@
                             <th scope="col">PO Submit</th>
                             <th scope="col">
                                 Part #
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter21" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Description
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter22" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Vendor
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter23" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col" style="min-width: 67px;">
                                 Order Qty
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter24" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Created
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter25" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Required
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter26" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 PO #
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter27" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 PO Due Date
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter28" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Status
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter29" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Notes
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter30" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">Action</th>
                         </tr>
@@ -1202,43 +1203,43 @@
                             <th scope="col" style="min-width: 50px;">Put Part Away</th>
                             <th scope="col">
                                 Part #
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter31" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Description
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter32" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Vendor
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter33" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col" style="min-width: 67px;">
                                 Order Qty
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter34" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Created
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter35" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Date Required
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter36" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 PO #
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter37" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 PO Due Date
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter38" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Status
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter39" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">
                                 Notes
-                                <input (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
+                                <input id="filter40" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" type="text" class="form-control">
                             </th>
                             <th scope="col">Action</th>
                         </tr>
