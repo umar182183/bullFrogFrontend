@@ -804,7 +804,7 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="" class="">Date Required</label>
-                    <input [(ngModel)]="dateRequired" (ngModelChange)="setDateRequired($event)" placeholder="{{dateRequired}}" name="dateRequired" bsDatepicker  type="text" class="form-control" >
+                    <input [(ngModel)]="dateRequired" placement="top right" (ngModelChange)="setDateRequired($event)" placeholder="{{dateRequired}}" name="dateRequired" bsDatepicker  type="text" class="form-control" >
                 </div>
 
                     <div class="form-group col-md-12">
@@ -813,7 +813,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="" class="">PO Due Date</label>
-                        <input type="text" (ngModelChange)="setPoDueDate($event)" [(ngModel)]="partPoDuedate" bsDatepicker name="PODueDate" class="form-control" placeholder="{{partPoDuedate}}">
+                        <input type="text" placement="top right" (ngModelChange)="setPoDueDate($event)" [(ngModel)]="partPoDuedate" bsDatepicker name="PODueDate" class="form-control" placeholder="{{partPoDuedate}}">
                     </div>
                 </div>
                
