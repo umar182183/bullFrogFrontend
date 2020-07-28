@@ -23,15 +23,15 @@ export class ReorderPointsComponent implements OnInit {
     private toastr: ToastrService
     ){}
 
-  @ViewChild('logDetails', { static: false }) logDetails: ModalDirective;
-  @ViewChild('approveLogModal', { static: false }) approveLogModal: ModalDirective;
-  @ViewChild('markReceivedModal', { static: false }) markReceivedModal: ModalDirective;
-  @ViewChild('deleteLogModal', { static: false }) deleteLogModal: ModalDirective;
-  @ViewChild('editLogModal', { static: false }) editLogModal: ModalDirective;
-  @ViewChild('editLog2Modal', { static: false }) editLog2Modal: ModalDirective;
-  @ViewChild('addNewLogModal', { static: false }) addNewLogModal: ModalDirective;
-  @ViewChild('putAwayModal', { static: false }) putAwayModal: ModalDirective;
-  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective;
+  @ViewChild('logDetails') logDetails: ModalDirective;
+  @ViewChild('approveLogModal') approveLogModal: ModalDirective;
+  @ViewChild('markReceivedModal') markReceivedModal: ModalDirective;
+  @ViewChild('deleteLogModal') deleteLogModal: ModalDirective;
+  @ViewChild('editLogModal') editLogModal: ModalDirective;
+  @ViewChild('editLog2Modal') editLog2Modal: ModalDirective;
+  @ViewChild('addNewLogModal') addNewLogModal: ModalDirective;
+  @ViewChild('putAwayModal') putAwayModal: ModalDirective;
+  @ViewChild('confirmModal') confirmModal: ModalDirective;
   
   public tableDataArr: any[] = [];
   public loader:boolean = false;
@@ -316,12 +316,14 @@ processMultiApprove()
 }
 
 getApproveData(statusGot, id){
+  debugger
   this.myControl.reset();
   this.partStatus = '';
   this.partStatus = statusGot;
   this.partId = '';
   this.partId = id;
   this.statusToSend = '';
+ 
 
   if (this.partStatus == 'Review') {
     this.statusToSend = '';
@@ -348,6 +350,8 @@ getApproveData(statusGot, id){
     this.partPoDuedate = "";
   this.partPoNum = "";
   }
+  this.partPoDuedate = "";
+  this.partPoNum = "";
   this.myControl.reset();
   
 }
@@ -366,6 +370,8 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
           }
        this.resetData();
        this.loader = false;
+ this.approvedLogsArr = [];
+
        this.callRestockLogarr();
       });
  }
@@ -405,6 +411,9 @@ this.reorderService.getMultiApproveLogs(this.objToSend).subscribe((res: any) => 
             this.toastr.info("All Logs Approved Successfully");
           }
         this.approveLogModal.hide();
+ this.approvedLogsArr = [];
+          this.partPoNum = "";
+          this.partPoDuedate = ""
         this.loader = false;
         this.callRestockLogarr();
       });
@@ -464,8 +473,9 @@ deleteLog()
       this.escalateApproveLog();
   }
 
-editLog(partNum, partDesc, partDateCreated, partId, status, notes)
+editLog(partNum, partDesc, partDateCreated, partId, status, notes, datePartsRequiredRec, poNumRec, poDueDateRec, vendorRec, ordertQtyRec)
 {
+  debugger
   this.myControl.reset();  
   this.partNum = '';
   this.partNum = partNum;
@@ -475,16 +485,17 @@ editLog(partNum, partDesc, partDateCreated, partId, status, notes)
   this.partDesc = partDesc;
   this.partId = null;
   this.partId = +partId;
+  this.selectedVendor = vendorRec;
   this.statusToSend = '';
   this.statusToSend = status;
-  this.partPoNum = '';
-  this.partPoDuedate = '';
+  this.partPoNum = poNumRec;
+  this.partPoDuedate = poDueDateRec;
   this.logReviewed = false;
-  this.selectedVendor = '';
-  this.orderQty = '';
-  this.partStatus = '';
+  this.dateRequired = datePartsRequiredRec
+  // this.selectedVendor = '';
+  this.orderQty = ordertQtyRec;
+  // this.partStatus = '';
   this.notesRec = '';
-  
   this.notesRec = notes;
   // this.myControl.reset();
   this.partStatus = status;

@@ -197,7 +197,7 @@
       
         
    <!-- Log Details -->
-<div class="modal fade dsh-modal" bsModal #logDetails="bs-modal" id="logDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #logDetails="bs-modal" id="logDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -360,7 +360,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()" data-target="#editLog">
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes, restock.datePartsRequired, restock.poNum, restock.poDueDate, restock.vendor, restock.orderQty); loadAllVendoList()" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="javascript:void()" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -379,7 +379,7 @@
     </div>
 </div>
    <!-- Approve Reorder -->
-<div class="modal fade dsh-modal" bsModal #approveLogModal="bs-modal"  tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #approveLogModal="bs-modal"  tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -404,7 +404,7 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="approveLogModal.hide()">Close</button>
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)=" poNum.value = ''; poDueDate.value= '';approveLogModal.hide()">Close</button>
           <button type="submit" class="btn btn-next" (click)="submitApprove(poNum.value, poDueDate.value)" >Submit</button>
         </div>
       </div>
@@ -412,7 +412,7 @@
   </div>
 
 <!-- Edit Log -->
-<div class="modal fade dsh-modal" bsModal #editLogModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #editLogModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -458,7 +458,7 @@
 
                 <div class="form-group col-md-12">
                     <label for="" class="">Vendor List</label>
-                    <select class="form-control" (change)="getSelectedVendor($event.target.value)">
+                    <select class="form-control"  [(ngModel)]="selectedVendor" name="selectedVendor" (change)="getSelectedVendor($event.target.value)">
                         <option value="{{vendor.vendor}}"  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
                     </select>
                 </div>
@@ -497,7 +497,7 @@
   </div>
 
    <!-- Delete Log -->
-<div class="modal fade dsh-modal" bsModal #deleteLogModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #deleteLogModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -641,7 +641,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()" data-toggle="modal" data-target="#editLog">
+                                <a class="db-edit" href="#" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes, restock.datePartsRequired, restock.poNum, restock.poDueDate, restock.vendor, restock.orderQty); loadAllVendoList()" data-toggle="modal" data-target="#editLog">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -662,7 +662,7 @@
 </div>
 
    <!-- add New Log -->
-   <div class="modal fade dsh-modal" bsModal #addNewLogModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
+   <div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #addNewLogModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -731,7 +731,7 @@
 
 
 <!-- Edit Log 2 -->
-<div class="modal fade dsh-modal" bsModal #editLog2Modal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #editLog2Modal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -783,15 +783,17 @@
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="" class="">Vendor List</label>
-                    <select class="form-control" (change)="getSelectedVendor($event.target.value)">
-                        <option *ngFor="let vendor of allvendorListArr" value="{{vendor.vendor}}">{{vendor.vendor}}</option>
+                    <label for="" class="">Vendor List
+                    </label>
+                    <select class="form-control" [(ngModel)]="selectedVendor" name="selectedVendor" (change)="getSelectedVendor($event.target.value)">
+                        <option *ngFor="let vendor of allvendorListArr" [value]="vendor.vendor">{{vendor.vendor}}</option>
                     </select>
                 </div>
+               
 
                 <div class="form-group col-md-12">
                     <label for="" class="">Order Qty</label>
-                    <input type="number" [(ngModel)]="orderQty" name="orderQty" class="form-control" placeholder="4">
+                    <input type="number" [value]="orderQty" class="form-control">
                 </div>
 
                 <div class="form-group col-md-12">
@@ -800,16 +802,16 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="" class="">Date Required</label>
-                    <input [(ngModel)]="dateRequired" name="dateRequired" type="date" class="form-control">
+                    <input [(ngModel)]="dateRequired" name="dateRequired" [value]="dateRequired" type="date" class="form-control" >
                 </div>
 
                     <div class="form-group col-md-12">
                         <label for="" class="">PO #</label>
-                        <input type="text" [(ngModel)]="partPoNum" name="poNum" class="form-control">
+                        <input type="text" [(ngModel)]="partPoNum" name="poNum" class="form-control" placeholder="{{partPoNum}}">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="" class="">PO Due Date</label>
-                        <input type="date" [(ngModel)]="partPoDuedate" name="PODueDate" class="form-control">
+                        <input type="date" [(ngModel)]="partPoDuedate" name="PODueDate" class="form-control" placeholder="{{partPoDuedate}}">
                     </div>
                 </div>
                
@@ -914,7 +916,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()" >
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes, restock.datePartsRequired, restock.poNum, restock.poDueDate, restock.vendor, restock.orderQty); loadAllVendoList()" >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -935,7 +937,7 @@
 
 
    <!-- Mark Log Received -->
-   <div class="modal fade dsh-modal" bsModal #markReceivedModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #markReceivedModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -963,7 +965,7 @@
   </div>
 
    <!-- Confirm Log -->
-   <div class="modal fade dsh-modal" bsModal #confirmModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #confirmModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -1076,7 +1078,7 @@
                             <td>{{restock.status}}</td>
                             <td>{{restock.notes}}</td>
                             <td>
-                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes); loadAllVendoList()">
+                                <a class="db-edit" href="#" data-toggle="modal" tooltip="Edit Log" (click)="editLog(restock.partNo, restock.description, restock.dateCreated, restock.id, restock.status, restock.notes, restock.datePartsRequired, restock.poNum, restock.poDueDate, restock.vendor, restock.orderQty); loadAllVendoList()">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                                 <a class="db-delete" href="#" data-toggle="modal" tooltip="Delete Log" (click)="processDelete(restock.partNo, restock.description, restock.id)">
@@ -1097,7 +1099,7 @@
 
 
       <!-- putAwayModal Log -->
-<div class="modal fade dsh-modal" bsModal #putAwayModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #putAwayModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="addNewLogLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
