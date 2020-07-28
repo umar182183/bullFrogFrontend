@@ -189,7 +189,7 @@ export class ReorderPointsComponent implements OnInit {
     this.openPOArr = [];
     this.toPutAwayArr = [];
     this.reorderService.getReOrderData().subscribe((data: any) => {
-      
+      debugger
       if (data.success == false) {
         this.toastr.info(data.responseData)
       }
@@ -371,6 +371,10 @@ this.reorderService.addEditLog(this.objToSend).subscribe((res: any) => {
        this.resetData();
        this.loader = false;
  this.approvedLogsArr = [];
+ let setPoNum: any = document.getElementById("setPoNum");
+ setPoNum.value = "";
+ let setPoDueDate: any = document.getElementById("setPoDueDate");
+ setPoDueDate.value = "";
 
        this.callRestockLogarr();
       });
@@ -417,6 +421,10 @@ this.reorderService.getMultiApproveLogs(this.objToSend).subscribe((res: any) => 
         this.loader = false;
         this.callRestockLogarr();
       });
+      let setPoNum: any = document.getElementById("setPoNum");
+      setPoNum.value = "";
+      let setPoDueDate: any = document.getElementById("setPoDueDate");
+      setPoDueDate.value = "";
  }
 
 public processApproveRequest()
@@ -493,9 +501,15 @@ editLog(partNum, partDesc, partDateCreated, partId, status, notes, datePartsRequ
   this.partPoNum = poNumRec;
   this.partPoDuedate = "";
   this.partPoDuedate = poDueDateRec;
+  // this.partPoDuedate = moment(this.partPoDuedate).format('DD/MM/YYYY');
+
+  
   this.logReviewed = false;
   this.dateRequired = "";
   this.dateRequired = datePartsRequiredRec;
+  // this.dateRequired = moment(this.dateRequired).format('DD/MM/YYYY');
+  // let ele: any = document.getElementById("dateReq");
+  // ele.value = this.dateRequired;
   // this.selectedVendor = '';
   this.orderQty = "";
   this.orderQty = ordertQtyRec;
@@ -518,6 +532,7 @@ saveEditedLog()
   
 
   this.objToSend = {};
+  debugger
   this.objToSend = {
     id: this.partId,
     PartNo: this.partNum,
@@ -614,6 +629,18 @@ saveNewLog()
   } else {
   this.escalateApproveLog();
   }
+}
+setPoDueDate(event)
+{
+  // this.partPoDuedate = event;
+  this.partPoDuedate = moment(event).format('MM/DD/YYYY');
+
+}
+setDateRequired(event)
+{
+  // this.dateRequired = event;
+  this.dateRequired = moment(event).format('MM/DD/YYYY');
+
 }
 
 loadExistPartModal()

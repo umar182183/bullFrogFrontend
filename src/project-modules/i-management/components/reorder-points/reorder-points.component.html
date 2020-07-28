@@ -393,11 +393,11 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label for="" class="">PO #:</label>
-                        <input type="text" #poNum class="form-control">
+                        <input id="setPoNum" type="text" #poNum class="form-control">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="" class="">PO Due Date:</label>
-                        <input type="date" #poDueDate class="form-control">
+                        <input id="setPoDueDate" type="date" #poDueDate class="form-control">
                     </div>
                 </div>
                
@@ -466,12 +466,14 @@
 
                     <div class="form-group col-md-6">
                         <label for="rder Qty" class="">Order Qty</label>
-                        <input type="number" [(ngModel)]="orderQty" name="orderQty" class="form-control" placeholder="0">
+                        <input type="number" [(ngModel)]="orderQty" name="orderQty" [value]="orderQty" class="form-control">
+                        
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="" class="">Date Required</label>
-                        <input type="date" [(ngModel)]="dateRequired" name="dateRequired" class="form-control">
+                    <input [(ngModel)]="dateRequired" (ngModelChange)="setDateRequired($event)" placeholder="{{dateRequired}}" name="dateRequired" bsDatepicker  type="text" class="form-control" >
+
                     </div>
 
 
@@ -793,7 +795,7 @@
 
                 <div class="form-group col-md-12">
                     <label for="" class="">Order Qty</label>
-                    <input type="number" [value]="orderQty" class="form-control">
+                    <input [(ngModel)]="orderQty" name="orderQty" type="number" [value]="orderQty" class="form-control">
                 </div>
 
                 <div class="form-group col-md-12">
@@ -802,7 +804,7 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="" class="">Date Required</label>
-                    <input [(ngModel)]="dateRequired" name="dateRequired"  type="date" class="form-control" >
+                    <input [(ngModel)]="dateRequired" (ngModelChange)="setDateRequired($event)" placeholder="{{dateRequired}}" name="dateRequired" bsDatepicker  type="text" class="form-control" >
                 </div>
 
                     <div class="form-group col-md-12">
@@ -811,7 +813,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="" class="">PO Due Date</label>
-                        <input type="date" [(ngModel)]="partPoDuedate" name="PODueDate" class="form-control" placeholder="{{partPoDuedate}}">
+                        <input type="text" (ngModelChange)="setPoDueDate($event)" [(ngModel)]="partPoDuedate" bsDatepicker name="PODueDate" class="form-control" placeholder="{{partPoDuedate}}">
                     </div>
                 </div>
                

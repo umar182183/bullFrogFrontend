@@ -4,7 +4,7 @@
     <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
 </div>
 <!-- The Modal -->
-<div id="myModal" class="modal" bsModal #openPopup="bs-modal">
+<div id="myModal" class="modal" [config]="{ backdrop: 'static' }" bsModal #openPopup="bs-modal">
   <!-- <span (click)="openPopup.hide()" class="close">&times;</span>
   <h5 class="modal-title">{{partNumWithImg}}</h5>
   <img class="modal-content" src="{{url}}" id="img01">

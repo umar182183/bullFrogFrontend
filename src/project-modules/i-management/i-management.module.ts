@@ -34,6 +34,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -70,6 +71,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     CarouselModule,
     ToastrModule.forRoot(),
     TooltipModule,
+    BsDatepickerModule.forRoot(),
   ],
 
   exports: [MatTableModule, MatPaginatorModule],

@@ -16,7 +16,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class LocationLookupComponent implements OnInit {
   
-  @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
+  @ViewChild('openPopup') openPopup: ModalDirective;
   
   public tableData: [] = [];
   public url;
@@ -99,8 +99,8 @@ export class LocationLookupComponent implements OnInit {
            this.options = this._filter(valueGot);
            if (valueGot != "") {
            this.isReset = false;
-           this.tableData = [];
-             this.tableLoader = true;
+          //  this.tableData = [];
+          //    this.tableLoader = true;
            }
            if (this.options.length == 1 && this.isSelected == false) {
              this.selectPartNum(this.options[0]);
