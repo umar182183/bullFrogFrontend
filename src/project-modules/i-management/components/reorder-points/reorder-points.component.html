@@ -348,7 +348,7 @@
                        
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td (click)="getApproveData(restock.status, restock.id)"><i tooltip="Approve Log" class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td style="cursor: pointer;" (click)="getApproveData(restock.status, restock.id)"><i tooltip="Approve Log" class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -629,7 +629,7 @@
                     <tbody>
                         <tr *ngFor="let restock of restockLogArr">
                             <td (click)="getCheckedItems(approveCheck.checked, restock.id)"><input #approveCheck type="checkbox" tooltip="Mark Log"></td>
-                            <td (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true" tooltip="Approve Log"></i></td>
+                            <td style="cursor: pointer;" (click)="getApproveData(restock.status, restock.id)"><i class="fa fa-check-circle-o" aria-hidden="true" tooltip="Approve Log"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -902,7 +902,7 @@
 
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td (click)="getApproveData(restock.status, restock.id)" tooltip="Approve Log"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td style="cursor: pointer;" (click)="getApproveData(restock.status, restock.id)" tooltip="Approve Log"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>
@@ -1064,7 +1064,7 @@
  
                         <tr *ngFor="let restock of restockLogArr">
                             <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
-                            <td tooltip="Put Part Away" (click)="getApproveData(restock.status, restock.id) ;loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            <td style="cursor: pointer;" tooltip="Put Part Away" (click)="getApproveData(restock.status, restock.id) ;loadPutpartAwayModal(restock.partNo, restock.description, restock.vendor, restock.orderQty, restock.poNum, restock.notes)"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
                             <td>{{restock.partNo}}</td>
                             <td>{{restock.description}}</td>
                             <td>{{restock.vendor}}</td>

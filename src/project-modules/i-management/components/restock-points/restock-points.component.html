@@ -8,7 +8,7 @@
     <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
   </div>
    <!-- Restock -->
-   <div class="modal fade dsh-modal" id="restock" bsModal #openPopup="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal fade dsh-modal" id="restock" [config]="{ backdrop: 'static' }" bsModal #openPopup="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

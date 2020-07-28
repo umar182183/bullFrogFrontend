@@ -37,14 +37,15 @@ export class RestockPointsComponent implements OnInit {
   dataSource = new MatTableDataSource<RestockModel>(this.tableArr);
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
+  @ViewChild('openPopup') openPopup: ModalDirective;
   public myControl = new FormControl();
 
 
   displayedColumns: string[] = ['partNo', 'description', 'location', 'partCurrentQty'];
 
   constructor(private appService: AppService, private restockService: RestockService,
-    private toastr: ToastrService){
+    private toastr: ToastrService,
+    ){
 
   }
  
@@ -151,8 +152,10 @@ loadRestockPopup(partNum, locationId){
   this.myControl.reset();
   debugger
   this.loadPartNumData(partNum, locationId);
+  
   this.openPopup.show()
   this.TotalQty = 0;
+  this.otherQty = 0;
 }
 
 private loadPartNumData(partnum, locationId)
@@ -220,12 +223,23 @@ if (pulledQty > qty) {
   debugger
     this.toastr.warning("Qty should not be greater than the Qty in Location!");
        let ele: any = document.getElementById(elementId);
-       ele.value = "";
+       ele.value = 0;
+       for (let i=0; i < this.sendArrToRestock.length; i++) {
+        if (this.sendArrToRestock[i].location === currentLocation) {
+             this.sendArrToRestock[i].NewQty = 0;
+        }
+      }
+      for (let i=0; i < this.sendArrToRestock.length; i++) {
+        this.TotalQty = this.TotalQty + this.sendArrToRestock[i].NewQty;
+      }
+    this.TotalQty = this.TotalQty + this.otherQty;
+
   }
   else{
     for (let i=0; i < this.sendArrToRestock.length; i++) {
       this.TotalQty = this.TotalQty + this.sendArrToRestock[i].NewQty;
     }
+    this.TotalQty = this.TotalQty + this.otherQty;
   }
 
 }
