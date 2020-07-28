@@ -99,7 +99,7 @@ export class ReorderPointsComponent implements OnInit {
       debounceTime(2000),
       distinctUntilChanged(),
       map(valueGot =>{ 
-        
+        debugger
          this.options = this._filter(valueGot);
          if (valueGot != "") {
          this.isReset = false;
@@ -170,14 +170,14 @@ export class ReorderPointsComponent implements OnInit {
 
   loadPartsList()
   {
-    // this.loader = true;
+    this.loader = true;
     this.locationService.getPartsList().subscribe((data: any) =>
+    
     {
-      
       data.responseData.forEach(element => {
         this.optionsBackupArr.push(element.partNumber)
       });
-      // this.loader = false;
+      this.loader = false;
     });
   }
 
@@ -188,13 +188,14 @@ export class ReorderPointsComponent implements OnInit {
     this.purchasingPendingArr = [];
     this.openPOArr = [];
     this.toPutAwayArr = [];
-    this.loadPartsList();
     this.reorderService.getReOrderData().subscribe((data: any) => {
       
       if (data.success == false) {
         this.toastr.info(data.responseData)
       }
       else{
+    this.loadOpenLocations(false);
+
      this.reviewLogArr = data.responseData.reviewLog;
      this.purchasingPendingArr = data.responseData.purchasingLog;
      this.openPOArr = data.responseData.poPending;
@@ -252,17 +253,16 @@ loadRestockLog(param)
 }
 private callRestockLogarr()
 {
-  
+  this.myControl.reset();
   this.loader = true;
   this.restockLogArr = [];
-  if (this.param == "PO Received") {
-    this.loadOpenLocations(false);
-  }
+  // if (this.param == "PO Received") {
+  //   this.loadOpenLocations(false);
+  // }
   this.reorderService.getrestockLog(this.param).subscribe((data: any) => {
     this.restockLogArr = data.list;
     this.tableDataArr = data.list;
     this.loader = false;
-    this.myControl.reset();
    });
 }
 submitApprove(poNum, poDueDate)
@@ -546,7 +546,7 @@ loadAllVendoList()
 
 addNewLog()
 {
-  // this.loadPartsList();
+  this.loadPartsList();
   this.addNewLogModal.show();
   this.orderQty = '';
   this.dateRequired = '';
@@ -557,6 +557,9 @@ addNewLog()
   let ele: any = document.getElementById("selectedPart");
   ele.value = "";
   this.logReviewed = false;
+  if (this.restockLogArr.length == 0) {
+    this.loader = true;
+  }
 }
 
 saveNewLog()
@@ -579,10 +582,10 @@ saveNewLog()
   }
   
   let splittedartNum = this.partNum.split(":", 2); 
-
+  this.logExists = false;
    this.restockLogArr.forEach((element:any) => {
-    
-    if (element.partNo.includes(splittedartNum[0])) {
+    debugger
+    if (element.partNo === splittedartNum[0]) {
       return this.logExists = true;
     }
     
@@ -714,6 +717,7 @@ this.remainingQty = this.remainingQty - totalNewQty
 sendPutPartPostReq()
 {
   this.loader = true;
+  this.putAwayModal.hide();
   this.processApproveRequest();
   this.reorderService.putPartAwayPost(this.isMultipleLocation? this.multiLocationArr: this.singleLocationArr).subscribe((res: any) => {
     

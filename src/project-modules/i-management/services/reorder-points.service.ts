@@ -26,7 +26,7 @@ getrestockLog(param)
 
 addEditLog(obj)
 {
-  debugger
+  
   let objReceived = {
     serialized: obj,
     isAdd: obj.isAdd,
@@ -42,7 +42,7 @@ addEditLog(obj)
 
 getMultiApproveLogs(obj)
 {
-  debugger
+  
   let objToSend = JSON.stringify(obj);
  return this.http.post(this.URL+"ReOrder/ApprovedLogs?serialized="+objToSend, obj);
 }
@@ -54,7 +54,7 @@ getAllVendorList()
 
 getVendorName(partNum)
 {
-  debugger
+  
   let partObj = JSON.stringify(partNum);
  return this.http.get(this.URL+"ReOrder/GetVendorName?part="+partObj);
 }
@@ -73,13 +73,14 @@ getOpenLocationdata(isBluffdale)
 
 putPartAwayPost(arr)
 {
-  debugger
+  
  return this.http.post(this.URL+"ReOrder/PutPartAwayPost?data="+arr, arr);
 }
 
 PutBackLogStatusPost(idRec, statusRec)
 {
-  let serializedStatus = JSON.stringify(statusRec);
+  debugger
+  let serializedStatus = statusRec;
   let obj = {
     id: idRec,
     status: statusRec
