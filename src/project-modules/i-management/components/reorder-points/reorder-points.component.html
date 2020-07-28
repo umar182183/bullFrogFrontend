@@ -384,7 +384,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Approve Reorder</h5>
-          <button type="button" class="close" (click)="approveLogModal.hide()" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" (click)="poNum.value = ''; poDueDate.value= '';approveLogModal.hide()" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -459,7 +459,7 @@
                 <div class="form-group col-md-12">
                     <label for="" class="">Vendor List</label>
                     <select class="form-control"  [(ngModel)]="selectedVendor" name="selectedVendor" (change)="getSelectedVendor($event.target.value)">
-                        <option value="{{vendor.vendor}}"  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
+                        <option value="{{selectedVendor}}" name="selectedVendor"  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
                     </select>
                 </div>
 
