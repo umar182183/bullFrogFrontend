@@ -74,7 +74,7 @@ getOpenLocationdata(isBluffdale)
 putPartAwayPost(arr)
 {
   debugger
- return this.http.post(this.URL+"ReOrder/PutPartAwayPost?data="+JSON.stringify(arr), arr);
+ return this.http.post(this.URL+"ReOrder/PutPartAwayPost?data="+arr, arr);
 }
 
 PutBackLogStatusPost(idRec, statusRec)

@@ -99,7 +99,7 @@ export class ReorderPointsComponent implements OnInit {
       debounceTime(2000),
       distinctUntilChanged(),
       map(valueGot =>{ 
-        debugger
+        
          this.options = this._filter(valueGot);
          if (valueGot != "") {
          this.isReset = false;
@@ -153,7 +153,7 @@ export class ReorderPointsComponent implements OnInit {
   }
   selectPartNum(partNumStr)
   {
-    debugger
+    
     let ele: any = document.getElementById("selectedPart");
     ele.value = partNumStr;
     this.partNum = partNumStr;
@@ -190,7 +190,7 @@ export class ReorderPointsComponent implements OnInit {
     this.toPutAwayArr = [];
     this.loadPartsList();
     this.reorderService.getReOrderData().subscribe((data: any) => {
-      debugger
+      
       if (data.success == false) {
         this.toastr.info(data.responseData)
       }
@@ -484,7 +484,7 @@ editLog(partNum, partDesc, partDateCreated, partId, status, notes)
   this.orderQty = '';
   this.partStatus = '';
   this.notesRec = '';
-  debugger
+  
   this.notesRec = notes;
   // this.myControl.reset();
   this.partStatus = status;
@@ -577,7 +577,7 @@ saveNewLog()
     isEdit: false,
     isAdd: true
   }
-  debugger
+  
   let splittedartNum = this.partNum.split(":", 2); 
 
    this.restockLogArr.forEach((element:any) => {
@@ -736,7 +736,7 @@ putBacklogstatus(statusReceived)
   this.dateRequired = date;
   this.partPoNum = 1234;
   this.partPoDuedate = date;
-  debugger
+  
   this.saveEditedLog();
   this.loader = true;
 
@@ -753,10 +753,10 @@ putBacklogstatus(statusReceived)
     this.partStatus = 'PO Pending';
     
   }
-  debugger
+  
 
   this.reorderService.PutBackLogStatusPost(this.partId, this.partStatus).subscribe((res: any) => {
-    debugger
+    
     if (res.success == false) {
       this.toastr.error(res.message);
       }
