@@ -824,3 +824,31 @@ header .menu-text .mt-badge {
 .modal-backdrop{
     display: none !important;
 }
+
+/* .form-group-custom{
+    width: 30rem;
+    height: 48px;
+    border: none;
+    background: #E6E7E8;
+} */
+
+.reset{
+    width: 20%;
+   background: none;
+   color: red;
+   border: none;
+   font-weight: bold;
+   position: absolute;
+   z-index: 1;
+   margin-left: 429px;
+   margin-top: -2rem;
+}
+.reset:active, .reset:hover{
+    border: none;
+    outline: none;
+}
+
+/* .custum-desc{
+    width: 30rem !important;
+    height: 48px !important;
+} */

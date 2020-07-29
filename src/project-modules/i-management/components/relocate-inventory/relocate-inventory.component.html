@@ -1,7 +1,7 @@
 
 
 <!-- Relocate Inventory 1 -->
-<div class="modal fade dsh-modal" bsModal #openPopup="bs-modal" id="reInv1" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #openPopup="bs-modal" id="reInv1" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,13 +15,32 @@
               <div class="form-group row">
               <label for="" class="col-sm-3 col-form-label">Part Number</label>
               <div class="col-sm-9">
-                  <input type="text" class="form-control">
+                  <!-- <input type="text" class="form-control"> -->
+                    <form class="example-form">
+                      <div class="example-full-width">
+                        <input type="text"
+                                id="searchPart"
+                               aria-label="Number"
+                               matInput
+                               class="form-group-custom form-control"
+                               [formControl]="myControl"
+                               [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectPartNum(option)">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </div>
+                    <button *ngIf="isReset == false" class="reset" type="reset" (click)="resetData()">×</button>
+                
+                    </form>
+                
               </div>
               </div>
               <div class="form-group row">
-              <label for="" class="col-sm-3 col-form-label">Description</label>
+              <label for="" class="col-sm-3 col-form-label">Description:</label>
               <div class="col-sm-9">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control custum-desc">
               </div>
               </div>
               
@@ -29,7 +48,7 @@
       </div>
       <div class="modal-footer">
           <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Go Back</button>
-                  <button type="submit" class="btn btn-next float-right" (click)="locationModal.show(); openPopup.hide();" data-dismiss="modal" aria-label="Close">Next</button>
+                  <button type="submit" class="btn btn-next float-right" (click)="goNext()" data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
   </div>
