@@ -17,5 +17,15 @@ export class RelocateService {
   {
    return this.http.get(this.URL+"InventoryManagement/GetPartNumbersList");
   }
-  
+
+  getPartNumber(partNum)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetPartNumber?partNumber="+partNum+"&locationId=0");
+  }
+
+  getLocationById(locationId, partNum)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetLocationById?locationId="+locationId+"&partNumber="+partNum);
+  }
+
 }

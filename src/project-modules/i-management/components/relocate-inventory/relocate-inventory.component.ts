@@ -16,18 +16,23 @@ import { startWith, debounceTime, distinctUntilChanged, map } from 'rxjs/operato
 export class RelocateInventoryComponent implements OnInit {
   
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
-  @ViewChild('locationModal', { static: false }) locationModal: ModalDirective;
   @ViewChild('qtyModal', { static: false }) qtyModal: ModalDirective;
 
   public result: boolean = false;
   public loader = false;
   public isReset = true;
   public isSelected = false;
+  public partNumber;
+  public location;
+  public partDesc;
+  public partDataArr: any[] = [];
+  public partListArr: any[] = [];
+  public locationDataObj: any = {};
 
 
-  myControl = new FormControl();
-  options: any[] = [];
-  optionsBackupArr: string[] = [];
+  public myControl = new FormControl();
+  public options: any[] = [];
+  public optionsBackupArr: string[] = [];
   filteredOptions: Observable<string[]>;
   
   constructor(private appService: AppService, private stockService: StockInventoryService,
@@ -74,9 +79,19 @@ selectPartNum(partNumStr)
         let partNum = partNumStr.split(":", 2); 
         // this.tableData = [];
         this.isSelected = true;
+        
+        let selectedPart = this.partListArr.filter((part: any)=> {
+          
+          if (part.partNumber == partNumStr) {
+            
+            return part ;
+          }
+        });
+        debugger
+        this.partDesc = selectedPart[0].partDescription;
     this.myControl.setValue(this.options[0], {emitEvent: false});
 
-        // this.loadLocationData(partNum[0]);
+        this.getPartNumData(partNum[0]);
         this.options = [];
         
       }
@@ -91,6 +106,9 @@ private _filter(value: string): string[] {
 resetData()
 {
   this.myControl.setValue('', {emitEvent: false});
+  let setDesc: any = document.getElementById("part-description");
+  setDesc.value = '';
+
   this.isReset = true;
 }
 
@@ -113,7 +131,7 @@ removeModalClass()
 goNext()
 {
   this.openPopup.hide();
-  this.locationModal.show();
+  this.qtyModal.show();
 }
 
 getClickCall()
@@ -121,7 +139,6 @@ getClickCall()
   this.stockService.currentComponent$.subscribe(currentComonent => {
     if (currentComonent == 'relocate-inventory') {
     this.openPopup.hide();
-      this.locationModal.hide();
       this.qtyModal.hide();
       this.result = false;
       this.openPopup.show();
@@ -140,9 +157,35 @@ loadPartsList()
     data.responseData.forEach(element => {
       this.optionsBackupArr.push(element.partNumber)
     });
+    this.partListArr = data.responseData;
     this.loader = false;
   });
 }
 
+getPartNumData(partNum)
+{
+  this.partDataArr = [];
+  this.loader = true;
+  this.partNumber = partNum;
+  this.relocateService.getPartNumber(partNum).subscribe((data: any)=> {
+    debugger
+    this.partDataArr = data.responseData.data;
+    let locationId = this.partDataArr[0].locationId;
+    this.getLocationById(locationId, this.partNumber);
+    if (this.partDataArr.length != 0) {
+      this.location = this.partDataArr[0].location;
+    }
+    this.loader = false;
+  })
+}
+
+getLocationById(locationId, partNum)
+{
+  this.relocateService.getLocationById(locationId, partNum).subscribe((data: any) => {
+    debugger
+    this.locationDataObj = data.responseData;
+  })
+
+}
 
 }
