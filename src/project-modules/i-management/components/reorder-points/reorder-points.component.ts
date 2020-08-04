@@ -779,10 +779,10 @@ sendPutPartPostReq()
 putBacklogstatus(statusReceived)
 {
   this.statusToSend = statusReceived;
-  let date = moment().format('MM/DD/YYYY');
-  this.dateRequired = date;
-  this.partPoNum = 1234;
-  this.partPoDuedate = date;
+  // let date = moment().format('MM/DD/YYYY');
+  // this.dateRequired = date;
+  // this.partPoNum = 1234;
+  // this.partPoDuedate = date;
   
   this.saveEditedLog();
   this.loader = true;
