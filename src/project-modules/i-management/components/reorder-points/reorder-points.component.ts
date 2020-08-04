@@ -55,6 +55,7 @@ export class ReorderPointsComponent implements OnInit {
   public multiLocationArr: any[] = [];
   public singleLocationArr: any[] = [];
   public locationToSendArr: any[] = [];
+  public existLogArr: any = {};
   public param;
   public selectedLocation;
   public reviewCount;
@@ -617,6 +618,9 @@ saveNewLog()
    this.restockLogArr.forEach((element:any) => {
     debugger
     if (element.partNo === splittedartNum[0]) {
+      this.partNum = splittedartNum[0];
+      this.existLogArr = [];
+      this.existLogArr = element;
       return this.logExists = true;
     }
     
@@ -647,8 +651,23 @@ loadExistPartModal()
 {
   this.confirmModal.hide();
   this.loadAllVendoList();
-  this.editLogModal.show();
-  this.myControl.reset();
+  debugger
+  // this.selectPartNum(this.partNum);
+  if (this.existLogArr?.length != 0) {
+    this.editLog(this.partNum, 
+      this.existLogArr.description, 
+      this.existLogArr.dateCreated, 
+      this.existLogArr.id, 
+      this.existLogArr.status, 
+      this.existLogArr.notes, 
+      this.existLogArr.datePartsRequired, 
+      this.existLogArr.poNum, 
+      this.existLogArr.poDueDate, 
+      this.existLogArr.vendor, 
+      this.existLogArr.orderQty);
+  }
+  // this.editLogModal.show();
+  // this.myControl.reset();
 }
 
 loadPutpartAwayModal(partNum, desc, vendor, qty, poNum, notes)
