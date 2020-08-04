@@ -16,6 +16,7 @@ import { startWith, debounceTime, distinctUntilChanged, map } from 'rxjs/operato
 export class RelocateInventoryComponent implements OnInit {
   
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
+  @ViewChild('locationModal', { static: false }) locationModal: ModalDirective;
   @ViewChild('qtyModal', { static: false }) qtyModal: ModalDirective;
 
   public result: boolean = false;
@@ -25,6 +26,10 @@ export class RelocateInventoryComponent implements OnInit {
   public partNumber;
   public location;
   public partDesc;
+  public locationId: number = 0;
+  public numberOfBoxes: number = 0;
+  public qtyPerBox: number = 0;
+  public totalQty: number = 0;
   public partDataArr: any[] = [];
   public partListArr: any[] = [];
   public locationDataObj: any = {};
@@ -120,12 +125,12 @@ getResult()
 
 removeModalClass()
 {
-  let backdrop = document.getElementsByClassName("modal-backdrop");
-  if (backdrop.length > 1) {
-    for (let index = 0; index < backdrop.length; index++) {
-      backdrop[index].remove();
-    }
-  }
+  // let backdrop = document.getElementsByClassName("modal-backdrop");
+  // if (backdrop.length > 1) {
+  //   for (let index = 0; index < backdrop.length; index++) {
+  //     backdrop[index].remove();
+  //   }
+  // }
 
 }
 goNext()
@@ -170,10 +175,16 @@ getPartNumData(partNum)
   this.relocateService.getPartNumber(partNum).subscribe((data: any)=> {
     debugger
     this.partDataArr = data.responseData.data;
-    let locationId = this.partDataArr[0].locationId;
-    this.getLocationById(locationId, this.partNumber);
     if (this.partDataArr.length != 0) {
+    let locationId = this.partDataArr? this.partDataArr[0].locationId: "";
+    this.locationId = locationId;
       this.location = this.partDataArr[0].location;
+    // let IntPartNum: number = +partNum;
+    this.getLocationById(locationId, partNum);
+    if (this.partDataArr.length > 1) {
+      this.qtyModal.hide();
+      this.locationModal.show();
+    }
     }
     this.loader = false;
   })
@@ -181,11 +192,48 @@ getPartNumData(partNum)
 
 getLocationById(locationId, partNum)
 {
+  
   this.relocateService.getLocationById(locationId, partNum).subscribe((data: any) => {
     debugger
     this.locationDataObj = data.responseData;
-  })
-
+  });
 }
+
+boxesModelChanged(event)
+{
+  debugger
+  event = +event;
+  this.numberOfBoxes = 0;
+  this.numberOfBoxes = event;
+  this.totalQty = 0;
+  this.totalQty = this.numberOfBoxes * this.qtyPerBox;
+}
+
+qtyModelChanged(event)
+  {
+  debugger
+  event = +event;
+  this.qtyPerBox = 0;
+  this.qtyPerBox = event;
+  this.totalQty = 0;
+  this.totalQty = this.numberOfBoxes * this.qtyPerBox;
+  }
+getFinalResult(){
+  this.getResult();
+  this.removeModalClass();
+  let obj = {
+    partnumber: this.partNumber,
+    sreen: "relocate",
+    qty: this.totalQty,
+    locationId: this.locationId,
+    returnUrl: "",
+    onlyforBluffdate: false
+  }
+  this.relocateService.assignLocation(obj).subscribe((res: any) => {
+    debugger
+    res;
+  });
+}
+
 
 }

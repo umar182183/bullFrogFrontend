@@ -25,7 +25,19 @@ export class RelocateService {
 
   getLocationById(locationId, partNum)
   {
-   return this.http.get(this.URL+"InventoryManagement/GetLocationById?locationId="+locationId+"&partNumber="+partNum);
+    debugger
+    let obj = {
+      locationId:locationId,
+      partNumber: partNum
+    }
+   return this.http.post(this.URL+"InventoryManagement/GetLocationById?locationId="+locationId+"&partNumber="+partNum, obj);
+  }
+
+  assignLocation(obj)
+  {
+   return this.http.post(this.URL+"InventoryManagement/AssignLocation?partNumber="+obj.partnumber
+            +"&sreen="+obj.sreen+"&qty="+obj.qty+"&locationId="+obj.locationId+"&returnUrl="
+            +JSON.stringify(obj.returnUrl)+"&onlyforBluffdate="+obj.onlyforBluffdate, obj);
   }
 
 }
