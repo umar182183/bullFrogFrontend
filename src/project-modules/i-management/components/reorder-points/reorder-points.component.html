@@ -459,7 +459,9 @@
                 <div class="form-group col-md-12">
                     <label for="" class="">Vendor List</label>
                     <select class="form-control"  [(ngModel)]="selectedVendor" name="selectedVendor" (change)="getSelectedVendor($event.target.value)">
-                        <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
+                        <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+                        <option>{{selectedVendor}}</option>
+                        <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
                     </select>
                 </div>
 
@@ -788,7 +790,9 @@
                     <label for="" class="">Vendor List
                     </label>
                     <select class="form-control" [(ngModel)]="selectedVendor" name="selectedVendor" (change)="getSelectedVendor($event.target.value)">
-                        <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
+                        <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+                        <option>{{selectedVendor}}</option>
+                        <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option>
                     </select>
                 </div>
                
