@@ -210,7 +210,7 @@
                   <div class="form-group row">
                   <label for="" class="col-sm-6 col-form-label text-right">Search Location:</label>
                   <div class="col-sm-6">
-                      <input type="text" class="form-control">
+                      <input type="text" id="filter" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
                   </div>
                   </div>
                 </div>
@@ -223,49 +223,44 @@
                  
             <div class="drpdown-1">
               <label for="" class="col-sm-6 col-form-label text-left"><b> Select Building:</b></label>
-            <select class="form-control" [(ngModel)]="selectedBuilding" name="selectedBuilding" (change)="getSelectedBuilding($event.target.value)">
-              <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+            <select class="form-control" name="selectedBuilding" (change)="getSelectedBuilding($event.target.value)">
               <option>--Select Building--</option>
-              <!-- <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+              <option  *ngFor="let building of buildingsArr" [value]="building.buildingId">{{building.buildingName}}</option>
           </select>
         </div>
-        <div class="drpdown-2">
+        <div class="drpdown-2" *ngIf="isBuildingSelected == true">
           <label for="" class="col-sm-6 col-form-label text-left"><b> Select Area:</b></label>
-        <select class="form-control" [(ngModel)]="selectedArea" name="selectedArea" (change)="getSelectedArea($event.target.value)">
-          <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+        <select class="form-control" name="selectedArea" (change)="getSelectedArea($event.target.value)">
           <option>--Select Area--</option>
-          <!-- <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
-      </select>
+          <option  *ngFor="let area of areasArr" [value]="area.areaId">{{area.areaName}}</option>
+        </select>
     </div>
-    <div class="drpdown-3">
+    <div class="drpdown-3" *ngIf="isAreaSelected == true">
       <label for="" class="col-sm-6 col-form-label text-left"><b> Select Aisle:</b></label>
     <select class="form-control" [(ngModel)]="selectedAisle" name="selectedAisle" (change)="getSelectedAisle($event.target.value)">
-      <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
       <option>--Select Aisle--</option>
-      <!-- <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
-  </select>
+      <option  *ngFor="let aisle of aislesArr" [value]="aisle.aisleName">{{aisle.aisleName}}</option>
+    </select>
 </div>
 
-<div class="drpdown-4">
+<div class="drpdown-4" *ngIf="isAisleSelected == true">
   <label for="" class="col-sm-6 col-form-label text-left"><b> Select Stack:</b></label>
 <select class="form-control" [(ngModel)]="selectedStack" name="selectedStack" (change)="getSelectedStack($event.target.value)">
-  <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
   <option>--Select Stack--</option>
-  <!-- <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+  <option  *ngFor="let stack of stacksArr" [value]="stack.stack">{{stack.stack}}</option>
 </select>
 </div>
-<div class="drpdown-5">
+<div class="drpdown-5" *ngIf="isStackSelected == true">
   <label for="" class="col-sm-6 col-form-label text-left"><b> Select Stack Position:</b></label>
 <select class="form-control" [(ngModel)]="selectedBlock" name="selectedBlock" (change)="getSelectedBlock($event.target.value)">
-  <!-- <option [selected]="selectedVendor == vendor.vendor" *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
   <option>--Select Stack Position--</option>
-  <!-- <option  *ngFor="let vendor of allvendorListArr">{{vendor.vendor}}</option> -->
+  <option  *ngFor="let position of stackPositionsArr" [value]="position.stackPosition">{{position.stackPosition}}</option>
 </select>
 </div>
             </div>
               <div class="col-sm-12">
                   <button type="submit" class="btn btn-back" (click)="result = false; qtyModal.show()">Go Back</button>
-                  <button type="submit" class="btn btn-next float-right" (click)="result = false;">Submit</button>
+                  <button type="submit" class="btn btn-next float-right" (click)="submitResults()">Submit</button>
               </div>
               </div>
 

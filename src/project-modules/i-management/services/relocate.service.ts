@@ -39,12 +39,20 @@ export class RelocateService {
             +"&sreen="+obj.sreen+"&qty="+obj.qty+"&locationId="+obj.locationId+"&returnUrl="
             +JSON.stringify(obj.returnUrl)+"&onlyforBluffdate="+obj.onlyforBluffdate, obj);
   }
+  getAreasByBuildingId(buildingId)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetAreasByBuildingId?buildingId="+buildingId);
+  }
+  getBuildings()
+  {
+   return this.http.get("http://testbms.bullfrogspas.com/InventoryManagement/InventoryManagement/GetBuildings");
+  }
   getAisle(areaId)
   {
    return this.http.get(this.URL+"InventoryManagement/GetAisle?areaId="+areaId);
   }
 
-  getStack(areaId, aisle)
+  getStack(areaId, aisle?)
   {
    return this.http.get(this.URL+"InventoryManagement/GetStack?areaId="+areaId+"&aisle="+aisle);
   }
@@ -55,6 +63,13 @@ export class RelocateService {
   getLocationList(onlyForBluffdale)
   {
    return this.http.get(this.URL+"InventoryManagement/GetLocationList?onlyForBluffdale="+onlyForBluffdale);
+  }
+
+  editLocation(obj)
+  {
+   return this.http.post(this.URL+"InventoryManagement/Editlocation?locationId="+
+      obj.locationId+"&oldLocationId="+obj.oldLocationId+"&areaId="+obj.areaId+"&qty="+obj.qty+"&stack="+obj.stack
+      +"&areaName="+obj.areaName+"&partNumber="+obj.partNumber+"&aisleName="+obj.aisleName+"&stackPosition="+obj.stackPosition+"&returnUrl="+obj.returnUrl, obj);
   }
   
 }
