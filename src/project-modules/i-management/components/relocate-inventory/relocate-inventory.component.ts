@@ -23,8 +23,14 @@ export class RelocateInventoryComponent implements OnInit {
   public loader = false;
   public isReset = true;
   public isSelected = false;
+  public anotherLocation = false;
   public partNumber;
   public location;
+  public selectedBuilding;
+  public selectedArea;
+  public selectedAisle;
+  public selectedStack;
+  public selectedBlock;
   public partDesc;
   public locationId: number = 0;
   public numberOfBoxes: number = 0;
@@ -33,6 +39,7 @@ export class RelocateInventoryComponent implements OnInit {
   public partDataArr: any[] = [];
   public partListArr: any[] = [];
   public locationDataObj: any = {};
+  public openLocationObj: any = {};
 
 
   public myControl = new FormControl();
@@ -176,15 +183,22 @@ getPartNumData(partNum)
     debugger
     this.partDataArr = data.responseData.data;
     if (this.partDataArr.length != 0) {
-    let locationId = this.partDataArr? this.partDataArr[0].locationId: "";
-    this.locationId = locationId;
+    
       this.location = this.partDataArr[0].location;
-    // let IntPartNum: number = +partNum;
-    this.getLocationById(locationId, partNum);
+
     if (this.partDataArr.length > 1) {
       this.qtyModal.hide();
+      this.openPopup.hide();
       this.locationModal.show();
     }
+    else{
+      let locationId = this.partDataArr? this.partDataArr[0].locationId: "";
+      this.locationId = locationId;
+      this.getLocationById(locationId, partNum);
+    }
+    }
+    else{
+      this.toastr.info("No location found for part number: "+this.partNumber);
     }
     this.loader = false;
   })
@@ -192,7 +206,7 @@ getPartNumData(partNum)
 
 getLocationById(locationId, partNum)
 {
-  
+  this.locationDataObj = {};
   this.relocateService.getLocationById(locationId, partNum).subscribe((data: any) => {
     debugger
     this.locationDataObj = data.responseData;
@@ -221,6 +235,7 @@ qtyModelChanged(event)
 getFinalResult(){
   this.getResult();
   this.removeModalClass();
+  // this.loader = true;
   let obj = {
     partnumber: this.partNumber,
     sreen: "relocate",
@@ -229,11 +244,55 @@ getFinalResult(){
     returnUrl: "",
     onlyforBluffdate: false
   }
-  this.relocateService.assignLocation(obj).subscribe((res: any) => {
+  this.relocateService.assignLocation(obj).subscribe((data: any) => {
     debugger
-    res;
+   this.openLocationObj =  data.responseData;
+    this.loader = false;
+
   });
 }
+getLocationId(locationIdRec)
+{
+  debugger
+  this.getLocationById(locationIdRec, this.partNumber);
+}
 
+getSelectedBuilding(building)
+{
+  debugger
+ this.selectedBuilding = building;
+}
+
+getSelectedArea(area)
+{
+  debugger
+  this.selectedArea = area;
+}
+getSelectedAisle(aisle)
+{
+  debugger
+  this.selectedAisle = aisle;
+}
+getSelectedStack(stack)
+{
+  debugger
+  this.selectedStack = stack;
+}
+getSelectedBlock(block)
+{
+  debugger
+  this.selectedBlock = block;
+}
+
+selectAnotherLocation(checked)
+{
+  debugger
+  if (checked) {
+  this.anotherLocation = true;
+  }
+  else{
+    this.anotherLocation = false;
+  }
+}
 
 }

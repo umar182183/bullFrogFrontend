@@ -39,5 +39,22 @@ export class RelocateService {
             +"&sreen="+obj.sreen+"&qty="+obj.qty+"&locationId="+obj.locationId+"&returnUrl="
             +JSON.stringify(obj.returnUrl)+"&onlyforBluffdate="+obj.onlyforBluffdate, obj);
   }
+  getAisle(areaId)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetAisle?areaId="+areaId);
+  }
 
+  getStack(areaId, aisle)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetStack?areaId="+areaId+"&aisle="+aisle);
+  }
+  getStackPosition(areaId, aisle, stack)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetStackPosition?areaId="+areaId+"&aisle="+aisle+"&stack="+stack);
+  }
+  getLocationList(onlyForBluffdale)
+  {
+   return this.http.get(this.URL+"InventoryManagement/GetLocationList?onlyForBluffdale="+onlyForBluffdale);
+  }
+  
 }

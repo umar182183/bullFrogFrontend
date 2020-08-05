@@ -575,6 +575,11 @@ header .menu-text .mt-badge {
 .inv-sub-body label {
     font-weight: bold;
 }
+.inv-sub-body{
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
 
 .inv-sub-body h4 {
     text-transform: uppercase;
@@ -607,7 +612,10 @@ header .menu-text .mt-badge {
     max-height: 200px;
     overflow-y: auto;
 }
-
+.rel-sub-body{
+    overflow-y: auto;
+    max-height: 200px;
+}
 
 
 
@@ -874,4 +882,17 @@ header .menu-text .mt-badge {
   height: 50%;
     z-index: 999999999999;
   }
-  
+  .drpdowns{
+    width: 40% !important;
+    float: right !important;
+    margin-left: 40rem !important;
+    margin-bottom: 4rem !important;
+    margin-top: 2rem !important;
+  }
+  .drpdown-1, .drpdown-2, .drpdown-3, .drpdown-4, .drpdown-5{
+      margin-bottom: 2rem;
+  }
+  .text-left{
+      text-align: left !important;
+      float: left;
+  }
