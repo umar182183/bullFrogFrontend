@@ -1,281 +1,296 @@
- <!-- Stock Inventory 1 -->
- <div class="modal fade dsh-modal" id="stkInv1"  tabindex="-1" aria-hidden="true" 
- bsModal #openPopup="bs-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Enter Part Number</h5>
-        <button type="button" class="close" (click)="openPopup.hide(); removeModalClass()" data-dismiss="modal"  aria-label="Close" >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form>
-              <div class="form-group row">
-              <label for="" class="col-sm-3 col-form-label">Part Number</label>
-              <div class="col-sm-9">
-                  <input type="text" class="form-control">
-              </div>
-              </div>
-              <div class="form-group row">
-              <label for="" class="col-sm-3 col-form-label">Description</label>
-              <div class="col-sm-9">
-                  <input type="text" class="form-control">
-              </div>
-              </div>
-              
-          </form>
-      </div>
-      <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()"  data-dismiss="modal" aria-label="Close">Go Back</button>
-          <button type="submit" (click)="qtyModal.show(); openPopup.hide()" class="btn btn-next float-right"  data-dismiss="modal" aria-label="Close">Next</button>
-      </div>
-    </div>
+<div [ngClass]="{'dashboard-overlay': loader}">
+
+  <div class="loading" *ngIf="loader" role="status">
+    <img src="assets/loader/Ellipsis-1s-200px.gif" class="ajax-loader">
   </div>
-</div>
-
-<!-- Stock Inventory 2 -->
-<div class="modal fade dsh-modal" bsModal #qtyModal="bs-modal" id="stkInv2" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Enter Quantity of 10-3585</h5>
-        <button type="button" class="close" (click)="qtyModal.hide();removeModalClass()" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <h4>Weird Door, Assembly bf 09+</h4>
-                  <form>
-                      <div class="form-group row">
-                      <label for="" class="col-sm-3 col-form-label">Number of Boxes:</label>
-                      <div class="col-sm-9">
-                          <input type="number" class="form-control">
-                      </div>
-                      </div>
-
-                      <div class="form-group row">
-                      <label for="" class="col-sm-3 col-form-label">Quantity Per Box:</label>
-                      <div class="col-sm-9">
-                          <input type="text" class="form-control">
-                      </div>
-                      </div>
-                      <div class="form-group row">
-                      <label for="" class="col-sm-3 col-form-label">Total Quantity</label>
-                      <div class="col-sm-9">
-                          <input type="text" class="form-control">
-                      </div>
-                      </div>
-
-                  </form>
-      </div>
-      <div class="modal-footer">
-          <button type="submit" class="btn btn-back" (click)="qtyModal.hide(); openPopup.show()"  data-dismiss="modal" aria-label="Close">Go Back</button>
-          <button type="submit" class="btn btn-next float-right" (click)="getLocationScreen(); qtyModal.hide();removeModalClass()"  data-dismiss="modal" aria-label="Close">Next</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Stock Inventory 3 -->
-
-<div class="row" *ngIf="isLocation == true">
-
-  <div class="col-md-12">
-      <div class="inv-sub-head">
-          <h3 class="text-center">Assign a Location for: 10-2585, QTY of 8256</h3>
-      </div>
-  </div>
-
-  <div class="col-md-12">
-      <div class="inv-sub-body">
-          <div class="text-center">
-              <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-
-         
-          <table class="table table-striped table-hover table-responsive" (click)="cnfrmtnModal.show()">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Building</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Heriman</td>
-                  <td>Heriman Part PR2-1-A</td>
-                  <td>985</td>
-                  <td>3/31/2020</td>
-                </tr>
-                <tr>
-                  <td>Bluffdale</td>
-                  <td>Bluffdale Warranty Team Parts U...</td>
-                  <td>1026</td>
-                  <td>12/26/2019</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <table class="table table-striped table-hover table-responsive" >
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Building</th>
-                  <th scope="col">Area</th>
-                  <th scope="col">Aisle</th>
-                  <th scope="col">Open Locations</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Bluffdale</td>
-                  <td>Factory Showroom</td>
-                  <td>South Wall</td>
-                  <td>1-A</td>
-                </tr>
-                <tr>
-                  <td>Bluffdale</td>
-                  <td>Factory Showroom</td>
-                  <td>South Wall</td>
-                  <td>2-A</td>
-                </tr>
-                <tr>
-                  <td>Bluffdale</td>
-                  <td>Factory Showroom</td>
-                  <td>South Wall</td>
-                  <td>3-A</td>
-                </tr>
-                <tr>
-                  <td>Bluffdale</td>
-                  <td>Factory Showroom</td>
-                  <td>South Wall</td>
-                  <td>4-A</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-
-                  <div class="form-group row">
-                      <label for="" class="col col-form-label">Select Another Location:</label>
-                      <input class="m-3" type="checkbox" (click)="isAnotherLocation = !isAnotherLocation">
-                      </div>
-
-                </div>
-                <div class="col-lg-9 col-md-6">
-
-                  <div class="form-group row">
-                  <label for="" class="col-sm-6 col-form-label text-right">Search Location:</label>
-                  <div class="col-sm-6">
-                      <input type="text" class="form-control">
-                  </div>
-                  </div>
-                </div>
-            </div>
-
-            <hr>
-
-            <form *ngIf="isAnotherLocation">
-
-
-              <div class="form-group row">
-                  <label for="" class="col-sm-2 col-form-label">Select Building</label>
-                  <div class="col-sm-10">
-                      <select class="form-control">
-                          <option value="">Henderson</option>
-                          <option value="">Henderson</option>
-                          <option value="">Henderson</option>
-                      </select>
-                  </div>
-                  </div>
-
-                  <div class="form-group row">
-                      <label for="" class="col-sm-2 col-form-label">Select Area</label>
-                      <div class="col-sm-10">
-                          <select class="form-control">
-                              <option value="">Factor Store - Henderson</option>
-                              <option value="">Factor Store - Henderson</option>
-                              <option value="">Factor Store - Henderson</option>
-                          </select>
-                      </div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label for="" class="col-sm-2 col-form-label">Select Aside</label>
-                          <div class="col-sm-10">
-                              <select class="form-control">
-                                  <option value="">Storage Area 1</option>
-                                  <option value="">Storage Area 1</option>
-                                  <option value="">Storage Area 1</option>
-                              </select>
-                          </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <label for="" class="col-sm-2 col-form-label">Select Stack</label>
-                              <div class="col-sm-10">
-                                  <select class="form-control">
-                                      <option value="">9</option>
-                                      <option value="">9</option>
-                                      <option value="">9</option>
-                                  </select>
-                              </div>
-                              </div>
-
-                          <div class="form-group row">
-                              <label for="" class="col-sm-2 col-form-label">Select Stack Position</label>
-                              <div class="col-sm-10">
-                                  <select class="form-control">
-                                      <option value="">A</option>
-                                      <option value="">A</option>
-                                      <option value="">A</option>
-                                  </select>
-                              </div>
-                              </div>    
-
-           
-          </form>
-
-            <hr>
-
-              <div class="row">
-              <div class="col-sm-12">
-                  <button type="submit" class="btn btn-back" (click)="qtyModal.show(); isLocation = false">Go Back</button>
-                  <button type="submit" class="btn btn-next float-right" (click)="isLocation = false">Submit</button>
-              </div>
-              </div>
-
-      </div>
-
-  </div>
-</div>
-  <!-- Location Select -->
-  <div class="modal fade dsh-modal" bsModal #cnfrmtnModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Relocate Inventory 1 -->
+  <div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #openPopup="bs-modal" id="reInv1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-          <button (click)="cnfrmtnModal.hide(); removeModalClass()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" >&times;</span>
+          <h5 class="modal-title" id="exampleModalLabel">Enter Part Number to Stock</h5>
+          <button type="button" class="close" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <p class="mb-3"><b>Location Selected:</b> Parts WH3-8-D</p>
-
-            <a href="#">Is this correct?</a>
-
+            <form>
+                <div class="form-group row">
+                <label for="" class="col-sm-3 col-form-label">Part Number</label>
+                <div class="col-sm-9">
+                    <!-- <input type="text" class="form-control"> -->
+                      <form class="example-form">
+                        <div class="example-full-width">
+                          <input type="text"
+                                  id="searchPart"
+                                 aria-label="Number"
+                                 matInput
+                                 class="form-group-custom form-control"
+                                 [formControl]="myControl"
+                                 [matAutocomplete]="auto">
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectPartNum(option)">
+                              {{option}}
+                            </mat-option>
+                          </mat-autocomplete>
+                        </div>
+                      <button *ngIf="isReset == false" class="reset" type="reset" (click)="resetData()">×</button>
+                  
+                      </form>
+                  
+                </div>
+                </div>
+                <div class="form-group row">
+                <label for="" class="col-sm-3 col-form-label">Description:</label>
+                <div class="col-sm-9">
+                    <input type="text" id="part-description" [value]="partDesc? partDesc: ''" class="form-control custum-desc">
+                </div>
+                </div>
+                
+            </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-back" (click)="cnfrmtnModal.hide(); removeModalClass()"  data-dismiss="modal" aria-label="Close">No</button>
-            <button type="submit" class="btn btn-next float-right" (click)="cnfrmtnModal.hide(); removeModalClass()"  data-dismiss="modal" aria-label="Close">Yes</button>
+            <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Go Back</button>
+                    <button type="submit" class="btn btn-next float-right" (click)="goNext()" data-dismiss="modal" aria-label="Close">Next</button>
         </div>
       </div>
     </div>
   </div>
+  
+  <!-- Relocate Inventory 2 -->
+  <div class="modal fade dsh-modal" bsModal #locationModal="bs-modal" id="reInv2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Locations with part #: {{partNumber}}</h5>
+    <button type="button" class="close" (click)="locationModal.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body das-body">
+    <table (click)="qtyModal.show(); locationModal.hide();" class="table table-striped table-hover table-responsive">
+    <thead class="thead-dark">
+    <tr>
+    <th scope="col">Building</th>
+    <th scope="col">Location</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let part of partDataArr" (click)="getLocationId(part.locationId)">
+    <td>{{part.buildingName}}</td>
+    <td>{{part.location}}</td>
+    <td>{{part.qty}}</td>
+    <td>{{part.date}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="modal-footer">
+    <button type="submit" class="btn btn-back ml-auto" (click)="openPopup.show(); locationModal.hide()" data-dismiss="modal" aria-label="Close">Go Back</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+   <!-- Relocate Inventory 3 -->
+   <div class="modal fade dsh-modal" bsModal #qtyModal="bs-modal" id="reInv3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter Quantity of {{partNumber}} to stock form {{location}}</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="qtyModal.hide();removeModalClass()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h4><b>{{partDesc}}</b></h4>
+                    <form>
+                      <div class="form-group row">
+                        </div>
+                        <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Number of Boxes:</label>
+                        <div class="col-sm-9">
+                            <input type="number" [(ngModel)]="numberOfBoxes" (ngModelChange)="boxesModelChanged($event)" name="number-of-boxes" class="form-control">
+                        </div>
+                        </div>
+  
+                        <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Quantity Per Box:</label>
+                        <div class="col-sm-9">
+                            <input type="number" [(ngModel)]="qtyPerBox" (ngModelChange)="qtyModelChanged($event)" name="qty-per-box" class="form-control">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Total Quantity</label>
+                        <div class="col-sm-9">
+                            <input type="text" [value]="totalQty?totalQty: ''" class="form-control">
+                        </div>
+                        </div>
+                    </form>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-back" (click)="qtyModal.hide(); openPopup.show()" data-dismiss="modal" aria-label="Close">Go Back</button>
+            <button type="submit" class="btn btn-next float-right" (click)="getFinalResult()" data-dismiss="modal" aria-label="Close">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <!-- Relocate Inventory 4 -->
+  <div class="row" *ngIf="result">
+  
+    <div class="col-md-12">
+        <div class="inv-sub-head">
+            <h3 class="text-center">Assign a Location</h3>
+        </div>
+    </div>
+  
+    <div class="col-md-12">
+        <div class="inv-sub-body">
+            <div class="text-center">
+                <p>Transferring {{totalQty}} of {{partNumber}} from {{location}} to:</p>
+                <p>Assigned Locations with: {{partNumber}}</p>
+            </div>
+  
+            <table class="table table-striped table-hover table-responsive">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Building</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let part of partDataArr">
+                    <td>{{part.buildingName}}</td>
+                    <td>{{part.location}}</td>
+                    <td>{{part.qty}}</td>
+                    <td>{{part.date}}</td>
+                    </tr>
+                 
+                </tbody>
+              </table>
+  
+              <hr>
+              <div class="rel-sub-body">
+              <table class="table table-striped table-hover table-responsive">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Building</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Aisle</th>
+                    <th scope="col">Open Locations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let open of openLocationArr" (click)="getRelocatedinfo(open.locationId, open.areaID, open.stack, open.areaName, open.aisle, open.stackPostion, open.bluffdaleLocation)">
+                    <td>{{open.buildingName}}</td>
+                    <td>{{open.areaName}}</td>
+                    <td>{{open.aisle}}</td>
+                    <td>{{open.tblLocation}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+              <hr>
+  
+              <div class="row">
+                  <div class="col-lg-3 col-md-6">
+  
+                    <div class="form-group row">
+                        <label for="" class="col col-form-label">Select Another Location:</label>
+                        <input class="m-3" type="checkbox"  (click)="selectAnotherLocation($event.target.checked)">
+                        </div>
+  
+                  </div>
+                  <div class="col-lg-9 col-md-6">
+  
+                    <div class="form-group row">
+                    <label for="" class="col-sm-6 col-form-label text-right">Search Location:</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="filter" (keyup)="applyFilter($event.target.value)" [formControl]="myControl" class="form-control">
+                    </div>
+                    </div>
+                  </div>
+              </div>
+  
+              <hr>
+  
+                <div class="row">
+                  <div class="drpdowns" *ngIf="anotherLocation == true">
+                   
+              <div class="drpdown-1">
+                <label for="" class="col-sm-6 col-form-label text-left"><b> Select Building:</b></label>
+              <select class="form-control" name="selectedBuilding" (change)="getSelectedBuilding($event.target.value)">
+                <option>--Select Building--</option>
+                <option  *ngFor="let building of buildingsArr" value="{{building.buildingId}}:{{building.buildingName}}">{{building.buildingName}}</option>
+            </select>
+          </div>
+          <div class="drpdown-2" *ngIf="isBuildingSelected == true">
+            <label for="" class="col-sm-6 col-form-label text-left"><b> Select Area:</b></label>
+          <select class="form-control" name="selectedArea" (change)="getSelectedArea($event.target.value)">
+            <option>--Select Area--</option>
+            <option  *ngFor="let area of areasArr" value="{{area.areaId}}:{{area.areaName}}">{{area.areaName}}</option>
+          </select>
+      </div>
+      <div class="drpdown-3" *ngIf="isAreaSelected == true">
+        <label for="" class="col-sm-6 col-form-label text-left"><b> Select Aisle:</b></label>
+      <select class="form-control" [(ngModel)]="selectedAisle" name="selectedAisle" (change)="getSelectedAisle($event.target.value)">
+        <option>--Select Aisle--</option>
+        <option  *ngFor="let aisle of aislesArr" [value]="aisle.aisleName">{{aisle.aisleName}}</option>
+      </select>
+  </div>
+  
+  <div class="drpdown-4" *ngIf="isAisleSelected == true">
+    <label for="" class="col-sm-6 col-form-label text-left"><b> Select Stack:</b></label>
+  <select class="form-control" [(ngModel)]="selectedStack" name="selectedStack" (change)="getSelectedStack($event.target.value)">
+    <option>--Select Stack--</option>
+    <option  *ngFor="let stack of stacksArr" [value]="stack.stack">{{stack.stack}}</option>
+  </select>
+  </div>
+  <div class="drpdown-5" *ngIf="isStackSelected == true">
+    <label for="" class="col-sm-6 col-form-label text-left"><b> Select Stack Position:</b></label>
+  <select class="form-control" [(ngModel)]="selectedBlock" name="selectedBlock" (change)="getSelectedBlock($event.target.value)">
+    <option>--Select Stack Position--</option>
+    <option  *ngFor="let position of stackPositionsArr" [value]="position.stackPosition">{{position.stackPosition}}</option>
+  </select>
+  </div>
+              </div>
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-back" (click)="result = false; qtyModal.show()">Go Back</button>
+                    <button type="submit" class="btn btn-next float-right" (click)="loadConfirmModal()">Submit</button>
+                </div>
+                </div>
+  
+        </div>
+  
+    </div>
+  </div>
+  </div>
+  
+    <!-- Confirm Log -->
+    <div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #confirmModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+            <button type="button" (click)="confirmModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             
+                          <p>Location Selected: <b>{{bluffdaleLocation}}</b>.</p>
+                          <p class="is-correct">Is this correct?</p>
+                  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-back" data-dismiss="modal" (click)="confirmModal.hide()">No</button>
+            <button type="button" class="btn btn-next" (click)="submitResults()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>

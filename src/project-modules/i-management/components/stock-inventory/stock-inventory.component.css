@@ -1,8 +1,9 @@
 
+
+
 h1,h2,h3,h4,h5,h6 {
     font-family: Open Sans, sans-serif;
 }
-
 
 .head{
     color: #414042;
@@ -574,6 +575,11 @@ header .menu-text .mt-badge {
 .inv-sub-body label {
     font-weight: bold;
 }
+.inv-sub-body{
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
 
 .inv-sub-body h4 {
     text-transform: uppercase;
@@ -606,7 +612,10 @@ header .menu-text .mt-badge {
     max-height: 200px;
     overflow-y: auto;
 }
-
+.rel-sub-body{
+    overflow-y: auto;
+    max-height: 200px;
+}
 
 
 
@@ -820,3 +829,81 @@ header .menu-text .mt-badge {
 
 }
 
+.modal-backdrop{
+    display: none !important;
+}
+
+/* .form-group-custom{
+    width: 30rem;
+    height: 48px;
+    border: none;
+    background: #E6E7E8;
+} */
+
+.reset{
+    width: 20%;
+   background: none;
+   color: red;
+   border: none;
+   font-weight: bold;
+   position: absolute;
+   z-index: 1;
+   margin-left: 429px;
+   margin-top: -2rem;
+}
+.reset:active, .reset:hover{
+    border: none;
+    outline: none;
+}
+
+/* .custum-desc{
+    width: 30rem !important;
+    height: 48px !important;
+} */
+
+.dashboard-overlay{
+
+    position: relative;
+  /* background: gray; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    z-index: 10;
+    opacity: 0.4;
+  }
+  
+  .loading{
+    position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: -4rem 6rem;;
+  width: 50%;
+  height: 50%;
+    z-index: 999999999999;
+  }
+  .drpdowns{
+    width: 40% !important;
+    float: right !important;
+    margin-left: 40rem !important;
+    margin-bottom: 4rem !important;
+    margin-top: 2rem !important;
+  }
+  .drpdown-1, .drpdown-2, .drpdown-3, .drpdown-4, .drpdown-5{
+      margin-bottom: 2rem;
+  }
+  .text-left{
+      text-align: left !important;
+      float: left;
+  }
+
+.form-control{
+    border: 1px solid #9DC5E5 !important;
+}
+.m-3{
+    margin-right: 56px !important;
+    margin-top: 13px !important;
+}
+.is-correct{
+    color: #9DC5E5 !important;
+}
