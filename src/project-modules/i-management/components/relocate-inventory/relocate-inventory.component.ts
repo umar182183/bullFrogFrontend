@@ -156,10 +156,17 @@ removeModalClass()
   }
 
 }
-goNext()
+goNext(partAdded)
 {
-  this.openPopup.hide();
-  this.qtyModal.show();
+  debugger
+  if (partAdded == "") {
+    this.toastr.warning("Please enter part number");
+  } 
+  else {
+    this.openPopup.hide();
+    this.qtyModal.show();
+  }
+ 
 }
 
 getClickCall()
@@ -287,6 +294,12 @@ qtyModelChanged(event)
   }
 
 getFinalResult(){
+  if (this.totalQty == 0) {
+    this.toastr.warning("Please enter part number");
+    
+  } 
+  else {
+    
   this.getResult();
   this.removeModalClass();
   this.myControl.reset();
@@ -302,7 +315,7 @@ getFinalResult(){
   this.subAssignedLocation(obj);
   
   this.loadBuildings();
-
+}
 }
 
 subOpenLocationsData(bool)

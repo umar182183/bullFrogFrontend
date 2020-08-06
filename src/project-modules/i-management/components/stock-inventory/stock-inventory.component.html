@@ -21,7 +21,7 @@
                     <!-- <input type="text" class="form-control"> -->
                       <form class="example-form">
                         <div class="example-full-width">
-                          <input type="text"
+                          <input type="text" #partAdded
                                   id="searchPart"
                                  aria-label="Number"
                                  matInput
@@ -51,7 +51,7 @@
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Go Back</button>
-                    <button type="submit" class="btn btn-next float-right" (click)="goNext()" data-dismiss="modal" aria-label="Close">Next</button>
+                    <button type="submit" class="btn btn-next float-right" (click)="goNext(partAdded.value)" data-dismiss="modal" aria-label="Close">Next</button>
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@
     </div>
     </div>
     </div>
-    
+
    <!-- Relocate Inventory 3 -->
    <div class="modal fade dsh-modal" bsModal #qtyModal="bs-modal" id="reInv3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -22,7 +22,7 @@
                     <form class="example-form">
                       <div class="example-full-width">
                         <input type="text"
-                                id="searchPart"
+                                id="searchPart" #partAdded
                                aria-label="Number"
                                matInput
                                class="form-group-custom form-control"
@@ -51,7 +51,7 @@
       </div>
       <div class="modal-footer">
           <button type="submit" class="btn btn-back" (click)="openPopup.hide();removeModalClass()" data-dismiss="modal" aria-label="Close">Go Back</button>
-                  <button type="submit" class="btn btn-next float-right" (click)="goNext()" data-dismiss="modal" aria-label="Close">Next</button>
+                  <button type="submit" class="btn btn-next float-right" (click)="goNext(partAdded.value)" data-dismiss="modal" aria-label="Close">Next</button>
       </div>
     </div>
   </div>
