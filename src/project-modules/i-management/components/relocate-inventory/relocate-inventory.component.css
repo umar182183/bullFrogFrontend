@@ -896,3 +896,14 @@ header .menu-text .mt-badge {
       text-align: left !important;
       float: left;
   }
+
+.form-control{
+    border: 1px solid #9DC5E5 !important;
+}
+.m-3{
+    margin-right: 56px !important;
+    margin-top: 13px !important;
+}
+.is-correct{
+    color: #9DC5E5 !important;
+}

@@ -185,11 +185,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let building of openLocationObj.buildings; let area of openLocationObj.areas; let open of openLocationObj.openLocationList;" >
-                  <td>{{building.buildingName}}</td>
-                  <td>{{area.areaName}}</td>
+                <tr *ngFor="let open of openLocationArr" (click)="getRelocatedinfo(open.locationId, open.areaID, open.stack, open.areaName, open.aisle, open.stackPostion, open.bluffdaleLocation)">
+                  <td>{{open.buildingName}}</td>
+                  <td>{{open.areaName}}</td>
                   <td>{{open.aisle}}</td>
-                  <td>{{open.location}}</td>
+                  <td>{{open.tblLocation}}</td>
                 </tr>
               </tbody>
             </table>
@@ -225,14 +225,14 @@
               <label for="" class="col-sm-6 col-form-label text-left"><b> Select Building:</b></label>
             <select class="form-control" name="selectedBuilding" (change)="getSelectedBuilding($event.target.value)">
               <option>--Select Building--</option>
-              <option  *ngFor="let building of buildingsArr" [value]="building.buildingId">{{building.buildingName}}</option>
+              <option  *ngFor="let building of buildingsArr" value="{{building.buildingId}}:{{building.buildingName}}">{{building.buildingName}}</option>
           </select>
         </div>
         <div class="drpdown-2" *ngIf="isBuildingSelected == true">
           <label for="" class="col-sm-6 col-form-label text-left"><b> Select Area:</b></label>
         <select class="form-control" name="selectedArea" (change)="getSelectedArea($event.target.value)">
           <option>--Select Area--</option>
-          <option  *ngFor="let area of areasArr" [value]="area.areaId">{{area.areaName}}</option>
+          <option  *ngFor="let area of areasArr" value="{{area.areaId}}:{{area.areaName}}">{{area.areaName}}</option>
         </select>
     </div>
     <div class="drpdown-3" *ngIf="isAreaSelected == true">
@@ -260,7 +260,7 @@
             </div>
               <div class="col-sm-12">
                   <button type="submit" class="btn btn-back" (click)="result = false; qtyModal.show()">Go Back</button>
-                  <button type="submit" class="btn btn-next float-right" (click)="submitResults()">Submit</button>
+                  <button type="submit" class="btn btn-next float-right" (click)="loadConfirmModal()">Submit</button>
               </div>
               </div>
 
@@ -269,3 +269,27 @@
   </div>
 </div>
 </div>
+
+  <!-- Confirm Log -->
+  <div class="modal fade dsh-modal" [config]="{ backdrop: 'static' }" bsModal #confirmModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" (click)="confirmModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           
+                        <p>Location Selected: <b>{{bluffdaleLocation}}</b>.</p>
+                        <p class="is-correct">Is this correct?</p>
+                
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="confirmModal.hide()">No</button>
+          <button type="button" class="btn btn-next" (click)="submitResults()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>

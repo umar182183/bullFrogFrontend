@@ -32,6 +32,10 @@ export class RelocateService {
     }
    return this.http.post(this.URL+"InventoryManagement/GetLocationById?locationId="+locationId+"&partNumber="+partNum, obj);
   }
+  getOpenLocationdata(isBluffdale)
+  {
+    return this.http.get(this.URL+"ReOrder/PutPartAwayOpenpartLocations?isBluffdale="+isBluffdale);
+  }
 
   assignLocation(obj)
   {
@@ -60,10 +64,10 @@ export class RelocateService {
   {
    return this.http.get(this.URL+"InventoryManagement/GetStackPosition?areaId="+areaId+"&aisle="+aisle+"&stack="+stack);
   }
-  getLocationList(onlyForBluffdale)
-  {
-   return this.http.get(this.URL+"InventoryManagement/GetLocationList?onlyForBluffdale="+onlyForBluffdale);
-  }
+  // getLocationList(onlyForBluffdale)
+  // {
+  //  return this.http.get(this.URL+"InventoryManagement/GetLocationList?onlyForBluffdale="+onlyForBluffdale);
+  // }
 
   editLocation(obj)
   {
@@ -71,5 +75,7 @@ export class RelocateService {
       obj.locationId+"&oldLocationId="+obj.oldLocationId+"&areaId="+obj.areaId+"&qty="+obj.qty+"&stack="+obj.stack
       +"&areaName="+obj.areaName+"&partNumber="+obj.partNumber+"&aisleName="+obj.aisleName+"&stackPosition="+obj.stackPosition+"&returnUrl="+obj.returnUrl, obj);
   }
+  
+ 
   
 }

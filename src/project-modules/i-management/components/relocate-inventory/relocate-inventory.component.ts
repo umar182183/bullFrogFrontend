@@ -18,6 +18,7 @@ export class RelocateInventoryComponent implements OnInit {
   @ViewChild('openPopup', { static: false }) openPopup: ModalDirective;
   @ViewChild('locationModal', { static: false }) locationModal: ModalDirective;
   @ViewChild('qtyModal', { static: false }) qtyModal: ModalDirective;
+  @ViewChild('confirmModal') confirmModal: ModalDirective;
 
   public result: boolean = false;
   public loader = false;
@@ -41,6 +42,7 @@ export class RelocateInventoryComponent implements OnInit {
   public aisle;
   public stack;
   public stackPosition;
+  public bluffdaleLocation;
   public partDesc;
   public locationId: number = 0;
   public numberOfBoxes: number = 0;
@@ -54,8 +56,8 @@ export class RelocateInventoryComponent implements OnInit {
   public stacksArr: any[] = [];
   public stackPositionsArr: any[] = [];
   public locationDataObj: any = {};
-  public openLocationObj: any = {};
-  public openLocationBackObj: any = {};
+  public openLocationArr: any[] = [];
+  public openLocationBackArr: any[] = [];
 
 
   public myControl = new FormControl();
@@ -83,14 +85,12 @@ ngOnInit() {
          this.options = this._filter(valueGot);
          if (valueGot != "") {
          this.isReset = false;
-        //  this.tableData = [];
         //    this.tableLoader = true;
          }
          if (this.options.length == 1 && this.isSelected == false) {
            this.selectPartNum(this.options[0]);
          }
          if (this.options.length == 0) {
-          //  this.tableData = [];
           //  this.tableLoader = true;
          }
          this.isSelected = false;
@@ -116,7 +116,7 @@ selectPartNum(partNumStr)
           }
         });
         debugger
-        this.partDesc = selectedPart[0].partDescription;
+        this.partDesc = selectedPart[0]?.partDescription;
     this.myControl.setValue(this.options[0], {emitEvent: false});
 
         this.getPartNumData(partNum[0]);
@@ -148,12 +148,12 @@ getResult()
 
 removeModalClass()
 {
-  // let backdrop = document.getElementsByClassName("modal-backdrop");
-  // if (backdrop.length > 1) {
-  //   for (let index = 0; index < backdrop.length; index++) {
-  //     backdrop[index].remove();
-  //   }
-  // }
+  let backdrop = document.getElementsByClassName("modal-backdrop");
+  if (backdrop.length > 1 && backdrop.length != 0) {
+    for (let index = 0; index < backdrop.length; index++) {
+      backdrop[index].remove();
+    }
+  }
 
 }
 goNext()
@@ -172,6 +172,36 @@ getClickCall()
       this.openPopup.show();
     }
   });
+}
+
+resetSubmittedData()
+{
+  this.myControl.setValue('', {emitEvent: false});
+  let setDesc: any = document.getElementById("part-description");
+  setDesc.value = '';
+  this.partNumber = '';
+  this.partDesc = '';
+  this.totalQty= 0;
+  this.qtyPerBox = 0;
+  this.numberOfBoxes = 0;
+  this.aisle = '';
+  this.stack = '';
+  this.areaName= '';
+  this.selectedBuilding = '';
+  this.isBuildingSelected = false;
+  this.isAisleSelected = false;
+  this.isAreaSelected = false;
+  this.isStackSelected = false;
+  this.anotherLocation = false;
+  this.partDataArr = [];
+  this.partListArr = [];
+  this.areasArr = [];
+  this.aislesArr = [];
+  this.stacksArr = [];
+  this.stackPositionsArr = [];
+  this.locationDataObj = {};
+  this.openLocationArr = [];
+  this.openLocationBackArr = [];
 }
 
 loadPartsList()
@@ -209,8 +239,15 @@ getPartNumData(partNum)
     }
     else{
       let locationId = this.partDataArr? this.partDataArr[0].locationId: "";
-      this.locationId = locationId;
+      // this.locationId = locationId;
+      // this.oldLocationId = locationId;
       this.getLocationById(locationId, partNum);
+    }
+    if (this.partDataArr.length == 1) {
+      this.openPopup.hide();
+      this.qtyModal.show();
+      this.oldLocationId = this.partDataArr[0].locationId;
+
     }
     }
     else{
@@ -248,66 +285,99 @@ qtyModelChanged(event)
   this.totalQty = 0;
   this.totalQty = this.numberOfBoxes * this.qtyPerBox;
   }
+
 getFinalResult(){
   this.getResult();
   this.removeModalClass();
-  this.loader = true;
   this.myControl.reset();
   let obj = {
     partnumber: this.partNumber,
     sreen: "relocate",
     qty: this.totalQty,
-    locationId: this.locationId,
+    locationId: this.oldLocationId,
     returnUrl: "",
     onlyforBluffdate: false
   }
-  this.relocateService.assignLocation(obj).subscribe((data: any) => {
-    debugger
-   this.openLocationObj =  data.responseData;
-   this.openLocationBackObj =  data.responseData;
-    this.loader = false;
-    this.loadBuildings();
+  this.subOpenLocationsData(false);
+  this.subAssignedLocation(obj);
+  
+  this.loadBuildings();
 
+}
+
+subOpenLocationsData(bool)
+{
+  this.loader = true;
+  this.relocateService.getOpenLocationdata(bool).subscribe((data: any)=> {
+    debugger
+    this.openLocationBackArr =  data.responseData;
+    this.openLocationArr =  data.responseData.slice(0, 40);
+    this.loader = false;
   });
 }
+
+subAssignedLocation(obj)
+{
+  this.relocateService.assignLocation(obj).subscribe((res: any) => {
+    // debugger
+  //  this.openLocationObj =  res.responseData;
+  //  this.openLocationBackObj =  res.responseData;
+  });
+}
+
 getLocationId(locationIdRec)
 {
   debugger
+  this.oldLocationId = locationIdRec;
   this.getLocationById(locationIdRec, this.partNumber);
 }
 
-getSelectedBuilding(buildingId)
+getSelectedBuilding(buildingdata)
 {
   debugger
-//  this.selectedBuilding = buildingName;
- this.isBuildingSelected = true;
- this.loadAreas(buildingId);
+  let splittedbuildingData = buildingdata.split(":", 2);
+ this.selectedBuilding = splittedbuildingData[1];
+ let buildIdToSend = splittedbuildingData[0];
+ buildIdToSend = +buildIdToSend;
+ this.loadAreas(buildIdToSend);
 
 }
 
-getSelectedArea(areaId)
+getSelectedArea(areaData)
 {
   debugger
-  // this.selectedArea = areaId;
- this.isAreaSelected = true;
- this.areaId = areaId;
- this.loadAisles(areaId);
+  let splittedbuildingData = areaData.split(":", 2);
+ this.selectedArea = splittedbuildingData[1];
+ let areaIdToSend = splittedbuildingData[0];
+ areaIdToSend = +areaIdToSend;
+ this.areaId = areaIdToSend;
+ let selectedAreaArr = this.areasArr.filter((res: any) => {
+   if(res.areaId == areaIdToSend){
+     return res;
+   }
+ });
+ this.areaName = selectedAreaArr[0].areaName;
+ this.bluffdaleLocation = this.selectedArea;
+
+ this.loadAisles(areaIdToSend);
 
 }
 getSelectedAisle(aisleName)
 {
   debugger
-  // this.selectedAisle = aisleName;
- this.isAisleSelected = true;
+  this.selectedAisle = aisleName;
   this.aisle = aisleName;
+  this.bluffdaleLocation = this.selectedArea+' '+this.selectedAisle;
+
   this.loadStacks(this.areaId, aisleName);
 }
 getSelectedStack(stack)
 {
   debugger
-  // this.selectedStack = stack;
+  this.selectedStack = stack;
   this.stack = stack;
- this.isStackSelected = true;
+  this.bluffdaleLocation = this.selectedArea+' '+this.selectedAisle+' '+this.selectedStack+' ';
+
  this.loadStackPositions(this.areaId, this.aisle, stack)
 
 }
@@ -315,6 +385,8 @@ getSelectedBlock(block)
 {
   debugger
   this.selectedBlock = block;
+  this.stackPosition = block;
+  this.bluffdaleLocation = this.selectedArea+' '+this.selectedAisle+' '+this.selectedStack+' '+this.selectedBlock;
 }
 
 selectAnotherLocation(checked)
@@ -328,35 +400,23 @@ selectAnotherLocation(checked)
   }
 }
 
-applyFilter(filterValue: string)
+applyFilter(value: string)
 {
   debugger
-  if (filterValue == "") {
-
-    this.openLocationObj.buildings = this.openLocationBackObj.buildings;
-    this.openLocationObj.areas = this.openLocationBackObj.areas;
-    this.openLocationObj.openLocationList = this.openLocationBackObj.openLocationList;
-
-  } 
-  else {
-    
-    const filteredValue = filterValue? filterValue.toLowerCase(): filterValue;
-
- let arr1 = this.openLocationBackObj.buildings;
- let arr2 = this.openLocationBackObj.areas;
- let arr3 = this.openLocationBackObj.openLocationList;
- this.openLocationObj.buildings =  arr1.filter(option =>{
-        return option.buildingName?.toLowerCase()?.includes(filteredValue)
-      })
- this.openLocationObj.areas = arr2?.filter(option =>{
-        return option.areaName?.toLowerCase()?.includes(filteredValue)
-        })
-  this.openLocationObj.openLocationList = arr3?.filter(option =>{
-        return option.location?.toLowerCase()?.includes(filteredValue)
-        })
+  this.openLocationArr = this._filterOpenLockArr(value);
+  if (this.openLocationArr.length > 40) {
+  this.openLocationArr = this.openLocationArr.slice(0, 40);
   }
- 
 }
+
+private _filterOpenLockArr(value: string): string[] {
+  const filterValue = value.toLowerCase();
+  let arr = this.openLocationBackArr;
+  return arr.filter(option =>{
+   return option.location.toLowerCase().includes(filterValue);
+  });
+}
+
 
 loadBuildings()
 {
@@ -371,6 +431,8 @@ loadAreas(buildingId)
   this.relocateService.getAreasByBuildingId(buildingId).subscribe((data: any) => {
     debugger
     this.areasArr = data.responseData.data;
+ this.isBuildingSelected = true;
+
   });
 }
 
@@ -379,6 +441,8 @@ loadAisles(areaId)
   this.relocateService.getAisle(areaId).subscribe((data: any) => {
     debugger
     this.aislesArr = data.responseData.data;
+ this.isAreaSelected = true;
+
   });
 }
 
@@ -387,6 +451,8 @@ loadStacks(areaId, aisle)
   this.relocateService.getStack(areaId, aisle).subscribe((data: any) => {
     debugger
     this.stacksArr = data.responseData.data;
+ this.isAisleSelected = true;
+
   });
 }
 
@@ -395,11 +461,32 @@ loadStackPositions(areaId, aisle, stack)
   this.relocateService.getStackPosition(areaId, aisle, stack).subscribe((data: any) => {
     debugger
     this.stackPositionsArr = data.responseData.data;
+ this.isStackSelected = true;
+
   });
 }
 
+getRelocatedinfo(locationIdRec, areaIDRec, stackRec, areaNameRec, aisleRec, stackPostionRec, bluffdaleLocationRec)
+{
+    this.locationId = locationIdRec;
+    this.areaId = areaIDRec;
+    this.stack = stackRec;
+    this.areaName = areaNameRec;
+    this.aisle = aisleRec;
+    this.stackPosition = stackPostionRec;
+    this.bluffdaleLocation = "";
+    this.bluffdaleLocation = bluffdaleLocationRec;
+    this.loadConfirmModal();
+}
+
+loadConfirmModal()
+{
+  this.confirmModal.show();
+}
+
 submitResults(){
-  this.result = false;
+  debugger
+  this.confirmModal.hide();
   let obj = {
     locationId: this.locationId,
     oldLocationId: this.oldLocationId,
@@ -412,9 +499,18 @@ submitResults(){
     stackPosition: this.stackPosition,
     returnUrl: ''
   }
+  this.loader = true;
   this.relocateService.editLocation(obj).subscribe((res: any) => {
     debugger
-    res
-  })
+  this.loader = false;
+    this.resetSubmittedData();
+    if (res.success) {
+
+  this.result = false;
+
+      this.toastr.info("Submitted Successfully!");
+    }
+  });
+
 }
 }
